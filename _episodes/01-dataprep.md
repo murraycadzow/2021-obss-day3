@@ -85,7 +85,6 @@ lane1  samples
 
 >
 >> ## Solution
->> 1. 
 >> ```bash
 >> cp  /nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz dataprep/lane1
 >> ```
@@ -132,11 +131,17 @@ fastqc lane1.fastq.gz
 Well done, We are now going to fetch our barcodes:
 
 > ## Exercise   
-> 2. You will need to specify the set of barcodes used in the construction of the RAD library. Each P1 adaptor in RAD read has a particular inlineDNA barcode (an inline barcode) that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at them. (*
+> 2. You will need to specify the set of barcodes used in the construction of the RAD library. Each P1 adaptor in RAD read starts with a particular DNA barcode that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at them.
+> 
+>> ## Solution
+>> ```bash
+>> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt
+>> ```
+>{: .solution}
 >
 > 4. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library
 >> ## Solution
->> you can use `wc -l` ~~~ or less to count the lines 
+>> you can use `wc -l lane1_barcodes.txt`  or `less lane1_barcodes.txt` to inspect the file yourself the lines 
 >> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt .
 >> ```
 > {: .solution}
@@ -161,7 +166,7 @@ Well done, We are now going to fetch our barcodes:
 > 7. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
->    - In the process_radtags log file, what can the list of “sequences not recorded” tell you about the barcodes analysed and about the sequencing quality in general?
+>    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
 {: .challenge}
 
 
