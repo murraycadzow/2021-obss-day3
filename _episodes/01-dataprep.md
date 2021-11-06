@@ -141,7 +141,7 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 >    
 >> ## Solution
 >> ```bash
->> ###Load the module
+>> ### Load the module
 >> module load Stacks
 >> ### copy the barcodes
 >> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt
@@ -150,7 +150,7 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 >> ### run process_radtags
 >> process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q
 >> ```
-> {. solution}
+> {:. solution}
 {: .challenge}
 
 Well done! Take a break, sit back or help your neighbour, we will be back shortly!
