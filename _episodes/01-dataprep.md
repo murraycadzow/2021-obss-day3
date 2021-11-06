@@ -114,11 +114,11 @@ fastqc lane1.fastq.gz
 2. We will use the Stacks’s program **process_radtags** to remove low quality sequences (also known as cleaning data) and to demultiplex our samples. [Here is the Stacks manual](http://catchenlab.life.illinois.edu/stacks/manual/) as well as the specific [manual page for process_radtags](http://catchenlab.life.illinois.edu/stacks/manual/#procrad) on the Stacks website to find information and examples. 
 
 > ## Exercise
->  1.  Get back into your ```dataprep``` folder by running ```cd ../``` in the terminal (*hint*: if you are lost use `pwd` to check where you are).
+> 1.  Get back into your ```dataprep``` folder by running ```cd ../``` in the terminal (*hint*: if you are lost use `pwd` to check where you are).
 >
 > 2. It is time to load the ```Stacks``` module to be able to access the ```process_radtags``` command. Find the module  and load it (*hint*: Do for Stacks what we did above for FastQC).
 {: .challenge}
-> Well done, We are now going to fetch our barcodes:
+>
 > 3. You will need to specify the set of barcodes used in the construction of the RAD library. Each P1 adaptor in RAD read starts with a particular DNA barcode that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at the barcodes.
 > 
 >> ## Solution
@@ -131,6 +131,7 @@ fastqc lane1.fastq.gz
 >> ## Solution
 >> you can use `wc -l lane1_barcodes.txt`  or `less lane1_barcodes.txt` to inspect the file yourself the lines 
 > {: .solution}
+> 
 > 5. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
 >   - the restriction enzyme used to construct the library (pstI)
 >   - the directory of input files (the ```lane1``` directory)
@@ -144,10 +145,8 @@ fastqc lane1.fastq.gz
 >> process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q
 >> ```
 > {: .solution}
-
 >        
 > 6. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
-
 > 
 > 7. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
 >    - How many reads were retained?
