@@ -102,18 +102,18 @@ fastqc lane1.fastq.gz
 > Explanations of this code: `module purge` get rids of any pre-existing potentially conflicting modules. `module spider` searches for modules e.g. `module spider fastqc`  looks for a module called fastqc (or something similar!). Once we know what this module is actually called (*note*: almost everything we do on terminal is case-sensitive) we can use `module load` to load the module. Finally, we ran `fastqc`.
 {: .callout}
 
-   •  You just generated a  FastQC report. Use the Jupyter hub navigator tool (click on the folder shown in the red rectangle at the top left in the image below) to follow the path to your current folder (*hint*: If you're not quite sure where you are, use `pwd` in your terminal window. Also, if `obss_2020` doesn't show up in the menu on the left, you might need to also click the littler folder icon just above `Name`). Once you've navigated to the correct folder, you can then double click on a fastqc html report. 
+  You just generated a  FastQC report. Use the Jupyter hub navigator tool (click on the folder shown in the red rectangle at the top left in the image below) to follow the path to your current folder (*hint*: If you're not quite sure where you are, use `pwd` in your terminal window. Also, if `obss_2020` doesn't show up in the menu on the left, you might need to also click the littler folder icon just above `Name`). Once you've navigated to the correct folder, you can then double click on a fastqc html report. 
 
 > ## Exercise
-> What is this weird thing in the *per base sequence content* from base 7 to 12-13?
+> What is this odd thing in the *per base sequence content* from base 7 to 12-13?
 >> ## Solution
->>  It is the cutsite. It is identical on all the fragments that were correctly digested by the enzyme before being ligated to a restriction enzyme.
+>>  It is the enzyme cutsite. It is identical on all the fragments that were correctly digested by the enzyme before being ligated to a restriction enzyme.
 > {: .solution}
 {: .challenge}
 
  You probably noticed that not all of the data is high quality (especially if you check the 'Per base sequence quality' tab!). In general with next generation sequencing, you want to remove the lowest quality sequences from your data set before you proceed. However, the stringency of the filtering will depend on the final application. In general, higher stringency is needed for *de novo* assemblies as compared to alignments to a reference genome. However, low quality data can affect downstream analysis for both *de novo* and reference-based approaches, producing false positives, such as errant SNP predictions.
 
-2. We will use the Stacks’s program **process_radtags** to remove low quality sequences (also known as cleaning data) and to demultiplex our samples. [Here is the Stacks manual](http://catchenlab.life.illinois.edu/stacks/manual/) as well as the specific [manual page for process_radtags](http://catchenlab.life.illinois.edu/stacks/manual/#procrad) on the Stacks website to find information and examples. 
+We will use the Stacks’s program **process_radtags** to remove low quality sequences (also known as cleaning data) and to demultiplex our samples. [Here is the Stacks manual](http://catchenlab.life.illinois.edu/stacks/manual/) as well as the specific [manual page for process_radtags](http://catchenlab.life.illinois.edu/stacks/manual/#procrad) on the Stacks website to find information and examples. 
 
 > ## Exercise
 > 1.  Get back into your ```dataprep``` folder by running ```cd ../``` in the terminal (*hint*: if you are lost use `pwd` to check where you are).
@@ -121,18 +121,8 @@ fastqc lane1.fastq.gz
 > 2. It is time to load the ```Stacks``` module to be able to access the ```process_radtags``` command. Find the module  and load it (*hint*: Do for Stacks what we did above for FastQC).
 >
 > 3. You will need to specify the set of barcodes used in the construction of the RAD library. Each P1 adaptor in RAD read starts with a particular DNA barcode that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at the barcodes.
-> 
->> ## Solution
->> ```bash
->> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt
->> ```
->{: .solution}
 >
 > 4. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library
-> 
->> ## Solution
->> you can use `wc -l lane1_barcodes.txt`  or `less lane1_barcodes.txt` to inspect the file yourself the lines 
-> {: .solution}
 > 
 > 5. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
 >   - the restriction enzyme used to construct the library (pstI)
@@ -141,12 +131,6 @@ fastqc lane1.fastq.gz
 >   - the output directory (```samples```)
 >   - the fact that the input files are gzipped
 >   - finally,  specify that process_radtags needs  ```clean, discard, and rescue reads``` as options of `process_radtags`
->
->> ## Solution
->> ```bash
->> process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q
->> ```
-> {: .solution}
 >        
 > 6. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
 > 
@@ -154,7 +138,22 @@ fastqc lane1.fastq.gz
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
 >    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
+>> 
+>> ## Solution
+>> ```bash
+>> ### copy the barcodes
+>> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt
+>> ### count barcodes
+>> wc -l lane1_barcodes.txt
+>> ### run process_radtags
+>> process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q
+>> ```
+> {. solution}
 {: .challenge}
+
+
+
+
 
 
 Well done! Take a break, sit back or help your neighbour, we will be back shortly!
