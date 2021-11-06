@@ -41,6 +41,7 @@ $ pwd
 ~~~
 {: .output}
 
+
 >
  > *NOTE*: If you get lost at any time today, you can always `cd` to your directory with the above command.
 {: .callout}
@@ -103,11 +104,12 @@ fastqc lane1.fastq.gz
 
    •  You just generated a  FastQC report. Use the Jupyter hub navigator tool (click on the folder shown in the red rectangle at the top left in the image below) to follow the path to your current folder (*hint*: If you're not quite sure where you are, use `pwd` in your terminal window. Also, if `obss_2020` doesn't show up in the menu on the left, you might need to also click the littler folder icon just above `Name`). Once you've navigated to the correct folder, you can then double click on a fastqc html report. 
 
-1. Let's look at this FastQC report together:
-   • What is this weird thing in the per base sequence content from base 7 to 12-13?
+> ## Exercise
+> What is this weird thing in the *per base sequence content* from base 7 to 12-13?
 >> ## Solution
 >>  It is the cutsite. It is identical on all the fragments that were correctly digested by the enzyme before being ligated to a restriction enzyme.
-{: .solution}
+> {: .solution}
+{: .challenge}
 
  You probably noticed that not all of the data is high quality (especially if you check the 'Per base sequence quality' tab!). In general with next generation sequencing, you want to remove the lowest quality sequences from your data set before you proceed. However, the stringency of the filtering will depend on the final application. In general, higher stringency is needed for *de novo* assemblies as compared to alignments to a reference genome. However, low quality data can affect downstream analysis for both *de novo* and reference-based approaches, producing false positives, such as errant SNP predictions.
 
