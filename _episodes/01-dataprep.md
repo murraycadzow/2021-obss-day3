@@ -141,23 +141,23 @@ Well done, We are now going to fetch our barcodes:
 >> ```
 > {: .solution}
 > 5. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
->   - the restriction enzyme used to construct the library (SbfI)
+>   - the restriction enzyme used to construct the library (pstI)
 >   - the directory of input files (the ```lane1``` directory)
->   - the list of barcodes (```lane1_barcodes.txt```), the output directory (```samples```)
+>   - the list of barcodes (```lane1_barcodes.txt```)
+>   - the output directory (```samples```)
 >   - the fact that the input files are gzipped
-   - finally,  specify that process_radtags needs  ```clean, discard, and rescue reads``` as options of `process_radtags`
-The constrruction of
-
->        
-> 6. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
+>   - finally,  specify that process_radtags needs  ```clean, discard, and rescue reads``` as options of `process_radtags`
 >
 >> ## Solution
 >> ```bash
->> process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q --inline-null
->> ```
->> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt .
+>> process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q
 >> ```
 > {: .solution}
+
+>        
+> 6. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
+
+> 
 > 7. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
