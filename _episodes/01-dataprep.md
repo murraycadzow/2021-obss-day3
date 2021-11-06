@@ -76,14 +76,7 @@ lane1  samples
 {: .output}
 
 > ## Exercise
->  1
->  . Copy the dataset containing the raw reads  to your ```lane1``` directory inside the ```dataprep``` directory. The dataset is the file `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz` (*hint*: `cp /path/to/what/you/want/to/copy /destination/you/want/it/to/go`)
->
-
->
-> 
-
->
+>  1. Copy the dataset containing the raw reads  to your ```lane1``` directory inside the ```dataprep``` directory. The dataset is the file `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz` (*hint*: `cp /path/to/what/you/want/to/copy /destination/you/want/it/to/go`)
 >> ## Solution
 >> ```bash
 >> cp  /nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz dataprep/lane1
@@ -126,7 +119,7 @@ fastqc lane1.fastq.gz
 >
 > 2. It is time to load the ```Stacks``` module to be able to access the ```process_radtags``` command. Find the module  and load it (*hint*: Do for Stacks what we did above for FastQC).
 {: .challenge}
->Well done, We are now going to fetch our barcodes:
+> Well done, We are now going to fetch our barcodes:
 > 3. You will need to specify the set of barcodes used in the construction of the RAD library. Each P1 adaptor in RAD read starts with a particular DNA barcode that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at the barcodes.
 > 
 >> ## Solution
