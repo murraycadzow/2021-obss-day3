@@ -165,7 +165,7 @@ The constrruction of
 
 
 ADD THE FINAL SOLUTIONS 
-
+ process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q --inline-null
 
 Well done! Take a breath, sit back or help your neighbour, we will be back shortly!
 
