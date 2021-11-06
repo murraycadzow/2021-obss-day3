@@ -138,8 +138,11 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
 >    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
+>    
 >> ## Solution
 >> ```bash
+>> ###Load the module
+>> module load Stacks
 >> ### copy the barcodes
 >> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt
 >> ### count barcodes
