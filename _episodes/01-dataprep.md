@@ -128,17 +128,17 @@ fastqc *gz
 {: .challenge}
 
 
-Well done, you are now ready to run the demultiplexing:
+Well done, We are now going to fetch our barcodes:
 
 > ## Exercise
-> 1. You will need to specify the set of barcodes used in the construction of the RAD library. Remember, each P1 adaptor in RAD has a particular DNA sequence (an inline barcode) that gets sequenced first, allowing data to be associated with individual samples.
+> 1. 
 >   
-> 2. To save you some time, the barcode file is at:  `/nesi/project/nesi02659/obss_2021/resources/day3/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are.
->
-> 3. Have a look at the inside of this file using the `less` command. Normally, these sample names would correspond to the individuals used in a particular experiment (e.g. individual ID etc), but for this exercise, samples are named in a simple way. 
+> 2. You will need to specify the set of barcodes used in the construction of the RAD library. Remember, each P1 adaptor in RAD has a particular DNA sequence (an inline barcode) that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/day3/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at them.
 >
 > 4. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library? (*hint:* you can count the lines in the file using `wc -l lane1_barcodes.txt`)
->
+
+
+Time
 > 5. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
 >   - the restriction enzyme used to construct the library (SbfI)
 >   - the directory of input files (the ```lane1``` directory)
