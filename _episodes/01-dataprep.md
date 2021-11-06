@@ -11,17 +11,19 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-**Developed by:** Julian Catchen, Nicolas Rochette
+**Developed by:** Ludovic Dutoit
 
-**Adapted by:** Ludovic Dutoit
+**Adapted from:** Nicolas Rochette, Julian Catchen
 
 ## Working with single-end reads
 
 The first step in the analysis of all short-read sequencing data, including RAD-seq
-data, is removing low quality sequences and separating out reads from different
-samples that were individually barcoded. This **‘de-multiplexing’** serves to associate
+data, is separating out reads from different
+samples that were individually barcoded. This **‘de-multiplexing’** associate
 reads with the different individuals or population samples from which they were
 derived.
+
+
 
 ### Getting set up
 
@@ -82,7 +84,7 @@ lane1  samples
 > 2. `cd`  to your `lane1` folder to extract the content of this `tar` archive file. This is a non-compressed archive. We realise that we have not told you how to do extract tar files! But a quick look to a friendly search engine will show you how easy it is to find this kind of information on basic bash commands (your instructors *still* spend a lot of time doing this themselves! *hint*: you might try searching for "How to extract a tar archive")
 >
 > 
-> 3. Have a look at what is there now (*hint*: `ls`). These gz-compressed fastq files have milions of reads in them, too many for you to examine in a spreadsheet or word processor. However, we can examine the contents of the set of files in the terminal (the `less` command may be of use).
+> 3. Have a look at what is there now (*hint*: `ls`). This gz-compressed fastq files have milions of reads in them, too many for you to examine in a spreadsheet or word processor. However, we can examine the contents of the set of files in the terminal (the `less` command may be of use).
 >
 >> ## Solution
 >> 1. 
@@ -123,25 +125,28 @@ fastqc *gz
 >  1.  Get back into your ```dataprep``` folder by running ```cd ../``` in the terminal (*hint*: if you are lost use `pwd` to check where you are).
 >
 > 2. It is time to load the ```Stacks``` module to be able to access the ```process_radtags``` command. Find the module  and load it (*hint*: Do for Stacks what we did above for FastQC).
->
-> 3. You will need to specify the set of barcodes used in the construction of the RAD library. Remember, each P1 adaptor in RAD has a particular DNA sequence (an inline barcode) that gets sequenced first, allowing data to be associated with individual samples.
+
+Well done, uou are now ready to run the demultiplexing
+
+> ## Exercise
+> 1. You will need to specify the set of barcodes used in the construction of the RAD library. Remember, each P1 adaptor in RAD has a particular DNA sequence (an inline barcode) that gets sequenced first, allowing data to be associated with individual samples.
 >   
-> 4. To save you some time, the barcode file is at:  `/nesi/project/nesi02659/obss_2021/resources/day3/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are.
+> 2. To save you some time, the barcode file is at:  `/nesi/project/nesi02659/obss_2021/resources/day3/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are.
 >
-> 5. Have a look at the inside of this file using the `less` command. Normally, these sample names would correspond to the individuals used in a particular experiment (e.g. individual ID etc), but for this exercise, samples are named in a simple way. 
+> 3. Have a look at the inside of this file using the `less` command. Normally, these sample names would correspond to the individuals used in a particular experiment (e.g. individual ID etc), but for this exercise, samples are named in a simple way. 
 >
-> 6. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library? (*hint:* you can count the lines in the file using `wc -l lane1_barcodes.txt`)
+> 4. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library? (*hint:* you can count the lines in the file using `wc -l lane1_barcodes.txt`)
 >
-> 7. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
+> 5. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
 >   - the restriction enzyme used to construct the library (SbfI)
 >   - the directory of input files (the ```lane1``` directory)
 >   - the list of barcodes (```lane1_barcodes.txt```), the output directory (```samples```)
 >   - the fact that the input files are gzipped
    - finally,  specify that process_radtags needs  ```clean, discard, and rescue reads``` as options of `process_radtags`
 >        
-> 8. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
+> 6. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
 >
-> 9. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
+> 7. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
 >    - In the process_radtags log file, what can the list of “sequences not recorded” tell you about the barcodes analysed and about the sequencing quality in general?
