@@ -139,13 +139,12 @@ Well done, We are now going to fetch our barcodes:
 >> ```
 >{: .solution}
 >
-> 4. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library
+> 3. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library
 >> ## Solution
 >> you can use `wc -l lane1_barcodes.txt`  or `less lane1_barcodes.txt` to inspect the file yourself the lines 
->> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt .
 >> ```
 > {: .solution}
-> 5. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
+> 4. Have a look at the [help online](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php) to prepare your `process_radtags` command.  You will need to specify:
 >   - the restriction enzyme used to construct the library (pstI)
 >   - the directory of input files (the ```lane1``` directory)
 >   - the list of barcodes (```lane1_barcodes.txt```)
@@ -160,10 +159,10 @@ Well done, We are now going to fetch our barcodes:
 > {: .solution}
 
 >        
-> 6. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
+> 5. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
 
 > 
-> 7. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
+> 6. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
 >    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
