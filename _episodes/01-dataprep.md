@@ -117,7 +117,6 @@ fastqc lane1.fastq.gz
 > 1.  Get back into your ```dataprep``` folder by running ```cd ../``` in the terminal (*hint*: if you are lost use `pwd` to check where you are).
 >
 > 2. It is time to load the ```Stacks``` module to be able to access the ```process_radtags``` command. Find the module  and load it (*hint*: Do for Stacks what we did above for FastQC).
-{: .challenge}
 >
 > 3. You will need to specify the set of barcodes used in the construction of the RAD library. Each P1 adaptor in RAD read starts with a particular DNA barcode that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at the barcodes.
 > 
@@ -128,6 +127,7 @@ fastqc lane1.fastq.gz
 >{: .solution}
 >
 > 4. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library
+> 
 >> ## Solution
 >> you can use `wc -l lane1_barcodes.txt`  or `less lane1_barcodes.txt` to inspect the file yourself the lines 
 > {: .solution}
