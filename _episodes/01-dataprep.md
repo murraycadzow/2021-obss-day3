@@ -52,7 +52,7 @@ The exercise from now on is hands-on: the instructions are here to guide you thr
 1. We will create more subdirectories to hold our analyses. Be careful that you are reading and writing files to the appropriate directories within your hierarchy. You’ll be making many directories, so stay organized! We will name the directories in a way that corresponds to each stage of our analysis and that allows us to remember where all our files are! A well organized workspace makes analyses easier and prevents data from being accidentally overwritten.
 
 > ## Exercise
->  First let's make a few directories. In `gbs/`, create a directory called `dataprep` to contain all the data for this exercise. **Inside** the directory `dataprep` we will create two additional directories: `lane1` and `samples`.
+>  First let's make a few directories. We'll work with one directory per exercise. In `gbs/`, create a directory called `dataprep` to contain all the data for this exercise. **Inside** the directory `dataprep` we will create two additional directories: `lane1` and `samples`.
 >
 >> ## Solution
 >> ```bash
@@ -62,7 +62,7 @@ The exercise from now on is hands-on: the instructions are here to guide you thr
 > {: .solution}
 {: .challenge}
 
-- As a check that we've set up our workspace correctly, go back to your `gbs/` directory (*hint*: `cd ..` goes up **one** level) and use the `ls -R` (the `ls` command with the recursive flag). It should show you the following (`./` is a placeholder for 'current directory'):
+- As a check that we've set up our workspace correctly use the `ls -R` (the `ls` command with the recursive flag). It should show you the following (`./` is a placeholder for 'current directory'):
 
 ~~~
 .:
@@ -78,20 +78,19 @@ lane1  samples
 {: .output}
 
 > ## Exercise
->  1. Copy the dataset containing the raw reads  to your ```lane1``` directory. The dataset is the file `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1.tar` (*hint*: `cp /path/to/what/you/want/to/copy /destination/you/want/it/to/go`)
+>  1
+>  . Copy the dataset containing the raw reads  to your ```lane1``` directory inside the ```dataprep``` directory. The dataset is the file `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz` (*hint*: `cp /path/to/what/you/want/to/copy /destination/you/want/it/to/go`)
 >
->
-> 2. `cd`  to your `lane1` folder to extract the content of this `tar` archive file. This is a non-compressed archive. We realise that we have not told you how to do extract tar files! But a quick look to a friendly search engine will show you how easy it is to find this kind of information on basic bash commands (your instructors *still* spend a lot of time doing this themselves! *hint*: you might try searching for "How to extract a tar archive")
+
 >
 > 
-> 3. Have a look at what is there now (*hint*: `ls`). This gz-compressed fastq files have milions of reads in them, too many for you to examine in a spreadsheet or word processor. However, we can examine the contents of the set of files in the terminal (the `less` command may be of use).
+
 >
 >> ## Solution
 >> 1. 
 >> ```bash
->> cp  /nesi/project/nesi02659/obss_2021/resources/gbs/lane1.tar ~/obss_2021/gbs/dataprep/
+>> cp  /nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz dataprep/lane1
 >> ```
->> 2.  [The first google result is likely this](https://linuxize.com/post/how-to-create-and-extract-archives-using-the-tar-command-in-linux/#extracting-tar-archive)
 > {: .solution}
 {: .challenge}
 
@@ -103,19 +102,23 @@ Let's have a closer look at this data. Over the last couple of days, you learnt 
 module purge
 module spider fastqc 
 module load FastQC
-fastqc *gz
+cd dataprep/lane1
+fastqc lane1.fastq.gz
 ```
 
-> Explanations of this code: `module purge` get rids of any pre-existing potentially conflicting modules. `module spider` searches for modules e.g. `module spider fastqc`  looks for a module called fastqc (or something similar!). Once we know what this module is actually called (*note*: almost everything we do on terminal is case-sensitive) we can use `module load` to load the module. Finally, we ran `fastqc` using the wildcard `*` to select all the *gz* files at once
+> Explanations of this code: `module purge` get rids of any pre-existing potentially conflicting modules. `module spider` searches for modules e.g. `module spider fastqc`  looks for a module called fastqc (or something similar!). Once we know what this module is actually called (*note*: almost everything we do on terminal is case-sensitive) we can use `module load` to load the module. Finally, we ran `fastqc`.
 {: .callout}
 
-   •  You just generated a few FastQC reports. Use the Jupyter hub navigator tool (click on the folder shown in the red rectangle at the top left in the image below) to follow the path to your current folder (*hint*: If you're not quite sure where you are, use `pwd` in your terminal window. Also, if `obss_2020` doesn't show up in the menu on the left, you might need to also click the littler folder icon just above `Name`). Once you've navigated to the correct folder, you can then double click on a fastqc html report. 
-
-<p align="center"><br><img src="fig/Navigate_toFastqcFile.png" alt="Jupyter side navigation menu" width="700"/></p>
+   •  You just generated a  FastQC report. Use the Jupyter hub navigator tool (click on the folder shown in the red rectangle at the top left in the image below) to follow the path to your current folder (*hint*: If you're not quite sure where you are, use `pwd` in your terminal window. Also, if `obss_2020` doesn't show up in the menu on the left, you might need to also click the littler folder icon just above `Name`). Once you've navigated to the correct folder, you can then double click on a fastqc html report. 
 
 1. Let's look at this FastQC report together:
 
    • What is this weird thing in the per base sequence content from base 7 to 12-13?
+>> ## Solution
+>> 1. 
+>> ```bash
+>> cp  
+> {: .solution}
 
    • You probably noticed that not all of the data is high quality (especially if you check the 'Per base sequence quality' tab!). In general with next generation sequencing, you want to remove the lowest quality sequences from your data set before you proceed. However, the stringency of the filtering will depend on the final application. In general, higher stringency is needed for *de novo* assemblies as compared to alignments to a reference genome. However, low quality data can affect downstream analysis for both *de novo* and reference-based approaches, producing false positives, such as errant SNP predictions.
 
