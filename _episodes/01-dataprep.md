@@ -138,7 +138,6 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
 >    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
->
 >> ## Solution
 >> ```bash
 >> ### copy the barcodes
@@ -150,11 +149,6 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 >> ```
 > {. solution}
 {: .challenge}
-
-
-
-
-
 
 Well done! Take a break, sit back or help your neighbour, we will be back shortly!
 
