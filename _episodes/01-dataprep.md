@@ -1,4 +1,4 @@
----
+  ---
 title: "Data101: From raw data to individual samples files"
 teaching: 0
 exercises: 0
@@ -22,8 +22,6 @@ data, is separating out reads from different
 samples that were individually barcoded. This **‘de-multiplexing’** associate
 reads with the different individuals or population samples from which they were
 derived.
-
-
 
 ### Getting set up
 
@@ -133,10 +131,8 @@ fastqc lane1.fastq.gz
 
 Well done, We are now going to fetch our barcodes:
 
-> ## Exercise
-> 1. 
->   
-> 2. You will need to specify the set of barcodes used in the construction of the RAD library. Remember, each P1 adaptor in RAD has a particular DNA sequence (an inline barcode) that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at them. (*
+> ## Exercise   
+> 2. You will need to specify the set of barcodes used in the construction of the RAD library. Each P1 adaptor in RAD read has a particular inlineDNA barcode (an inline barcode) that gets sequenced first, allowing data to be associated with individual samples. To save you some time, the barcode file is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt` Copy it to the `dataprep/` where you currently are. Have a look at them. (*
 >
 > 4. Based on the barcode file, can you check how many samples were multiplexed together in this RAD library
 >> ## Solution
@@ -154,9 +150,14 @@ The constrruction of
 
 >        
 > 6. You should now be able to run the ```process_radtags``` command from the ```dataprep``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
-
-~~~process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q --inline-null
-
+>
+>> ## Solution
+>> ```bash
+>> process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q --inline-null
+>> ```
+>> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt .
+>> ```
+> {: .solution}
 > 7. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
 >    - How many reads were retained?
 >    - Of those discarded, what were the reasons?
@@ -164,10 +165,7 @@ The constrruction of
 {: .challenge}
 
 
-ADD THE FINAL SOLUTIONS 
- process_radtags  -p lane1/ -o ./samples/ -b lane1_barcodes.txt -e pstI -r -c -q --inline-null
-
-Well done! Take a breath, sit back or help your neighbour, we will be back shortly!
+Well done! Take a break, sit back or help your neighbour, we will be back shortly!
 
 
 {% include links.md %}
