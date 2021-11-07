@@ -81,8 +81,8 @@ lane1  samples
 >
 >> ## Solution
 >> ```bash
->> $ mkdir dataprep
->> $ mkdir dataprep/lane1 dataprep/samples
+>> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz dataprep/lane1
+>> 
 >> ```
 > {: .solution}
 {: .challenge}
@@ -91,12 +91,12 @@ lane1  samples
 
 Let's have a closer look at this data. Over the last couple of days, you learnt to run FastQC to evaluate the quality of the data. Run it on these files. Load the module first and then run FastQC over all the gzipped file. We will help you out with these commands, but bonus question as you work through these: What do the commands `module spider`, `module load`, `module purge` do? 
 
-```
-module purge
-module spider fastqc 
-module load FastQC
-cd dataprep/lane1
-fastqc lane1.fastq.gz
+```bash
+$ module purge
+$ module spider fastqc 
+$ module load FastQC
+$ cd dataprep/lane1
+$ fastqc lane1.fastq.gz
 ```
 
 > Explanations of this code: `module purge` get rids of any pre-existing potentially conflicting modules. `module spider` searches for modules e.g. `module spider fastqc`  looks for a module called fastqc (or something similar!). Once we know what this module is actually called (*note*: almost everything we do on terminal is case-sensitive) we can use `module load` to load the module. Finally, we ran `fastqc`.
