@@ -49,7 +49,9 @@ As a giant research team, we will run the *denovo* pipeline with different param
 
 In reality, you'd probably do that with just a few of your individuals as running the entire pipeline several times will be something that would consume some resources. But for today, I made sure our little dataset of 12 fishes should run fast enough. 
 
-In groups of 2, it is time to run an optimisation. So have a sip until your neighbor catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). If you find most M values already entered in the spreadsheet, we will take the chance to optimise `-r`,   the number of samples that have to be covered at a particular position to keep it in the dataset (i.e. percentage of non-missing genotypes). Jump onto the second page of that Google sheet and vary r away from 0.8 (80% of individuals covered)
+In groups of 2, it is time to run an optimisation. So have a sip until your neighbor catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). 
+
+If you find most M values already entered in the spreadsheet, we will take the chance to optimise `-r`,   the number of samples that have to be sequenced for a particular locus to keep it in the dataset (i.e. percentage of non-missing genotypes). Jump onto the second page of that Google sheet and vary `-r` away from 0.8 (80% of individuals covered)
 
 
 > ## Build your denovo_map.pl command
@@ -70,25 +72,23 @@ In groups of 2, it is time to run an optimisation. So have a sip until your neig
 >
 >    • Make sure you specify this population map to the denovo_map.pl command.
 >
-{: .challenge}
-
-
-> ## Exercise
-> • 
->
 > • Set `n` = to `M`, so if you set `M` at 3, set `n` at 3.
 >
-> • Set `m` at 3, it is the default parameter, we are us being explicit here for anyone (including ourselves), reading our code later.
+> • Set `m` at 3, it is the default parameter, we are being explicit here for anyone (including ourselves), reading our code later.
 >
-> • You must set the `output_denovo` directory as the output, and use 4 threads (4 CPUs: so your analysis finishes faster than 1!).
+> • You must set the `output_denovo_opti` directory as the output, and use 4 threads (4 CPUs: so your analysis finishes faster than 1!).
 >
-> • Specify the path to the directory containing your sample files (*hint* use your `oregon_stickleback/` link here!). The denovo_map.pl program will read the sample names out of the population map, and look for them in the samples directory you specify.
+> • Specify the path to the directory containing your sample files (*hint* use your `samples/` link here!). The denovo_map.pl program will read the sample names out of the population map, and look for them in the samples directory you specify.
 >
 > • Your command should be ready, try to execute denovo_map.pl (part of the Stacks pipeline). 
 >
 >  • Is it starting alright?  Good, now  **Use `control + c` to stop your command**
->
->  1. Running the commands directly on the screen is not common practice. You now are on a small server which is a reserved amount of resources for this workshop and this allows us to run our commands directly. On a day to day basis, you would be logging in on the login node of NeSI's Mahuika (i.e. the place you reach when you login) and running jobs using a *batch script*. The batch script (or submission script) accesses all the computing resources that are tucked away from the Mahuika login node. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs on the login node itself (which can slow down people logging in/transferring files if the login node is busy running peoples' jobs!). We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.       
+>> ## Solution
+>> nwkjen
+> {: .solution}
+{: .challenge}
+
+Running the commands directly on the screen is not common practice. You now are on a small server which is a reserved amount of resources for this workshop and this allows us to run our commands directly. On a day to day basis, you would be logging in on the login node of NeSI's Mahuika (i.e. the place you reach when you login) and running jobs using a *batch script*. The batch script (or submission script) accesses all the computing resources that are tucked away from the Mahuika login node. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs your little jupyer server itself. That way you can run many things at once and also use loads more resources !!!. For the people We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.       
 >  
 > • copy the example jobfile into this directory. The example is at: `/nesi/project/nesi02659/obss_2021/resources/day3/denovojob.sh`  
 >
@@ -107,10 +107,12 @@ In groups of 2, it is time to run an optimisation. So have a sip until your neig
 > ```bash
 > squeue -u <yourusername>
 > ```
-> 
+  You should see "job... submitted...
+  
+> If your job is not  listed in `squeue`. It has finished running. It could berun successfully or unsuccesfully. What would have printed to your screen has instead printed into the file `denovo.log`. Your job should take a little while to run, sit backk
 > • We used a few basic options of sbatch, including time, memory, job names and output log file. In reality, there are many, many, more options. Have a quick look at `sbatch --help` out of interest. NeSI also has its own handy guide on how to submit a job [here](https://support.nesi.org.nz/hc/en-gb/articles/360000684396-Submitting-your-first-job).
 >
-> • Once your job is no longer listed in `squeue` is empty, it has finished and what would have printed to your screen has instead printed into denovo.log. Your job should take about 1 hour to run, so in the meantime, sit back and relax, we'll get back to this after lunch!
+> • O
 {: .challenge}
 ## Analysing the data from our collaborative optimisation
 
