@@ -54,11 +54,11 @@ In groups of 2, it is time to run an optimisation. So have a sip until your neig
 If you find most M values already entered in the spreadsheet, we will take the chance to optimise `-r`,   the number of samples that have to be sequenced for a particular locus to keep it in the dataset (i.e. percentage of non-missing genotypes). Jump onto the second page of that Google sheet and vary `-r` away from 0.8 (80% of individuals covered)
 
 
-> ## Build your denovo_map.pl command
+> ## Organise yourself
 >
-> 1. In your `gbs/` workspace, create a directory called `output_denovo_opti` to contain the assembled data for this exercise.
->
-> 2. Build your Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
+> 1. In your `gbs/` workspace, create a directory called `denovo` for this exercise.
+> 
+> 2.2. Build your Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
 >
 >    • Make sure you load the `Stacks` module (you can check if you have already loaded it using `module list`)
 >
@@ -84,7 +84,10 @@ If you find most M values already entered in the spreadsheet, we will take the c
 >
 >  • Is it starting alright?  Good, now  **Use `control + c` to stop your command**
 >> ## Solution
->> nwkjen
+>> ```bash
+>> ### create folder
+>> $ cd ~/obss2021/gbs/
+>> $ mkdir denovo
 > {: .solution}
 {: .challenge}
 
