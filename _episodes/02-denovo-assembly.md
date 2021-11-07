@@ -36,23 +36,27 @@ In summary, Stack (i.e. locus) formation is controlled by three main parameters:
 
 -n : The number of mismatches between loci between individuals. (should be set equal to `-M`)
 
+-r: minimum percentage of individuals in a population sequences to consider that locus for that population 
+
 If that does not make sense or you would like to know more, have a quick read of [this explanation from the manual](http://catchenlab.life.illinois.edu/stacks/param_tut.php).
 
 Here, we will optimize the parameter `-M` (description in bold above) using the collaborative power of all of us here today! We will be using the guidelines of parameter optimization outlined in [Paris et al. (2017)](https://besjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/2041-210X.12775) to assess what value for the `-M` parameter recovers the highest number of polymorphic loci. [Paris et al. (2017)](https://besjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/2041-210X.12775) described this approach:  
+
 *"After putative alleles are formed, stacks performs a search to match alleles together into putative loci. This search is governed by the M parameter, which controls for the maximum number of mismatches allowed between putative alleles [...] Correctly setting **M** requires a balance – set it too low and alleles from the same locus will not collapse, set it too high and paralogous or repetitive loci will incorrectly merge together."*
 
-As a giant research team, we will run the *denovo* pipeline with different parameters. The results from the different parameters will be shared using ![this Google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). We'll be able to use the best dataset downstream for population genetics analyses and to compare with a pipeline that utilises a reference genome.
+As a giant research team, we will run the *denovo* pipeline with different parameters. The results from the different parameters will be shared using [this Google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0).nAfter optimising these parameters, we'll be able to use the best dataset downstream for population genetics analyses and to compare it with a pipeline that utilises a reference genome. 
+
+
+In reality, you'd probably do that with just a few of your individuals as running the entire pipeline several times will be something that would consume some resources. But for today, I made sure our little dataset of 12 fishes should run fast enough. 
+
+In groups of 2, it is time to run an optimisation. So have a sip until your neighbor catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). If you find most M values already entered in the spreadsheet, we will take the chance to optimise `-r`,   the number of samples that have to be covered at a particular position to keep it in the dataset (i.e. percentage of non-missing genotypes). Jump onto the second page of that Google sheet and vary r away from 0.8 (80% of individuals covered)
 
 
 > ## Build your denovo_map.pl command
 >
-> 1. In your `gbs/` workspace, create a directory called `output_denovo` to contain the assembled data for this exercise.
+> 1. In your `gbs/` workspace, create a directory called `output_denovo_opti` to contain the assembled data for this exercise.
 >
-> 2. To avoid duplicating the raw data for each of us, we will use a link to the source data. This effectively creates a shortcut to another path without copying all the files. 
->
->    `ln -s /path/you/want/to/link` will create a shortcut to a given path right where you are! The raw data is in `/nesi02659/obss_2021/resources/day3/oregon_stickleback/` Using the above explanation, create a link to this folder right here!
->
-> 3. Run Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
+> 2. Build your Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
 >
 >    • Make sure you load the `Stacks` module (you can check if you have already loaded it using `module list`)
 >
@@ -60,21 +64,17 @@ As a giant research team, we will run the *denovo* pipeline with different param
 >
 >    • Information on denovo_map.pl and its parameters can be found [online](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php). You will use this information below to build your command.
 >
->    • We want Stacks to understand which individuals in our study belong to which population. Stacks uses a so-called population map. The file contains sample names as well as populations. The file should be formatted in 2 columns like [this](http://catchenlab.life.illinois.edu/stacks/manual/#popmap). All 12 samples are at the file path below. Copy it into the `gbs/` folder you should currently be in. Note that all the samples have been assigned to a single "dummy" population, 'SINGLE_POP', just while we are establishing the optimal value of M in this current exerise.
+>    • We want Stacks to understand which individuals in our study belong to which population. Stacks uses a so-called population map. The file contains sample names as well as populations. The file should be formatted in 2 columns like [this](http://catchenlab.life.illinois.edu/stacks/manual/#popmap). All 12 samples are at the file path below. Copy it into the `gbs/` folder you should currently be in. Note that all the samples have been assigned to a single "dummy" population, 'SINGLE_POP', just while we are establishing the optimal value of M in this current exercise.
 >
 >    `/nesi/project/nesi02659/obss_2021/resources/day3/popmap.txt`
 >
 >    • Make sure you specify this population map to the denovo_map.pl command.
 >
->    • Specify `-r/--min-samples-per-pop` at 0.8, requiring 80% of samples to have a given locus for it to be kept in the output.
 {: .challenge}
 
-**PAUSE**
 
 > ## Exercise
-> • In groups of 2, it is time to run an optimisation. So have a sip until your neighbor catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). You can vary M (between 1 and 8). 
-
-Note: If you find most M values already running in the spreadsheet, we could take the chance to opti could vary -r away from 0.8 (!!!) to see how that affect the results. 
+> • 
 >
 > • Set `n` = to `M`, so if you set `M` at 3, set `n` at 3.
 >
