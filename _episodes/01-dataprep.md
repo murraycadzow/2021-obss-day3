@@ -144,7 +144,7 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 >> ### Load the module
 >> module load Stacks
 >> ### copy the barcodes
->> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt
+>> cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1_barcodes.txt .
 >> ### count barcodes
 >> wc -l lane1_barcodes.txt
 >> ### run process_radtags
