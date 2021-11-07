@@ -11,27 +11,30 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-**Developed by:** Julian Catchen, Nicolas Rochette
+**Developed by:** Ludovic Dutoit
 
-**Adapted by:** Ludovic Dutoit
+**Adapted from:** Julian Catchen, Nicolas Rochette
 
 
 
 ## Introduction
 
-In this second exercise we will be working on threespine stickleback data sampled from throughout Oregon, on the West Coast of the United States. These sticklebacks can be found in a number of habitats from costal marine and freshwater habitats, to inland river habitats, to high mountain lakes in the interior of Oregon. We want to understand how these populations relate to one another and in this exercise, you will examine three of these populations: a coastal marine population, a coastal freshwater, and an inland river population. Our data consist of 30 samples in these three populations. For more information on the background of this study, see [Catchen et al, 2013](https://onlinelibrary.wiley.com/doi/10.1111/mec.12330).
+In this second exercise we will identify variants on common bullies (AKA: Lake Fish) data sampled from Laka Wanaka and Lake Wakatipu, in Aotearoa New Zealand. These fishes look different at different depths, and we find ourselves asking whether those morphological differences are heritable.  humble New Zealand cichlids
 
   <p align="center"><br><img src="img/map_stickleback2.png" alt="drawing" width="700"/></p>
 Map of Stickleback populations
 
 
-Without access to a reference genome, we want to assemble the RAD loci and examine population structure. However, before we can do that, we want to explore the *de novo* parameter space in order to be confident that we are assembling our data in an optimal way. Stack (i.e. locus) formation is controlled by three main parameters: 
+Without access to a reference genome, we want to assemble the RAD loci and examine population structure. However, before we can do that, we want to explore the *de novo* parameter space in order to be confident that we are assembling our data in an optimal way.
+The detailed information of the stacks parameter can be found [in this explanation](http://catchenlab.life.illinois.edu/stacks/param_tut.php)
+
+In summary, Stack (i.e. locus) formation is controlled by three main parameters: 
 
 -m :  the minimum amount of reads to create a locus (default: 3)
 
 **-M : the number of mismatches allowed between alleles of the same locus (i.e. The one we want to optimise)**
 
--n : The number of mismatches between between loci between individuals (should be set to M)
+-n : The number of mismatches between loci between individuals. (should be set to M)
 
 If that does not make sense or you would like to know more, have a quick read of [this explanation from the manual](http://catchenlab.life.illinois.edu/stacks/param_tut.php).
 
@@ -69,7 +72,9 @@ As a giant research team, we will run the *denovo* pipeline with different param
 **PAUSE**
 
 > ## Exercise
-> • In groups of 2, it is time to run an optimisation. So have a sip until your neighbor catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0).You can vary M (between 1 and 8). If you find most M values already running in the spreadsheet, you could vary -r away from 0.8 to see how that affect the results.
+> • In groups of 2, it is time to run an optimisation. So have a sip until your neighbor catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). You can vary M (between 1 and 8). 
+
+Note: ff you find most M values already running in the spreadsheet, you could vary -r away from 0.8 (!!!) to see how that affect the results. Perhaps pick -M 2 or -M 3 and vary -r away from 0.8.
 >
 > • Set `n` = to `M`, so if you set `M` at 3, set `n` at 3.
 >
