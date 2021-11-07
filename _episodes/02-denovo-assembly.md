@@ -132,7 +132,7 @@ Examine the Stacks log and output files when execution is complete. You should f
     
    • What is the mean value of nucleotide diversity (π) and FIS across all the individuals? [*hint*: The less -S command may help you view these files easily by avoiding the wrapping]
 
-Congratulations, you identified variants :)
+Congratulations, you went all the way from raw reads to genotyped variants.
 
 
 {% include links.md %}
