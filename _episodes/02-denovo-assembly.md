@@ -56,43 +56,55 @@ If you find most M values already entered in the spreadsheet, we will take the c
 
 > ## Organise yourself
 >
-> 1. In your `gbs/` workspace, create a directory called `denovo` for this exercise.
+> 1. In your `gbs/` workspace, create a directory called `denovo_output_optimisation` for this exercise.
 > 
-> 2.2. Build your Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
+> 2. Make sure you load the `Stacks` module (you can check if you have already loaded it using `module list`)
+> 
+
+> 3. We want Stacks to understand which individuals in our study belong to which population. Stacks uses a so-called population map. The file contains sample names as well as populations. The file should be formatted in 2 columns like [this](http://catchenlab.life.illinois.edu/stacks/manual/#popmap). All 12 samples are at the file path below. Copy it into the `gbs/` folder you should currently be in. Note that all the samples have been assigned to a single "dummy" population, 'SINGLE_POP', just while we are establishing the optimal value of M in this current exercise.
 >
->    • Make sure you load the `Stacks` module (you can check if you have already loaded it using `module list`)
+>    `/nesi/project/nesi02659/obss_2021/resources/gbs/popmap.txt`
 >
->    • Get back into the `gbs/` folder if you wandered away.
->
+>> ## Solution
+>> ```bash
+>> ### create folder
+>> $ cd ~/obss2021/gbs/
+>> $ mkdir denovo_output_optimisation
+>> ### load Stacks
+>> $ module list
+>> $ module load Stacks
+>> ### copy the population map
+>> cp  /nesi/project/nesi02659/obss_2021/resources/gbs/popmap.txt
+> {: .solution}
+
+> ## Build the `denovo_map.pl` command
+> 
+> 1. Build your Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
+> 
 >    • Information on denovo_map.pl and its parameters can be found [online](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php). You will use this information below to build your command.
 >
->    • We want Stacks to understand which individuals in our study belong to which population. Stacks uses a so-called population map. The file contains sample names as well as populations. The file should be formatted in 2 columns like [this](http://catchenlab.life.illinois.edu/stacks/manual/#popmap). All 12 samples are at the file path below. Copy it into the `gbs/` folder you should currently be in. Note that all the samples have been assigned to a single "dummy" population, 'SINGLE_POP', just while we are establishing the optimal value of M in this current exercise.
+Make sure you specify this population map to the denovo_map.pl command (use the [manual]((http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php))
 >
->    `/nesi/project/nesi02659/obss_2021/resources/day3/popmap.txt`
->
->    • Make sure you specify this population map to the denovo_map.pl command.
->
-> • Set `n` = to `M`, so if you set `M` at 3, set `n` at 3.
+> • Set `-M` and `-n`. `n` should be equal to `M`, so if you set `M` at 3, set `n` at 3.
 >
 > • Set `m` at 3, it is the default parameter, we are being explicit here for anyone (including ourselves), reading our code later.
 >
-> • You must set the `output_denovo_opti` directory as the output, and use 4 threads (4 CPUs: so your analysis finishes faster than 1!).
+> • Set -r to 0.8, unless you are doing the -r optimisation, then set -r to your chosen value 
+> 
+> • Set the `output_denovo_optimisation` directory as the output, 
+> 
+> • Use 4 threads (4 CPUs: so your analysis finishes faster than 1!).
 >
 > • Specify the path to the directory containing your sample files (*hint* use your `samples/` link here!). The denovo_map.pl program will read the sample names out of the population map, and look for them in the samples directory you specify.
 >
 > • Your command should be ready, try to execute denovo_map.pl (part of the Stacks pipeline). 
 >
 >  • Is it starting alright?  Good, now  **Use `control + c` to stop your command**
->> ## Solution
->> ```bash
->> ### create folder
->> $ cd ~/obss2021/gbs/
->> $ mkdir denovo
-> {: .solution}
+>  
 {: .challenge}
 
 Running the commands directly on the screen is not common practice. You now are on a small server which is a reserved amount of resources for this workshop and this allows us to run our commands directly. On a day to day basis, you would be logging in on the login node of NeSI's Mahuika (i.e. the place you reach when you login) and running jobs using a *batch script*. The batch script (or submission script) accesses all the computing resources that are tucked away from the Mahuika login node. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs your little jupyer server itself. That way you can run many things at once and also use loads more resources !!!. For the people We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.       
->  
+>  ## Your first job
 > • copy the example jobfile into this directory. The example is at: `/nesi/project/nesi02659/obss_2021/resources/day3/denovojob.sh`  
 >
 > • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long.  
