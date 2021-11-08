@@ -131,7 +131,7 @@ Well done, we only have `ref_map.pl` to run now.
 >
 > • Save it, and run the job: `sbatch refmapjob.sh`
 {: .challenge}
-That should take about 5 minutes. Remember you can use `squeue -u <yourusername>` to check the status of the job. Once it is not there anymore, it has finished. This job will write out an output log called `output_refmap/refmap.log` that you can check using `less`.
+That should take about 5 minutes. Remember you can use `squeue -u <yourusername>` to check the status of the job. Once it is not there anymore, it has finished. This job will write out an output log called `refmap_output/refmap.log` that you can check using `less`.
 
 
 ### Analyse your results
