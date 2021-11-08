@@ -85,7 +85,7 @@ Now this is all good and well, but we don't want to do it manually for each samp
 $ for filename in samples/*fq.gz
 	do base=$(basename ${filename} .fq.gz)
  	echo $base
-  	bwa mem -t 4 reference_catalog.fa  samples/${base}.fq.gz   |   samtools view -b | samtools sort --threads 4 > samples_mapping/${base}.bam  
+  	bwa mem -t 4 reference_catalog.fa  samples/${base}.fq.gz | samtools view -b | samtools sort --threads 4 > samples_mapped/${base}.bam 
  done
 ```
 
