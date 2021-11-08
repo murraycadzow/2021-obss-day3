@@ -78,7 +78,7 @@ If you find most M values already entered in the spreadsheet, we will take the c
 > 
 > 1. Build your Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
 > 
->   • Information on denovo_map.pl and its parameters can be found [online](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php). You will use this information below to build your command.
+>   • Information on denovo_map.pl and its parameters can be found [online](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php). You will use this information below to build your command. You can also use `denovo_map.pl --help`
 >
 >   • Specify the path to the directory containing your sample files (*hint* use your `samples/` link here!). The denovo_map.pl program will read the sample names out of the population map, and look for associated `fastq` in the samples directory you specify.
 > 
