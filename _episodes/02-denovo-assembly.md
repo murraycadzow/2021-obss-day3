@@ -140,25 +140,26 @@ Running the commands directly on the screen is not common practice. You now are 
 
 ## Analysing the result of our collective optimisation
 
-Now that your execution is complete, we will examine some of the output files. You should find all of this info in `output_denovo_optimisation/denovo_map.log`
-    
-   • After processing all the individual samples through ustacks and before creating the catalog with cstacks, denovo_map.pl will print a [table containing the depth of coverage](http://catchenlab.life.illinois.edu/stacks/manual/#cov) of each sample. Find this table in `output_denovo_optimisation/denovo_map.log`: what were the depths of coverage? 
-    
-   • Examine the output of the populations program in the file `populations.log` inside your `output_denovo_optimisation` folder (*hint*: use the `less` command).
-    
-   • How many loci were identified?
+>## Main output files
+>Now that your execution is complete, we will examine some of the output files. You should find all of this info in `output_denovo_optimisation/`
+>   
+>   • After processing all the individual samples through ustacks and before creating the catalog with cstacks, denovo_map.pl will print a [table containing the depth of coverage](http://catchenlab.life.illinois.edu/stacks/manual/#cov) of each sample. Find this table in `output_denovo_optimisation/denovo_map.log`: what were the depths of coverage? 
+>    
+>   • Examine the output of the populations program in the file `populations.log` inside your `output_denovo_optimisation` folder (*hint*: use the `less` command).
+>    
+>   • How many loci were identified?
+>
+>   • How many variant sites were identified?
+>  
+>   • Enter that information in the collaborative [Google Sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0)
+>    
+>   • How many loci were filtered?
+>      
+>   • Familiarize yourself with the population genetics statistics produced by the populations component of stacks `populations.sumstats_summary.tsv` inside the `output_denovo_optimisation` folder
+>    
+>   • What is the mean value of nucleotide diversity (π) and FIS across all the individuals? [*hint*: The less -S command may help you view these files easily by avoiding the wrapping]
 
-   • How many variant sites were identified?
-  
-   • Enter that information in the collaborative [Google Sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0)
-    
-   • How many loci were filtered?
-      
-   • Familiarize yourself with the population genetics statistics produced by the populations component of stacks `populations.sumstats_summary.tsv` inside the `output_denovo_optimisation` folder
-    
-   • What is the mean value of nucleotide diversity (π) and FIS across all the individuals? [*hint*: The less -S command may help you view these files easily by avoiding the wrapping]
-
-Congratulations, you went all the way from raw reads to genotyped variants.
+Congratulations, you went all the way from raw reads to genotyped variants. We'll have a bit of a think as a class compiling all this information.
 
 
 {% include links.md %}
