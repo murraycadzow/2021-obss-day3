@@ -78,25 +78,25 @@ If you find most M values already entered in the spreadsheet, we will take the c
 > 
 > 1. Build your Stacks’ denovo_map.pl pipeline program according to the following set of instructions. Following these instructions you will bit by bit create the complete `denovo_map.pl` command:
 > 
-> • Information on denovo_map.pl and its parameters can be found [online](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php). You will use this information below to build your command.
+>   • Information on denovo_map.pl and its parameters can be found [online](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php). You will use this information below to build your command.
 >
-> • Specify the path to the directory containing your sample files (*hint* use your `samples/` link here!). The denovo_map.pl program will read the sample names out of the population map, and look for associated `fastq` in the samples directory you specify.
+>   • Specify the path to the directory containing your sample files (*hint* use your `samples/` link here!). The denovo_map.pl program will read the sample names out of the population map, and look for associated `fastq` in the samples directory you specify.
 > 
-> • Make sure you specify this population map to the denovo_map.pl command (use the [manual](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php)).
+>   • Make sure you specify this population map to the denovo_map.pl command (use the [manual](http://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php)).
 > 
-> • Set the `output_denovo_optimisation` directory as the output directory.
+>   • Set the `output_denovo_optimisation` directory as the output directory.
 >  
-> • Set `-M` and `-n`. `n` should be equal to `M`, so if you set `M` at 3, set `n` at 3.
+>   • Set `-M` and `-n`. `n` should be equal to `M`, so if you set `M` at 3, set `n` at 3.
 >
-> • Set `m` at 3, it is the default parameter, we are being explicit here for anyone (including ourselves), reading our code later.
+>   • Set `m` at 3, it is the default parameter, we are being explicit here for anyone (including ourselves), reading our code later.
 >
-> • Set -r to 0.8, unless you are doing the -r optimisation, then set -r to your chosen value 
+>   • Set -r to 0.8, unless you are doing the -r optimisation, then set -r to your chosen value 
 >  
-> • Finally, use 4 threads (4 CPUs: so your analysis finishes faster than 1!).
+>   • Finally, use 4 threads (4 CPUs: so your analysis finishes faster than 1!).
 >
-> • Your command should be ready, try to execute denovo_map.pl (part of the Stacks pipeline). 
+>   • Your command should be ready, try to execute denovo_map.pl (part of the Stacks pipeline). 
 >
-> • Is it starting alright?  Good, now  **Use `control + c` to stop your command, we'll be back to it soon**
+>   • Is it starting alright?  Good, now  **Use `control + c` to stop your command, we'll be back to it soon**
 > 
 >> ## Solution
 >> This command is for someone optimising `-M` and setting `-M` at 3
@@ -114,16 +114,16 @@ Running the commands directly on the screen is not common practice. You now are 
 >  ## Your first job
 > • copy the example jobfile into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh`  
 >
-> • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long.  
+> • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long. In other words, your are telling mahuika how big of a computer you want to run that job.  
 >
-> • For a few of the `#SBATCH` lines, there are some spaces labelled up like `<...>` for you to fill in. These spaces are followed by a comment starting with a `#` that lets you know what you should be putting in there. With this information, fill in your job script. These are the resources you are requesting for this job. Your are telling mahuika how big of a computer you want to run that job.
+> • For a few of the `#SBATCH` lines, there are some spaces labelled up like `<...>` for you to fill in. These spaces are followed by a comment starting with a `#` that lets you know what you should be putting in there. With this information, fill in your job script. These are the resources you are requesting for this job. 
 >
 > • Once you are done, save it. Then run it using:  
 >
 > ```bash
 > sbatch denovojob.sh
 > ```
->   You should see "Submitted batch job``` and then a random ID number.
+>   You should see `Submitted batch job` and then a random ID number.
 >   
 >  You can check what the status of your job is using:
 >
@@ -131,14 +131,14 @@ Running the commands directly on the screen is not common practice. You now are 
 > squeue -u <yourusername>
 > ```
 >  
-> If your job is not  listed in `squeue`. It has finished running. It could be have been successful or unsuccessful (i.e. a dreaded bug), but if it is not in the queue it has run. What would have printed to your screen has instead printed into the file `denovo.log`. Your job should take a little while to run, sit back.
+> If your job is not  listed in `squeue`. It has finished running. It could be have been successful or unsuccessful (i.e. a dreaded bug), but if it is not in the queue, it has run. What would have printed to your screen has instead printed into the file `denovo.log`. If your job finished running immediately, go check that file to find a bug. If your job appear in the queue for more than 10s, you proably set it up correctly, sit back, it is probably time for a break.
 {: .challenge}
-
+ 
  We used a few basic options of sbatch, including time, memory, job names and output log file. In reality, there are many, many, more options. Have a quick look at `sbatch --help` out of interest. NeSI also has its own handy guide on how to submit a job [here](https://support.nesi.org.nz/hc/en-gb/articles/360000684396-Submitting-your-first-job). 
   
  It is worth noting that we quickly test ran our command above before putting it in a job. This is a very important geek hack. Jobs can stay in the queue not running for some amount of time. If they fail on a typo, you'll have to start again. Quickly testing a command before stopping it using `ctrl + c` is a big time saver.
 
-## Analysing the data from our collaborative optimisation
+## Analysing the result of our collective optimisation
 
 Examine the Stacks log and output files when execution is complete. You should find all of this info in `output_denovo_optimisation/denovo_map.log`
     
