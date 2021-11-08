@@ -34,7 +34,6 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >  `/nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa`
 >  
 >  Have a quick look inside the first few lines of reference_catalog.fa using `head -n 10 reference_catalog.fa`. It contains each loci identified in the denovo approach as a complete sequence.
->  
 >>  ## Solution
 >> ```bash
 >> $ mkdir samples_mapped
@@ -42,8 +41,8 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >> $ cp  /nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa .
 >> $ head -n 10 reference_catalog.fa  
 >> ```
-> {: . challenge}
-{: . solution}
+> {: .solution}
+{: .challenge}
 
 
 It is about time to remind ourselves about a couple of mapping softwares. [BWA](https://github.com/lh3/bwa) is a piece of software that is commonly used for mapping. `bwa mem` is the ideal algorithm to align our short reads to the pretend reference genome. We will also use [Samtools](http://www.htslib.org/), a suite of tools designed to interact with the sam/bam alignment format (i,e, sorting, merging, splitting, subsetting, it is all there). 
@@ -60,9 +59,9 @@ It is about time to remind ourselves about a couple of mapping softwares. [BWA](
 >> $ module load SAMTools
 >> $ bwa index reference_catalog.fa  
 >> ```
-> {: . challenge}
-{: . solution}
- 
+> {: .solution}
+{: .challenge}
+
 Well done, we are now ready to do the mapping!
 
 ## Mapping command
@@ -75,28 +74,29 @@ For a single sample, the command looks like this:
 $ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -b | samtools sort --threads 4 > samples_mapped/MYSAMPLE.bam 
 ```
 
->Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The san output is piped (|) into  the next command instead of being printed to the screen, where samtools view create a bam file using `-b`. That bam output is piped into the sorting command of samtools before finally being outputted as a file  using `>` into sample mapping.
+> Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The san output is piped (|) into  the next command instead of being printed to the screen, where samtools view create a bam file using `-b`. That bam output is piped into the sorting command of samtools before finally being outputted as a file  using `>` into sample mapping.
 {: .callout}
 
 Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
 
 This is the chunkiest piece of code today. So no problem if you don't soak it all in. If you are in a classroom right now, we'll probably look at loops together. Otherwise, you could have a look at how they work [here](https://swcarpentry.github.io/shell-novice/05-loop/index.html).
 
-```
+```bash
 $ for filename in samples/*fq.gz
 	do base=$(basename ${filename} .fq.gz)
  	echo $base
   	bwa mem -t 4 reference_catalog.fa  samples/${base}.fq.gz | samtools view -b | samtools sort --threads 4 > samples_mapped/${base}.bam 
  done
 ```
+
 > Explanations of this code:  for each filename in the folder samples that ends with .fq.gz, extract only the prefix of that filenamme: samples/PREFIX.fq.gz with the basename function. int the filename we are currently working with using echo. Use the bwa + samtools mapping explained above, using the base name to output a file `prefix.bam`.
 {: .callout}
 
-Well done, we only have ref_map to run now.
+Well done, we only have `ref_map.pl` to run now.
 
 ## Run the ref_map pipeline
 
-`ref_map.pl` has much less options since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. It simply uses the mapped file to identify the variable positions.
+`ref_map.pl` has fewer parameters since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. `ref_map.pl`  uses the mapped files to identify the variable positions.
 
 > ## build your ref_map.pl command
 > Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your refmap command. you can also check `ref_map.pl --help`.
@@ -115,8 +115,10 @@ Well done, we only have ref_map to run now.
 >> ```bash
 >> ref_map.pl -T 2 --samples samples_mapped/  -o refmap_output/ --popmap popmap.txt -r 0.8
 >> ```
+> {: .solution}
+{: .challenge}
 
-> ## create the job file 
+> ## Create the job file 
 > • Time to put that into a job script. You can use the job script from the last exercise as a template. We will simply make a copy of it under a different name. In practice, we often end up reusing our own scripts. Let's copy the `denovojob.sh` into a new `refmapjob.sh`:
 >
 >```bash
@@ -124,9 +126,9 @@ Well done, we only have ref_map to run now.
 >```
 >
 > • Open `refmapjob.sh` using a text editor. Adjust the number of threads/cpus to 2, adjust the running time to `10mn`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
-
+>
 > • Save it, and run the job: `sbatch refmapjob.sh`
-
+{: .challenge}
 That should take about 5 minutes. Remember you can use `squeue -u <yourusername>` to check the status of the job. Once it is not there anymore, it has finished. This job will write out an output log called `output_refmap/refmap.log` that you can check using `less`.
 
 
