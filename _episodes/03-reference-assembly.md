@@ -23,9 +23,17 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 
 ## Map your samples
 
-In the folder `GBS` create an output folder for this analysis, `refmap_output`.
+> ## Organise yourself
+> 
+> In the folder `gbs/` create an output folder for this analysis, `refmap_output`.
+> 
+> Copy the reference catalog that we will use as a pretend reference genome from ...
 
-Copy the reference catalog.
+
+>> ## Solution
+
+
+It is also time to bring in a couple of softwares in. `BWA` [!!!link!!!] is a piece of softare that is commonly used for mapping
 
 Map your samples
 
