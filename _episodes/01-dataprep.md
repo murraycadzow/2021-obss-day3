@@ -3,12 +3,14 @@ title: "Data101: From raw data to individual samples files"
 teaching: 0
 exercises: 0
 questions:
-- "How to take you from raw reads data to individual sample files"
+- "How do we process data from raw reads to individual fastq files?"
 objectives:
 - "Check the quality of the data"
 - "Assign reads to individual samples"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Raw data should always be checked with FastQC."
+- "Assigning reads to specific samples is called demultiplexing"
+- "process_radtags is the built in demultiplexing tools of Stacks and it includes some basic quality control"
 ---
 
 **Developed by:** Ludovic Dutoit, Alana Alexander
@@ -110,7 +112,7 @@ $ fastqc lane1.fastq.gz
 > {: .solution}
 {: .challenge}
 
- You probably noticed that not all of the data is high quality (especially if you check the 'Per base sequence quality' tab!). In general with next generation sequencing, you want to remove the lowest quality sequences from your data set before you proceed. However, the stringency of the filtering will depend on the final application. In general, higher stringency is needed for *de novo* assemblies as compared to alignments to a reference genome. However, low quality data can affect downstream analysis for both *de novo* and reference-based approaches, producing false positives, such as errant SNP predictions.
+ You probably noticed that not all of the data is high quality (especially if you check the 'Per base sequence quality' tab!). In general with next generation sequencing, you want to remove the lowest quality sequences and remaining adapters from your data set before you proceed to do anything. However, the stringency of the filtering will depend on the final application. In general, higher stringency is needed for *de novo* assemblies as compared to alignments to a reference genome. However, low quality data can affect downstream analysis for both *de novo* and reference-based approaches, producing false positives, such as errant SNP predictions.
 
 We will use the Stacks’s program **process_radtags** to remove low quality sequences (also known as cleaning data) and to demultiplex our samples. [Here is the Stacks manual](http://catchenlab.life.illinois.edu/stacks/manual/) as well as the specific [manual page for process_radtags](http://catchenlab.life.illinois.edu/stacks/manual/#procrad) on the Stacks website to find information and examples. 
 
