@@ -21,7 +21,7 @@ The stacks pipeline for samples with a reference genome is [ref_map.pl](https://
 
 We don't have a genome for our common bullies yet. Instead, we will map the reads to the catalog of loci that stacks as created for one of our denovo run. You would never do that in the real world, but that gives us a chance to run the ref_map.pl pipeline and 
 
-## Map your samples
+## Map your samples to the reference
 
 > ## Organise yourself
 > 
@@ -36,7 +36,6 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >  Have a quick look inside the first few lines of reference_catalog.fa using `head -n 10 reference_catalog.fa`. It contains each loci identified in the denovo approach as a complete sequence.
 >  
 >>  ## Solution
->> 
 >> ```bash
 >> $ mkdir samples_mapped
 >> $ mkdir refmap_output
@@ -66,7 +65,7 @@ It is about time to remind ourselves about a couple of mapping softwares. [BWA](
  
 Well done, we are now ready to do the mapping!
 
-## Mapping
+## Mapping command
 
 For each sample, we will now take the raw reads and map them to the reference genome, outputting a sorted `.bam` file inside the folder `samples_mapped`,
 
@@ -95,7 +94,7 @@ $ for filename in samples/*fq.gz
 
 Well done, we only have ref_map to run now.
 
-## Run the ref_map pipeline.
+## Run the ref_map pipeline
 
 `ref_map.pl` has much less options since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. It simply uses the mapped file to identify the variable positions.
 
@@ -109,37 +108,39 @@ Well done, we only have ref_map to run now.
 >  
 > • Specify the path to the population map. We will be able to use the same popmap as for the denovo analysis, since we are using the same samples. 
 >
-> • We only want to keep the loci that are found in 80% of individuals. This is done by passing specific arguments to the `populations` software inside Stacks. The following should be added to your command: `-X "populations:  -r 0.80"`. Make sure you include the quotes.
+> • We only want to keep the loci that are found in 80% of individuals. This is done by passing specific arguments to the `populations` software inside Stacks.
 > 
-> • Is your command ready? Run it briefly to check that it starts properly, once it does **stop it using ctrl + c**
+> • Is your command ready? Run it briefly to check that it starts properly, once it does **stop it using ctrl + c**, we'll run it as a job.
 >> ## Solution
->> ref_map.pl -T 2 --samples_mapped/  --
+>> ```bash
+>> ref_map.pl -T 2 --samples samples_mapped/  -o refmap_output/ --popmap popmap.txt -r 0.8
+>> ```
 
-> • Time to put that into a job script. You can use the job script from the last exercise as a template. We will simply make a copy of it under a different name. In practice, we often end up reusing our own scripts.
+> ## create the job file 
+> • Time to put that into a job script. You can use the job script from the last exercise as a template. We will simply make a copy of it under a different name. In practice, we often end up reusing our own scripts. Let's copy the `denovojob.sh` into a new `refmapjob.sh`:
 >
 >```bash
 > cp denovojob.sh refmapjob.sh
 >```
 >
-• Open `refmapjob.sh` using a text editor. Adjust the number of cpus to 2, adjust the running time to `10mn`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
+> • Open `refmapjob.sh` using a text editor. Adjust the number of threads/cpus to 2, adjust the running time to `10mn`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
 
-• Save it, and run the job:
-  
-    `sbatch refmapjob.sh`
+> • Save it, and run the job: `sbatch refmapjob.sh`
 
 That should take about 5 minutes. Remember you can use `squeue -u <yourusername>` to check the status of the job. Once it is not there anymore, it has finished. This job will write out an output log called `output_refmap/refmap.log` that you can check using `less`.
 
 
-### Analyse your results.
+### Analyse your results
+
+>  ## Looking into the output
+>  • Examine the output of the populations program in the file `ref_map.log` inside your `refmap_output` folder. (*hint*: use the `less` command).
+>    
+>  • How many SNPs were identified?
+>   
+>  • Why did `refmap.pl` run  much faster than `denovo_map.pl` ?
 
 
-   • Examine the output of the populations program in the file `ref_map.log` inside your `output_refmap` folder. (*hint*: use the `less` command).
-    
-  •How many SNPs were identified?
-   
- • Why did it run so much faster than `denovo_map.pl` ?
- 
-Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding "lumping" and "splitting" errors. But beware of some applications, for example inbreeding analyses that are sensitive to the quality of your reference genome.
+Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding *lumping* and *splitting* errors. But beware of some applications. Inbreeding analyses are one example of applications that are sensitive to the quality of your reference genome.
 
 
 Only one thing left, the cool biology bits.
