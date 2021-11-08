@@ -17,7 +17,7 @@ keypoints:
 
 ## Background
 
-In this exercise we will be working with common bullies (*Gobiomorphus cotidianus*; AKA: Lake Fish) sampled from Laka Wanaka and Lake Wakatipu in Aotearoa New Zealand. These fishes look different at different depths, and we found ourselves asking whether those morphological differences were supported by genetic structure. We've got a min-dataset of 12 fishes, a reasonable size to be able to run all our commands quickly. 6 fishes sampled each from each lake, 3 from each lake at shallow depth, and three coming from deeper depths.
+In this exercise we will be working with common bullies (*Gobiomorphus cotidianus*; AKA: Lake Fish) sampled from Lake Wanaka and Lake Wakatipu in Aotearoa New Zealand. These fishes look different at different depths, and we found ourselves asking whether those morphological differences were supported by genetic structure. We've got a min-dataset of 12 fishes, a reasonable size to be able to run all our commands quickly. 6 fishes sampled each from each lake, 3 from each lake at shallow depth, and three coming from deeper depths.
 
 !!!INSERT PICTURE!!!
 
@@ -54,7 +54,7 @@ $ pwd
 
 The exercise from now on is hands-on: the instructions are here to guide you through the process but you will have to come up with the specific commands yourself. Fear not, the instructors are there to help you and the room is full of friendly faces to help you get through it.
 
-1. We will create more subdirectories to hold our analyses. Be careful that you are reading and writing files to the appropriate directories within your hierarchy. You’ll be making many directories, so stay organized! We will name the directories in a way that corresponds to each stage of our analysis and that allows us to remember where all our files are! A well organized workspace makes analyses easier and prevents data from being accidentally overwritten.
+1. We will create more subdirectories to hold our analyses. Be careful that you are reading and writing files to the appropriate directories within your hierarchy. You’ll be making many directories, so stay organized! We will name the directories in a way that corresponds to each stage of our analysis and that allows us to remember where all our files are! A structured workspace makes analyses easier and prevents data from being accidentally overwritten.
 
 > ## Exercise
 >  In `gbs/`, we will create two  directories: `lane1` and `samples`. `lane1` will contain the raw data. By the end of the exercise, `samples` will contain one file per sample with all the reads for that individual.
