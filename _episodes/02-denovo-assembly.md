@@ -21,7 +21,7 @@ In this exercise we will identify genetic variants for our 12 common bullies (AK
 
 Without access to a reference genome, we will assemble the RAD loci *de novo* and examine population structure. However, before we can do that, we want to explore the *de novo* parameter space in order to be confident that we are assembling our data in an optimal way.
 
-The detailed information of the stacks parameter can be found [in this explanation](http://catchenlab.life.illinois.edu/stacks/param_tut.php.
+The detailed information of the stacks parameter can be found [in this explanation](http://catchenlab.life.illinois.edu/stacks/param_tut.php).
 
 In summary, Stack (i.e. locus) formation is controlled by three main parameters: 
 
@@ -37,16 +37,16 @@ If that does not make sense or you would like to know more, have a quick read of
 
 Here, we will optimize the parameter `-M` (description in bold above) using the collaborative power of all of us here today! We will be using the guidelines of parameter optimization outlined in [Paris et al. (2017)](https://besjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/2041-210X.12775) to assess what value for the `-M` parameter recovers the highest number of polymorphic loci. [Paris et al. (2017)](https://besjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/2041-210X.12775) described this approach:  
 
-*"After putative alleles are formed, stacks performs a search to match alleles together into putative loci. This search is governed by the M parameter, which controls for the maximum number of mismatches allowed between putative alleles [...] Correctly setting **M** requires a balance – set it too low and alleles from the same locus will not collapse, set it too high and paralogous or repetitive loci will incorrectly merge together."*
+*"After putative alleles are formed, stacks performs a search to match alleles together into putative loci. This search is governed by the M parameter, which controls for the maximum number of mismatches allowed between putative alleles [...] Correctly setting `-M` requires a balance – set it too low and alleles from the same locus will not collapse, set it too high and paralogous or repetitive loci will incorrectly merge together."*
 
-As a giant research team, we will run the *denovo* pipeline with different parameters. The results from the different parameters will be shared using [this Google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0).nAfter optimising these parameters, we'll be able to use the best dataset downstream for population genetics analyses and to compare it with a pipeline that utilises a reference genome. 
+As a giant research team, we will run the *denovo* pipeline with different parameters. The results from the different parameters will be shared using [this Google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0).  After optimising these parameters, we'll be able to use the best dataset downstream for population genetics analyses and to compare it with a pipeline that utilises a reference genome. 
 
 
-In reality, you'd probably do thatoptimisation with just a few of your individuals as running the entire pipeline several times will be something that would consume much resources. But for today, I made sure our little dataset of 12 fishes run fast enough. 
+In reality, you'd probably do that optimisation with just a few of your samples as running the entire pipeline for several parameters combinations would be something that would consume much resources. But for today, I made sure our little dataset of 12 fishes run fast enough. 
 
 ## Optimisation exercise
 
-In groups of 2, it is time to run an optimisation. So have a sip until your neighbor catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). 
+In groups of 2, it is time to run an optimisation. So have a sip until your neighbour catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). 
 
 If you find most M values already entered in the spreadsheet, we will take the chance to optimise `-r`,   the number of samples that have to be sequenced for a particular locus to be kept it in the dataset (i.e. percentage of non-missing genotypes). Jump onto the second page of that Google sheet and vary `-r` away from 0.8 (80% of individuals covered).
 
@@ -109,11 +109,12 @@ If you find most M values already entered in the spreadsheet, we will take the c
 
 ## Running your first job
 
-Running the commands directly on the screen is not common practice. You now are on a small server which has a reserved amount of resources for this workshop and this allows us to run our commands directly. You might want to run more than one thing at once or run things for longer or with way more resources than you have on your jupyer account. The way to do this is running your *job* using a *batch script*. The batch script (or submission script) accesses all the computing resources that are tucked away from the Mahuika login node. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs your little jupyter server itself. That way you can run many things at once and also use loads more [resources](https://support.nesi.org.nz/hc/en-gb/articles/360000204076-Mahuika-Slurm-Partitions). We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.  
+Running the commands directly on the screen is not common practice. You now are on a small server which has a reserved amount of resources for this workshop and this allows us to run our commands directly. You might want to run more than one thing at once or run things for longer or with way more resources than you have on your jupyter account. The way to do this is running your *job* using a *batch script*. The batch script (or submission script) accesses all the computing resources that are tucked away from the Mahuika login node. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs your little jupyter server itself. That way you can run many things at once and also use loads more [resources](https://support.nesi.org.nz/hc/en-gb/articles/360000204076-Mahuika-Slurm-Partitions). We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.  
 
 >  ## Your first job
 >  
-> • copy the example jobfile into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh`  
+> • copy the example job ![image](https://user-images.githubusercontent.com/4376065/140674571-52a7795c-632f-4214-94e1-6df5de731f64.png)
+file into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh`  
 >
 > • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long. In other words, your are telling mahuika how big of a computer you want to run that job.  
 >
