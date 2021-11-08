@@ -11,7 +11,7 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-**Developed by:** Ludovic Dutoit
+**Developed by:** Ludovic Dutoit, Alana Alexander
 
 **Adapted from:** Julian Catchen, Nicolas Rochette
 
