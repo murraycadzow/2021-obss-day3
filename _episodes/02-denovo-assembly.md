@@ -140,11 +140,11 @@ Running the commands directly on the screen is not common practice. You now are 
 
 ## Analysing the result of our collective optimisation
 
-Examine the Stacks log and output files when execution is complete. You should find all of this info in `output_denovo_optimisation/denovo_map.log`
+Now that your execution is complete, we will examine some of the output files. You should find all of this info in `output_denovo_optimisation/denovo_map.log`
     
    • After processing all the individual samples through ustacks and before creating the catalog with cstacks, denovo_map.pl will print a [table containing the depth of coverage](http://catchenlab.life.illinois.edu/stacks/manual/#cov) of each sample. Find this table in `output_denovo_optimisation/denovo_map.log`: what were the depths of coverage? 
     
-   • Examine the output of the populations program in the file `populations.log` inside your `output_denovo` folder (*hint*: use the `less` command).
+   • Examine the output of the populations program in the file `populations.log` inside your `output_denovo_optimisation` folder (*hint*: use the `less` command).
     
    • How many loci were identified?
 
