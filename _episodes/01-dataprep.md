@@ -15,6 +15,12 @@ keypoints:
 
 **Adapted from:** Nicolas Rochette, Julian Catchen
 
+## Background
+
+In this exercise we will be working with common bullies (*Gobiomorphus cotidianus*; AKA: Lake Fish) sampled from Laka Wanaka and Lake Wakatipu in Aotearoa New Zealand. These fishes look different at different depths, and we found ourselves asking whether those morphological differences were supported by genetic structure. We've got a min-dataset of 12 fishes, a reasonable size to be able to run all our commands quickly. 6 fishes sampled each from each lake, 3 from each lake at shallow depth, and three coming from deeper depths.
+
+!!!INSERT PICTURE!!!
+
 ## Working with single-end reads
 
 The first step in the analysis of all short-read sequencing data, including RAD-seq
