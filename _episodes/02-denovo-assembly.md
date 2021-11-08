@@ -142,7 +142,7 @@ file into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obs
 
 ## Analysing the result of our collective optimisation
 
->## Main output files
+> ## Analysing the main output files
 >Now that your execution is complete, we will examine some of the output files. You should find all of this info in `output_denovo_optimisation/`
 >   
 >   • After processing all the individual samples through ustacks and before creating the catalog with cstacks, denovo_map.pl will print a [table containing the depth of coverage](http://catchenlab.life.illinois.edu/stacks/manual/#cov) of each sample. Find this table in `output_denovo_optimisation/denovo_map.log`: what were the depths of coverage? 
