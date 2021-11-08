@@ -141,7 +141,7 @@ That should take about 5 minutes. Remember you can use `squeue -u <yourusername>
 >  • How many SNPs were identified?
 >   
 >  • Why did `refmap.pl` run  much faster than `denovo_map.pl` ?
-
+{: .challenge}
 
 Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding *lumping* and *splitting* errors. But beware of some applications. Inbreeding analyses are one example of applications that are sensitive to the quality of your reference genome.
 
