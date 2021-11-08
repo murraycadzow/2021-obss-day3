@@ -79,7 +79,9 @@ $ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -
 >Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The san output is piped (|) into  the next command instead of being printed to the screen, where samtools view create a bam file using `-b`. That bam output is piped into the sorting command of samtools before finally being outputted as a file  using `>` into sample mapping.
 {: .callout}
 
-Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for each sample:
+Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
+
+This is the chunkiest piece of code today. So no problem if you don't soak it all in. If you are in a classroom right now, we'll probably look at loops together. Otherwise, you could have a look at how they work [here](https://swcarpentry.github.io/shell-novice/05-loop/index.html).
 
 ```
 $ for filename in samples/*fq.gz
@@ -88,42 +90,42 @@ $ for filename in samples/*fq.gz
   	bwa mem -t 4 reference_catalog.fa  samples/${base}.fq.gz | samtools view -b | samtools sort --threads 4 > samples_mapped/${base}.bam 
  done
 ```
+> Explanations of this code:  for each filename in the folder samples that ends with .fq.gz, extract only the prefix of that filenamme: samples/PREFIX.fq.gz with the basename function. int the filename we are currently working with using echo. Use the bwa + samtools mapping explained above, using the base name to output a file `prefix.bam`.
+{: .callout}
 
-This is the chunkiest piece of code today. So no problem if you don't soak it all in, but it is worth it. If you are in class, we'll probably look at it together. It is explained with comments below:
-
-```
-$ for filename in samples/*fq.gz # for each filename in the folder samples that ends with .fq.gz
-	do base=$(basename ${filename} .fq.gz) # extract only the prefix of that filenamme: samples/PREFIX.fq.gz
- 	echo $base # print the filename we are currently working with
-  	bwa mem -t 4 reference_catalog.fa  samples/${base}.fq.gz   |   samtools view -b | samtools sort --threads 4 > samples_mapping/${base}.bam  # the bwa + samtools mapping explained above, using the base nae to output a file prefix.ba
- done
-```
+Well done, we only have ref_map to run now.
 
 ## Run the ref_map pipeline.
 
-`ref_map.pl` has less options since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your refmap command.
+`ref_map.pl` has much less options since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. It simply uses the mapped file to identify the variable positions.
 
-• Unlike in the previous exercise, ask for 2 threads 
+> ## build your ref_map.pl command
+> Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your refmap command. you can also check `ref_map.pl --help`.
+> • Unlike in the previous exercise, ask for 2 threads 
+>
+> • Specify the path to the input folder `samples_mapped/`
+>
+>  • Specify the path to the output folder `refmap_output/`
+>  
+> • Specify the path to the population map. We will be able to use the same popmap as for the denovo analysis, since we are using the same samples. 
+>
+> • We only want to keep the loci that are found in 80% of individuals. This is done by passing specific arguments to the `populations` software inside Stacks. The following should be added to your command: `-X "populations:  -r 0.80"`. Make sure you include the quotes.
+> 
+> • Is your command ready? Run it briefly to check that it starts properly, once it does **stop it using ctrl + c**
+>> ## Solution
+>> ref_map.pl -T 2 --samples_mapped/  --
 
-• Specify the path to the output folder `output_refmap/`
-
-• Specify the path to the input folder `samples_mapped/`
-
-• Specify the path to the population map. We will be able to use the same popmap as for the denovo analysis, since we are using the same samples. 
-
-• We only want to keep the loci that are found in 80% of individuals. This is done by passing specific arguments to the `populations` software inside Stacks. The following should be added to your command: `-X "populations:  -r 0.80"`. Make sure you include the quotes.
-
-• Is your command ready? Run it briefly to check that it starts properly, once it does **stop it using ctrl + c**
-
-• Time to put that into a job script. You can use the job script from the last exercise as a template. We will simply make a copy of it under a different name. In practice, we often end up reusing our own scripts.
-
-    cp denovojob.sh refmapjob.sh
-
-• Open `refmapjob.sh` using a text editor. Adjust the number of cpus to 2, adjust the running time to `10mn`, and the job name to `refmap`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
+> • Time to put that into a job script. You can use the job script from the last exercise as a template. We will simply make a copy of it under a different name. In practice, we often end up reusing our own scripts.
+>
+>```bash
+> cp denovojob.sh refmapjob.sh
+>```
+>
+• Open `refmapjob.sh` using a text editor. Adjust the number of cpus to 2, adjust the running time to `10mn`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
 
 • Save it, and run the job:
   
-    sbatch refmapjob.sh
+    `sbatch refmapjob.sh`
 
 That should take about 5 minutes. Remember you can use `squeue -u <yourusername>` to check the status of the job. Once it is not there anymore, it has finished. This job will write out an output log called `output_refmap/refmap.log` that you can check using `less`.
 
@@ -133,16 +135,14 @@ That should take about 5 minutes. Remember you can use `squeue -u <yourusername>
 
    • Examine the output of the populations program in the file `ref_map.log` inside your `output_refmap` folder. (*hint*: use the `less` command).
     
-  • How many SNPs were identified?
+  •How many SNPs were identified?
    
  • Why did it run so much faster than `denovo_map.pl` ?
  
- • As a thought exercise: Do you have any idea how we could check whether the same loci have been found as in the *de novo* run or not?
-
-Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding "lumping" and "splitting" errors. But that some applications ( for example inbreeding analyses are sensitive to the quality of your reference genome).
+Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding "lumping" and "splitting" errors. But beware of some applications, for example inbreeding analyses that are sensitive to the quality of your reference genome.
 
 
-Only one thing left, the cool biology bits!
+Only one thing left, the cool biology bits.
 
 
 
