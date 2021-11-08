@@ -27,38 +27,77 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 > 
 > 1. Get back to `gbs/`
 > 
-> 2.In the folder `gbs/` create an output folder for this analysis, `refmap_output/`.
+> 2. In the folder `gbs/` create an output folder for this analysis, `refmap_output/` as well as the folder `samples_mapped`
 > 
-> 3. Copy the reference catalog that we will use as a pretend reference genome from inside the `gbs/` folder you should currently be in.
->> ## Solution
+> 3. Copy the reference catalog below that we will use as a pretend reference genome from inside the `gbs/` folder you should currently be in.
+>  
+>  `/nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa`
+>  
+>  Have a quick look inside the first few lines of reference_catalog.fa using `head -n 10 reference_catalog.fa`. It contains each loci identified in the denovo approach as a complete sequence.
+>  
+>>  ## Solution
 >> 
 >> ```bash
->> $ Get back to gbs, if you re lost ...
+>> $ mkdir samples_mapped
 >> $ mkdir refmap_output
->> $ cp ...
+>> $ cp  /nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa .
+>> $ head -n 10 reference_catalog.fa  
 >> ```
 > {: . challenge}
 {: . solution}
 
 
-It is about time to remind you about a couple of softwares in. `BWA` [!!!link!!!] is a piece of software that is commonly used for mapping. `bwa mem` is the ideal algorithm to align our short reads to the pretend reference genome. We will also use samtools, a suite of tools designed to interact with the sam/bam alignment format (sorting, merging, splitting, subsetting, it is all there). 
+It is about time to remind ourselves about a couple of mapping softwares. [BWA](https://github.com/lh3/bwa) is a piece of software that is commonly used for mapping. `bwa mem` is the ideal algorithm to align our short reads to the pretend reference genome. We will also use [Samtools](http://www.htslib.org/), a suite of tools designed to interact with the sam/bam alignment format (i,e, sorting, merging, splitting, subsetting, it is all there). 
 
 > ## Load the software
-> Identify the 2 module respectively you need for bwa and Samtools and load them  ( https://support.nesi.org.nz/hc/en-gb/articles/360000360576-Finding-Software
-> You need to index your reference genome. This is basically creating a map of your genome so that BWA can navigate it extra fast insread of reading it entirely for each read. use bwa index YOURGENOME for that.
-
+> Identify the 2 modules you need for bwa and Samtools and load them.
+> You need to index your reference genome. This is basically creating a map of your genome so that BWA can navigate it extra fast instead of reading it entirely for each read. Use bwa index YOURGENOME.fa for that.
 >> ## Solution
 >> 
 >> ```bash
->> $ Get back to gbs, if you re lost ...
->> $ mkdir refmap_output
->> $ cp ...
+>> $ module spider BWA
+>> $ module load BWA
+>> $ module spider samtools
+>> $ module load SAMTools
+>> $ bwa index reference_catalog.fa  
 >> ```
 > {: . challenge}
 {: . solution}
  
- 
- Well done, we are now ready to mapping
+Well done, we are now ready to do the mapping!
+
+## Mapping
+
+For each sample, we will now take the raw reads and map them to the reference genome, outputting a sorted `.bam` file inside the folder `samples_mapped`,
+
+For a single sample, the command looks like this:
+
+```bash
+$ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -b | samtools sort --threads 4 > samples_mapped/MYSAMPLE.bam 
+```
+
+>Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The san output is piped (|) into  the next command instead of being printed to the screen, where samtools view create a bam file using `-b`. That bam output is piped into the sorting command of samtools before finally being outputted as a file  using `>` into sample mapping.
+{: .callout}
+
+Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for each sample:
+
+```
+$ for filename in samples/*fq.gz
+	do base=$(basename ${filename} .fq.gz)
+ 	echo $base
+  	bwa mem -t 4 reference_catalog.fa  samples/${base}.fq.gz   |   samtools view -b | samtools sort --threads 4 > samples_mapping/${base}.bam  
+ done
+```
+
+This is the chunkiest piece of code today. So no problem if you don't soak it all in, but it is worth it. If you are in class, we'll probably look at it together. It is explained with comments below:
+
+```
+$ for filename in samples/*fq.gz # for each filename in the folder samples that ends with .fq.gz
+	do base=$(basename ${filename} .fq.gz) # extract only the prefix of that filenamme: samples/PREFIX.fq.gz
+ 	echo $base # print the filename we are currently working with
+  	bwa mem -t 4 reference_catalog.fa  samples/${base}.fq.gz   |   samtools view -b | samtools sort --threads 4 > samples_mapping/${base}.bam  # the bwa + samtools mapping explained above, using the base nae to output a file prefix.ba
+ done
+```
 
 ## Run the ref_map pipeline.
 
