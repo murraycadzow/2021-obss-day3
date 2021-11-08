@@ -15,14 +15,7 @@ keypoints:
 
 **Adapted from:** Julian Catchen, Nicolas Rochette
 
-
-
-## Introduction
-
-In this second exercise, we will identify genetic variants for common bullies (Gobiomorphus cotidianus; AKA: Lake Fish) sampled from Laka Wanaka and Lake Wakatipu in Aotearoa New Zealand. These fishes look different at different depths, and we found ourselves asking whether those morphological differences were supported by genetic structure.
-
-  <p align="center"><br><img src="img/map_stickleback2.png" alt="drawing" width="700"/></p>
-
+In this exercise we will identify genetic variants for our 12 common bullies (AKA: Lake fish).
 
 Without access to a reference genome, we will assemble the RAD loci *de novo* and examine population structure. However, before we can do that, we want to explore the *de novo* parameter space in order to be confident that we are assembling our data in an optimal way.
 
