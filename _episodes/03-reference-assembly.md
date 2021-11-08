@@ -76,7 +76,7 @@ For a single sample, the command looks like this:
 $ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -b | samtools sort --threads 4 > samples_mapped/MYSAMPLE.bam 
 ```
 
-> Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into  the next command instead of being printed to the screen. `samtools view` create a bam file using `-b`. That bam output is piped into the sorting command of samtools before finally being outputted as a file  using `>` into sample mapping.
+> Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into  the next command instead of being printed to the screen. `samtools view` create a bam file using `-b`. That bam output is piped into the `samtools sort` command before finally being outputted as a file  using `>` into sample mapping.
 {: .callout}
 
 Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
@@ -91,7 +91,7 @@ $ for filename in samples/*fq.gz
  done
 ```
 
-> Explanations of this code:  for each filename in the folder samples that ends with .fq.gz, extract only the prefix of that filenamme: samples/PREFIX.fq.gz with the basename function. int the filename we are currently working with using echo. Use the bwa + samtools mapping explained above, using the base name to output a file `PREFIX.bam`.
+> Explanations of this code:  for each filename in the folder samples that ends with `.fq.g`z`, extract only the prefix of that filenamme: `samples/PREFIX.fq.gz` with the basename function. int the filename we are currently working with using echo. Use the `bwa` + `samtools` mapping explained above, using the base name to output a file `PREFIX.bam`.
 {: .callout}
 
 Well done, we only have `ref_map.pl` to run now.
