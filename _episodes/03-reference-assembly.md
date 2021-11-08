@@ -91,7 +91,7 @@ $ for filename in samples/*fq.gz
  done
 ```
 
-> Explanations:  `for` each filename in the folder samples that ends with `.fq.gz`, extract only the prefix of that filenamme: `samples/PREFIX.fq.gz` with the basename function. int the filename we are currently working with using echo. Use the `bwa` + `samtools` mapping explained above, using the base name to output a file `PREFIX.bam`.
+> Explanations:  `for` each filename in the folder samples that ends with `.fq.gz`, extract only the prefix of that filenamme: `samples/PREFIX.fq.gz` with the `basename` function. int the filename we are currently working with using echo. Use the `bwa` + `samtools` mapping explained above, using the base name to output a file `PREFIX.bam`.
 {: .callout}
 
 Well done, we only have `ref_map.pl` to run now.
@@ -101,7 +101,7 @@ Well done, we only have `ref_map.pl` to run now.
 `ref_map.pl` has fewer parameters since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. `ref_map.pl`  uses the mapped files to identify the variable positions.
 
 > ## build your ref_map.pl command
-> Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your refmap command. you can also check `ref_map.pl --help`.
+> Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your `refmap.pl` command. you can also check `ref_map.pl --help`.
 > • Unlike in the previous exercise, ask for 2 threads 
 >
 > • Specify the path to the input folder `samples_mapped/`
