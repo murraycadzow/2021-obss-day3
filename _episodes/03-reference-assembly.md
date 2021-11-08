@@ -3,11 +3,17 @@ title: "Assembly with a reference genome"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How do we identify genetic variants if we have a reference genome?"
 objectives:
 - "Learn to call SNPs with a reference genome"
+- "Practice running SLURM scripts"
+- "Practice mapping reads to a reference genome"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Reference genomes, even of poor quality or from a related species are great for SNPs identification"
+- "Reference-based SNP calling takes the guess work of distance between and within loci away by mapping reads to individual location within the genome"
+
+
+
 ---
 
 **Developed by:** Ludovic Dutoit, Alana Alexander
