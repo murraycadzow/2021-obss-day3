@@ -14,7 +14,7 @@ keypoints:
 
 **Adapted from:** Julian Catchen, Nicolas Rochette
 
-### Introduction
+## Introduction
 
 Obtaining an assembly without a reference genome is easy and possible. However, having a reference genome allows us to avoid several issues. We do not have to make assumptions about the "best" value for the `-M` parameter, and we reduce the risk of collapsing different loci together ("lumping") or separating one "real" locus into several "erroneous loci" ("splitting"). Studies have demonstrated that having some kind of reference genome is the single best way you can improve GBS SNP calling (see for example [Shafer et al. 2016](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12700)). Using a related species genome might be good enough in several cases too (but it sometimes depend on your application).
 
@@ -66,7 +66,7 @@ It is about time to remind ourselves about a couple of mapping softwares. [BWA](
 
 Well done, we are now ready to do the mapping!
 
-## Mapping command
+### Mapping command
 
 For each sample, we will now take the raw reads and map them to the reference genome, outputting a sorted `.bam` file inside the folder `samples_mapped`,
 
@@ -76,7 +76,7 @@ For a single sample, the command looks like this:
 $ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -b | samtools sort --threads 4 > samples_mapped/MYSAMPLE.bam 
 ```
 
-> Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the | symbol into  the next command instead of being printed to the screen, where samtools view create a bam file using `-b`. That bam output is piped into the sorting command of samtools before finally being outputted as a file  using `>` into sample mapping.
+> Explanations of this code: bwa mem use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into  the next command instead of being printed to the screen. `samtools view` create a bam file using `-b`. That bam output is piped into the sorting command of samtools before finally being outputted as a file  using `>` into sample mapping.
 {: .callout}
 
 Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
@@ -91,7 +91,7 @@ $ for filename in samples/*fq.gz
  done
 ```
 
-> Explanations of this code:  for each filename in the folder samples that ends with .fq.gz, extract only the prefix of that filenamme: samples/PREFIX.fq.gz with the basename function. int the filename we are currently working with using echo. Use the bwa + samtools mapping explained above, using the base name to output a file `prefix.bam`.
+> Explanations of this code:  for each filename in the folder samples that ends with .fq.gz, extract only the prefix of that filenamme: samples/PREFIX.fq.gz with the basename function. int the filename we are currently working with using echo. Use the bwa + samtools mapping explained above, using the base name to output a file `PREFIX.bam`.
 {: .callout}
 
 Well done, we only have `ref_map.pl` to run now.
