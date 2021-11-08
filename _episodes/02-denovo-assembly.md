@@ -3,12 +3,16 @@ title: "De-novo assembly without a reference genome"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How can we identify genetic variants without a reference genome?
+- "How to optimise parameters in the Stacks parameter space?"
+- "How to access the full extent of the cluster resources?"
 objectives:
 - "Learn to call SNPs without a reference genome and to optimise the procedure"
 - "Learn to run SLURM scripts"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "-M is the main parameter to optimise when identifying variants de-novo using Stacks"
+- "Optimisation can often be performed with a subset of the data"
+- "SLURM scripts are the way to harvest the cluster's potential by running jobs" 
 ---
 
 **Developed by:** Ludovic Dutoit, Alana Alexander
@@ -107,18 +111,18 @@ If you find most M values already entered in the spreadsheet, we will take the c
 {: .challenge}
 
 
-## Running your first job
+## Running your first SLURM scipt
 
-Running the commands directly on the screen is not common practice. You now are on a small server which has a reserved amount of resources for this workshop and this allows us to run our commands directly. You might want to run more than one thing at once or run things for longer or with way more resources than you have on your jupyter account. The way to do this is running your *job* using a *batch script*. The batch script (or submission script) accesses all the computing resources that are tucked away from the Mahuika login node. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs your little jupyter server itself. That way you can run many things at once and also use loads more [resources](https://support.nesi.org.nz/hc/en-gb/articles/360000204076-Mahuika-Slurm-Partitions). We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.  
+Running the commands directly on the screen is not common practice. You now are on a small Jupyter server which has a reserved amount of resources for this workshop and this allows us to run our commands directly. In your day to day activity, you might want to run more than one thing at once or run things for longer or with way more resources than you have on your jupyter account. The way to do this is running your task, also called a *job* using a *SLURM script*. The SLURM script (or submission scriptbatch script) accesses all the computing resources that are tucked away from the user. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs your little jupyter server itself. That way you can run many things at once and also use loads more [resources](https://support.nesi.org.nz/hc/en-gb/articles/360000204076-Mahuika-Slurm-Partitions). We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.  
 
->  ## Your first job
+>  ## Your first SLURM script
 >  
-> • copy the example job ![image](https://user-images.githubusercontent.com/4376065/140674571-52a7795c-632f-4214-94e1-6df5de731f64.png)
+> • copy the example script ![image](https://user-images.githubusercontent.com/4376065/140674571-52a7795c-632f-4214-94e1-6df5de731f64.png)
 file into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh`  
 >
-> • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long. In other words, your are telling mahuika how big of a computer you want to run that job.  
+> • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long. In other words, your are telling mahuika how big of a computer you want to run that SLURM script.  
 >
-> • For a few of the `#SBATCH` lines, there are some spaces labelled up like `<...>` for you to fill in. These spaces are followed by a comment starting with a `#` that lets you know what you should be putting in there. With this information, fill in your job script. These are the resources you are requesting for this job. 
+> • For a few of the `#SBATCH` lines, there are some spaces labelled up like `<...>` for you to fill in. These spaces are followed by a comment starting with a `#` that lets you know what you should be putting in there. With this information, fill in your SLURM script. These are the resources you are requesting for this SLURM script. 
 >
 > • Once you are done, save it. Then run it using:  
 >
@@ -136,7 +140,7 @@ file into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obs
 > If your job is not  listed in `squeue`. It has finished running. It could be have been successful or unsuccessful (i.e. a dreaded bug), but if it is not in the queue, it has run. What would have printed to your screen has instead printed into the file `denovo.log`. If your job finished running immediately, go check that file to find a bug. If your job appear in the queue for more than 10s, you proably set it up correctly, sit back, it is probably time for a break.
 {: .challenge}
  
- We used a few basic options of sbatch, including time, memory, job names and output log file. In reality, there are many, many, more options. Have a quick look at `sbatch --help` out of interest. NeSI also has its own handy guide on how to submit a job [here](https://support.nesi.org.nz/hc/en-gb/articles/360000684396-Submitting-your-first-job). 
+ We used a few basic options of `sbatch`, including time, memory, job names and output log file. In reality, there are many, many, more options. Have a quick look at `sbatch --help` out of interest. NeSI also has its own handy guide on how to submit a job [here](https://support.nesi.org.nz/hc/en-gb/articles/360000684396-Submitting-your-first-job). 
   
  It is worth noting that we quickly test ran our command above before putting it in a job. This is a very important geek hack. Jobs can stay in the queue not running for some amount of time. If they fail on a typo, you'll have to start again. Quickly testing a command before stopping it using `ctrl + c` is a big time saver.
 
