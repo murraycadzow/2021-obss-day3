@@ -10,28 +10,26 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-
-**Developed by:** Julian Catchen, Nicolas Rochette
-
-**Adapted by:** Ludovic Dutoit
+**Developed by:** Ludovic Dutoit, Alana Alexander
+**Adapted from:** Julian Catchen, Nicolas Rochette
 
 ### Introduction
 
-Obtaining an assembly without a reference genome is easy and possible. However, having a reference genome allows us to avoid several issues. We do not have to make assumptions about the "best" value for the -M parameter, and we reduce the risk of collapsing different loci together ("lumping") or separating one "real" locus into several "erroneous loci" ("splitting"). Studies have demonstrated that having some kind of reference genome is the single best way you can improve GBS SNP calling (see for example [Shafer et al. 2016](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12700)). In this exercise, we will use the publicly available stickleback genome to characterise variants based on our 30 sample dataset. We will conclude today by comparing population structure between the two datasets characterized both using and not using a reference genome.
+Obtaining an assembly without a reference genome is easy and possible. However, having a reference genome allows us to avoid several issues. We do not have to make assumptions about the "best" value for the `-M` parameter, and we reduce the risk of collapsing different loci together ("lumping") or separating one "real" locus into several "erroneous loci" ("splitting"). Studies have demonstrated that having some kind of reference genome is the single best way you can improve GBS SNP calling (see for example [Shafer et al. 2016](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12700)). Using a related species genome might be good enough in several cases too (but it sometimes depend on your application).
 
 The stacks pipeline for samples with a reference genome is [ref_map.pl](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php). It skips the creation of loci and the catalog steps as reads belong to the same stack/locus if they map to the same location of the reference genome. This means we don't have to rely on assumptions derived from genetic distances (`-M` and `-n` of `denovo_map.pl`) about whether reads belong to the same locus or not. 
 
-The 30 samples have been mapped for you using BWA to save you time and effort. If you're curious, the mapping script is [mapping.md](mapping.md). 
+We don't have a genome for our common bullies yet. Instead, we will map the reads to the catalog of loci that stacks as created for one of our denovo run. You would never do that in the real world, but that gives us a chance to run the ref_map.pl pipeline and 
 
-### Run Stacks with a reference genome
+## Map your samples
 
-In the folder `GBS` create an output folder for this analysis, `output_refmap`.
+In the folder `GBS` create an output folder for this analysis, `refmap_output`.
 
-We'll use the same samples as before. The mapped files are in:
+Copy the reference catalog.
 
- ```/nesi/project/nesi02659/obss_2020/resources/day3/oregon_stickleback_mapped/```
+Map your samples
 
-Create a link in your current directory for this folder (*hint*: `ln -s /path/to/link/ .` will link to your current directory)
+## Run the ref_map pipeline.
 
 `ref_map.pl` has less options since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your refmap command.
 
@@ -68,13 +66,11 @@ That should take about 5 minutes. Remember you can use `squeue -u <yourusername>
   • How many SNPs were identified?
    
 
-  • How does this run compare to the runs on the [Google Sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU) ?
-
  • Why did it run so much faster than `denovo_map.pl` ?
  
  • As a thought exercise: Do you have any idea how we could check whether the same loci have been found as in the *de novo* run or not?
 
-Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding "lumping" and "splitting" errors.
+Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding "lumping" and "splitting" errors. But that some applications ( for example inbreeding analyses are sensitive !!! FIND REF!!!). 
 
 
 
