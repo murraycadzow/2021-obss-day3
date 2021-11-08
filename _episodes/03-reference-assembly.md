@@ -25,17 +25,40 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 
 > ## Organise yourself
 > 
-> In the folder `gbs/` create an output folder for this analysis, `refmap_output`.
+> 1. Get back to `gbs/`
 > 
-> Copy the reference catalog that we will use as a pretend reference genome from ...
+> 2.In the folder `gbs/` create an output folder for this analysis, `refmap_output/`.
+> 
+> 3. Copy the reference catalog that we will use as a pretend reference genome from inside the `gbs/` folder you should currently be in.
+>> ## Solution
+>> 
+>> ```bash
+>> $ Get back to gbs, if you re lost ...
+>> $ mkdir refmap_output
+>> $ cp ...
+>> ```
+> {: . challenge}
+{: . solution}
 
+
+It is about time to remind you about a couple of softwares in. `BWA` [!!!link!!!] is a piece of software that is commonly used for mapping. `bwa mem` is the ideal algorithm to align our short reads to the pretend reference genome. We will also use samtools, a suite of tools designed to interact with the sam/bam alignment format (sorting, merging, splitting, subsetting, it is all there). 
+
+> ## Load the software
+> Identify the 2 module respectively you need for bwa and Samtools and load them  ( https://support.nesi.org.nz/hc/en-gb/articles/360000360576-Finding-Software
+> You need to index your reference genome. This is basically creating a map of your genome so that BWA can navigate it extra fast insread of reading it entirely for each read. use bwa index YOURGENOME for that.
 
 >> ## Solution
-
-
-It is also time to bring in a couple of softwares in. `BWA` [!!!link!!!] is a piece of softare that is commonly used for mapping
-
-Map your samples
+>> 
+>> ```bash
+>> $ Get back to gbs, if you re lost ...
+>> $ mkdir refmap_output
+>> $ cp ...
+>> ```
+> {: . challenge}
+{: . solution}
+ 
+ 
+ Well done, we are now ready to mapping
 
 ## Run the ref_map pipeline.
 
@@ -45,7 +68,7 @@ Map your samples
 
 • Specify the path to the output folder `output_refmap/`
 
-• Specify the path to the input folder `oregon_stickleback_mapped/`
+• Specify the path to the input folder `samples_mapped/`
 
 • Specify the path to the population map. We will be able to use the same popmap as for the denovo analysis, since we are using the same samples. 
 
@@ -73,12 +96,14 @@ That should take about 5 minutes. Remember you can use `squeue -u <yourusername>
     
   • How many SNPs were identified?
    
-
  • Why did it run so much faster than `denovo_map.pl` ?
  
  • As a thought exercise: Do you have any idea how we could check whether the same loci have been found as in the *de novo* run or not?
 
-Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding "lumping" and "splitting" errors. But that some applications ( for example inbreeding analyses are sensitive !!! FIND REF!!!). 
+Well done, you now know how to call SNPs with or without a reference genome. It is worth re-iterating that even a poor-quality reference genome should improve the quality of your SNP calling by avoiding "lumping" and "splitting" errors. But that some applications ( for example inbreeding analyses are sensitive to the quality of your reference genome).
+
+
+Only one thing left, the cool biology bits!
 
 
 
