@@ -57,7 +57,6 @@ If you find most M values already entered in the spreadsheet, we will take the c
 > 
 > 2. Make sure you load the `Stacks` module (you can check if you have already loaded it using `module list`)
 > 
-
 > 3. We want Stacks to understand which individuals in our study belong to which population. Stacks uses a so-called population map. The file contains sample names as well as populations. The file should be formatted in 2 columns like [this](http://catchenlab.life.illinois.edu/stacks/manual/#popmap). All 12 samples are at the file path below. Copy it into the `gbs/` folder you should currently be in. Note that all the samples have been assigned to a single "dummy" population, 'SINGLE_POP', just while we are establishing the optimal value of M in this current exercise.
 >
 >    `/nesi/project/nesi02659/obss_2021/resources/gbs/popmap.txt`
@@ -99,8 +98,8 @@ If you find most M values already entered in the spreadsheet, we will take the c
 >
 > • Is it starting alright?  Good, now  **Use `control + c` to stop your command, we'll be back to it soon**
 > 
->> # Solution
->> This command is for someone optimising `-M` and setting `-M` at 3:
+>> ## Solution
+>> This command is for someone optimising `-M` and setting `-M` at 3
 >> ```bash
 >> $ denovo_map.pl --samples samples/  --popmap popmap.txt -o denovo_output_optimisation/  -M 3 -n 3 -m 3 -r 0.8 
 >> ```
@@ -132,11 +131,11 @@ Running the commands directly on the screen is not common practice. You now are 
 > ```bash
 > squeue -u <yourusername>
 > ```
-  
+>  
 > If your job is not  listed in `squeue`. It has finished running. It could be have been successful or unsuccessful (i.e. a dreaded bug), but if it is not in the queue it has run. What would have printed to your screen has instead printed into the file `denovo.log`. Your job should take a little while to run, sit back,
-
 {: .challenge}
-## Analysing the data from our collaborative optimisation
+
+  ## Analysing the data from our collaborative optimisation
 
 Examine the Stacks log and output files when execution is complete. You should find all of this info in `output_denovo/denovo_map.log`
     
