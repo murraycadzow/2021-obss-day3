@@ -28,7 +28,7 @@ In this exercise, we'll think a tiny bit about filtering the data before applyin
 
 We will work with the best combination of parameters identified from our [collective optimisation exercise](https://murraycadzow.github.io/2021-obss-day3/02-denovo-assembly/index.html#optimisation-exercise).
 
-> ## Obtaining the optimised dataset
+> ## Obtain the optimised dataset
 >   • Get back to the `gbs/` folder 
 >   • The optimised dataset can be optained from the link below, use the `-r` parameter of the `cp` command. That stands for recursive and allow you to copy folders and their content.
 >  `/nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/` 
@@ -51,7 +51,7 @@ SNP filtering is a bit of a tricky exercise that is approached very differently 
 
 3. *Don't lose too much time hunting the perfect dataset, try creating one that can answer your question.* I often see people that try optimising every single step of the pipeline before seeing any of the biological outputs. I find it is often easier to go through the whole pipeline with reasonable guesses on the parameters to see if it can answer your questions before going back if needed and adapting it. If you then need to go back, you'll be a lot more fluent with the program anyway, saving yourself a lot of time.
 
-Right, now that we went through this, Let's create our populations command using the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php)
+Right, now that we went through this, Let's create our populations command using the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).
 
 > ## Building the populations command
 > • Specify `denovo_final/` as the path to the directory containing the Stacks files.
@@ -65,13 +65,12 @@ Right, now that we went through this, Let's create our populations command using
 > • In an effort to keep statistically independent SNPs, Specify that only one random SNP per locus should be outputted.
 > 
 > • Make sure to output a `structure file` and a `.vcf` file as well. We might be coming back to that `.vcf` file later today.
-> 
 >> ## Solution
 >> ```bash
 >> $ populations -P denovo_final/ -O denovo_final/ -M popmap.txt --write-random-snp -r 0.8 --vcf --structure
 >> ``` 
 > {: . solution}
-{. :challenge}
+{: .challenge}
 
 
 How many SNPs do you have left? 
@@ -147,7 +146,7 @@ cp  /nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt .
 We've run commands to generate the `structure` file two times now, but how many `structure` files are there in the stacks directory? Why?
 
 If you wanted to save several different `vcf` and `structure` files generated using different `populations` options, what would you have to do?
-Solution overwritten, use other output folder
+
 
 
 
@@ -168,7 +167,6 @@ $ cp denovo_final/populations.snps.vcf pca
 $ cd pca
 ```
 
-
 For the rest of the exercise, we will use R. You can run R a few different ways, you can use it from within the unix terminal directly or by selecting a R console or an R notebook from the `jupyter launcher` options. As our R code is relatively short, we'll save ourselves the pain of clicking around and we'll launch R from within the terminal. If you want to go to the R console or notebook, feel free to do so but make sure you select `R 4.1.0`.
 
 ```bash
@@ -179,28 +177,28 @@ $ R
 You are now running R, first off, let's load the `pcadapt` package.
 
 ```r
-library("pcadapt") 
+> library("pcadapt") 
 ```
 let's read in our vcf and our popmap as a metadata file to have population information
 
 ```r
-vcf <- read.pcadapt("populations.snps.vcf", type = "vcf")
-metadata<-read.table("../complete_popmap.txt",h=F)
-colnames(metadata)<-c("sample","pop")
+> vcf <- read.pcadapt("populations.snps.vcf", type = "vcf")
+> metadata<-read.table("../complete_popmap.txt",h=F)
+> colnames(metadata)<-c("sample","pop")
 ```
 
 Finally, let's run the PCA.
 
 ```
-pca <- pcadapt(input = vcf, K = 10) # computing 10 PC axes
-plot(pca, option = "scores",pop=metadata$pop)
+> pca <- pcadapt(input = vcf, K = 10) # computing 10 PC axes
+> plot(pca, option = "scores",pop=metadata$pop)
 ```
 
 Go and find the Don't worry too much about the warning. 
 
 What do you see, is there any structure by lake? by depth?
 
-We really did the simplest PCA, but you can see how it is a quick and powerful to have an early look at your data. You can find a longer tutorial of pcadapt here!!!
+We really did the simplest PCA, but you can see how it is a quick and powerful to have an early look at your data. You can find a longer tutorial of pcadapt [here](https://bcm-uga.github.io/pcadapt/articles/pcadapt.html).
 
 ## Structure
 
