@@ -30,8 +30,7 @@ For this exercise, we will work with the best combination of parameters identifi
 > ## Obtaining the optimised dataset
 >   • Get back to the `gbs/` folder 
 >   • The optimised dataset can be optained from the link below, use the `-r` parameter of the `cp` command. That stands for recursive and allow you to copy folders and their content.
->  `/nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/`
->    
+>  `/nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/` 
 >> ## Solution
 >> ```
 >> $ cp -r /nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/ .
@@ -105,15 +104,16 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 > 
 > • Well done, redirect the output of `head` into the file `whitelist.txt`. (*hint*: use ">" to redirect into a file). Do not worry about the shuf: `write error: Broken pipe`, it is simply because head stops the command before the end.
 > • You did it! If you are new to bash, I am sure writing this command seemed impossible on Monday, so take a minute to congratulate yourself on the progress made even if you required a little help!
-> >> ## Solution
->```bash
->cat denovo_final/populations.sumstats.tsv | grep -v "#" | cut -f 1 | sort | uniq | shuf | head -n 1000 > whitelist.txt
->```
->> {: . solution}
+> 
+>> ## Solution
+>>```bash
+>>cat denovo_final/populations.sumstats.tsv | grep -v "#" | cut -f 1 | sort | uniq | shuf | head -n 1000 > whitelist.txt
+>>```
+> {: . solution}
 {: .challenge}
 
 
-## Execupte `populations with whitelist```
+## Execute `populations` with the white list
 Now we will execute `populations` again, this time feeding back in the whitelist you just generated. Check out the [help](https://catchenlab.life.illinois.edu/stacks/comp/populations.php) of `populations` to see how to use a white list. This will cause populations to only process the loci in the `whitelist.txt`. 
 
 The simple way to do this is to tart with the same command than last time:
