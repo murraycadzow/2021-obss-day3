@@ -26,7 +26,7 @@ In this exercise, we'll think a tiny bit about filtering the data before applyin
 ## Part 1 Data filtering
 ### Getting the data
 
-For this exercise, we will work with the best combination of parameters identified from our [collective optimisation exercise](https://murraycadzow.github.io/2021-obss-day3/02-denovo-assembly/index.html#optimisation-exercise).
+We will work with the best combination of parameters identified from our [collective optimisation exercise](https://murraycadzow.github.io/2021-obss-day3/02-denovo-assembly/index.html#optimisation-exercise).
 
 > ## Obtaining the optimised dataset
 >   • Get back to the `gbs/` folder 
@@ -114,50 +114,97 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 {: .challenge}
 
 
-## Execute `populations` with the white list
-Now we will execute `populations` again, this time feeding back in the whitelist you just generated. Check out the [help](https://catchenlab.life.illinois.edu/stacks/comp/populations.php) of `populations` to see how to use a white list. This will cause populations to only process the loci in the `whitelist.txt`. 
+> ## Execute `populations` with the white list
+> Now we will execute `populations` again, this time feeding back in the whitelist you just generated. Check out the [help](https://catchenlab.life.illinois.edu/stacks/comp/populations.php) of `populations` to see how to use a white list. This will cause populations to only process the loci in the `whitelist.txt`. 
+>
+>The simple way to do this is to start with the same command than last time:
+>
+>```bash
+> $ populations -P denovo_final/ -O denovo_final/ -M popmap.txt --write-random-snp -r 0.8 -- vcf --structure
+>```
+> with a couple of modifications:
+>
+> • Specify the whitelist.txt file that you just generated as a white list.
+>
+>• Replace the old popmap.txt with the new population map you just copied.
+>
+> • Ready Hit run!
+>
+cp  /nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt .
+>
+>> ## Solution
+>> ```bash
+>> populations -P denovo_final/ -O denovo_final/ -M complete_popmap.txt -r 0.8 --structure --vcf -W whitelist.txt
+>> ```
+> {: .solution}
+{: .challenge}
 
-The simple way to do this is to tart with the same command than last time:
 
-```bash
-$ populations -P denovo_final/ -O denovo_final/ -M popmap.txt --write-random-snp -r 0.8 --vcf --structure
-```
-And bring a couple of modifications:
+• Did you really need to specify `-r`?
 
-• Specify the whitelist.tt file that you just generated as a white list.
+• What about --write-random-snp, did we need it?
 
-• Finally, you will need to specify a population map so that this information is passed into the `structure` output file. This time we will specify the population map with the proper population information.  That file is at `/nesi/project/nesi02659/obss_2020/resources/day3/complete_popmap.txt`. Copy this file here and replace the popmap.txt by the complete_popmap.txt file
+We've run commands to generate the `structure` file two times now, but how many `structure` files are there in the stacks directory? Why?
 
-• Ready Hit run!
-
-
-We've run commands to generate the `structure` file two times now, but how many `structure` files are there in the stacks directory? If you wanted to save several different `vcf` and `structure` files generated using different `populations` options, what would you have to do?
+If you wanted to save several different `vcf` and `structure` files generated using different `populations` options, what would you have to do?
 Solution overwritten, use other output folder
 
 
 
 ## Part 2: Population genetics analyses
 
-We will run two different analyses, a PCA... and a structure analysis.
 
-## PCA
+## Principal Component analysis (PCA)
 
-mkdir pca
-module load R ... (or use R as a launcher ...
+> ## Let's get organised
+> • Create a `pca` folder inside your gbs/ folder
+> • Copy the vcf file inside it (if you're not sure what it is called, remember it ends with `.vcf`
+> • Get inside the pca folder to run the rest of the analyses
 
-R ..
+## Solution
+``` bash
+$ mkdir pca
+$ cp denovo_final/populations.snps.vcf pca
+$ cd pca
+```
 
-use jupyter on the left to navigate to that file
 
+For the rest of the exercise, we will use R. You can run R a few different ways, you can use it from within the unix terminal directly or by selecting a R console or an R notebook from the `jupyter launcher` options. As our R code is relatively short, we'll save ourselves the pain of clicking around and we'll launch R from within the terminal. If you want to go to the R console or notebook, feel free to do so but make sure you select `R 4.1.0`.
 
-library vcfR
-library Pcadapt 
-use the tuto
+```bash
+$ module load R/4.1.0-gimkl-2020a
+$ R
+```
 
+You are now running R, first off, let's load the `pcadapt` package.
+
+```r
+library("pcadapt") 
+```
+let's read in our vcf and our popmap as a metadata file to have population information
+
+```r
+vcf <- read.pcadapt("populations.snps.vcf", type = "vcf")
+metadata<-read.table("../complete_popmap.txt",h=F)
+colnames(metadata)<-c("sample","pop")
+```
+
+Finally, let's run the PCA.
+
+```
+pca <- pcadapt(input = vcf, K = 10) # computing 10 PC axes
+plot(pca, option = "scores",pop=metadata$pop)
+```
+
+Go and find the Don't worry too much about the warning. 
+
+What do you see, is there any structure by lake? by depth?
+
+We really did the simplest PCA, but you can see how it is a quick and powerful to have an early look at your data. You can find a longer tutorial of pcadapt here!!!
 
 ## Structure
 
-Our goal now is to use the subset of loci for analysis in Structure!!!, which analyzes the distribution of multi-locus genotypes within and among populations in a Bayesian framework to make predictions about the most probable population of origin for each individual. The assignment of each individual to a population is quantified in terms of Bayesian posterior probabilities, and visualized via a plot of posterior probabilities for each individual and population.
+Our goal now is to use the subset of loci for analysis in Structure, which analyzes the distribution of multi-locus genotypes within and among populations in a Bayesian framework to make predictions about the most probable population of origin for each individual. The assignment of each individual to a population is quantified in terms of Bayesian posterior probabilities, and visualized via a plot of posterior probabilities for each individual and population.
 
 A key user defined parameter is the hypothesized number of populations of origin which is represented by K. Sometimes the value of K is clear from from the biology, but more often a range of potential K-values must be explored and evaluated using a variety of likelihood based approaches to decide upon the ultimate K. In the interests of time we won’t be exploring different values of K here, but this will be a key step for your own datasets. In addition, Structure takes a long time to run on the number of loci generated in a typical RAD data set because of the MCMC algorithms involved in the Bayesian computation. We therefore want to choose a random subset of loci that are well represented across our three populations. Despite 'downsampling', this random subset contains more than enough information to define population structure.
 Create a new directory called `structure` within the `gbs/` folder and copy the `structure` output file that Stacks generated to this directory. `cd` into your new `structure` directory.
