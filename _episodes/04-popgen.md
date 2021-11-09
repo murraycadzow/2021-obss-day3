@@ -5,9 +5,11 @@ exercises: 0
 questions:
 - "Key question (FIXME)"
 objectives:
-- "Learn to run basic population genetics analyses"
+- "Learn to navigate SNP filtering using Stacks"
+- "Learn basic visualisation of population genetic data"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "SNP filtering is about balancing signal vs noise"
+- "Principal componenet analyses (PCA) are an easy visualisation of samples"
 ---
 
 
@@ -16,8 +18,39 @@ keypoints:
 **Adapted by:** Ludovic Dutoit
 
 
+## Introduction
+
+
+## Getting the data
+
+For this exercise, we will work with the best combination of parameters identified from our [collective optimisation exercise](https://murraycadzow.github.io/2021-obss-day3/02-denovo-assembly/index.html#optimisation-exercise).
+
+> ## Obtained the optimised dataset
+>   • Get back to the gbs/` 
+>   • The optimised dataset can be optained from 
+> From `gbs
+You can copy it fr
+>> ## Solution
+>> ```
+>> $ ...
+> {: . solution}
+{. :challenge}
+
+## Filtering the Data
+
+...-r 0.8
+... -max-het 0.65
+...--write-single-snp
+
+We'll then select 1000 SNPs to be able to run our analyses quickly for this dataset *THIS DOES OT NEED TO BE DONE FOR YOUR REAL DATASET
+``
+## PCA 
+
+
+
 ### Structure
 
+- 
 Our goal now is to export a subset of loci for analysis in [Structure](https://web.stanford.edu/group/pritchardlab/structure.html), which analyzes the distribution of multi-locus genotypes within and among populations in a Bayesian framework to make predictions about the most probable population of origin for each individual. The assignment of each individual to a population is quantified in terms of Bayesian posterior probabilities, and visualized via a plot of posterior probabilities for each individual and population.
 
 A key user defined parameter is the hypothesized number of populations of origin which is represented by K. Sometimes the value of K is clear from from the biology, but more often a range of potential K-values must be explored and evaluated using a variety of likelihood based approaches to decide upon the ultimate K. In the interests of time we won’t be exploring different values of K here, but this will be a key step for your own datasets. In addition, Structure takes a long time to run on the number of loci generated in a typical RAD data set because of the MCMC algorithms involved in the Bayesian computation. We therefore want to choose a random subset of loci that are well represented across our three populations. Despite 'downsampling', this random subset contains more than enough information to define population structure.
@@ -30,9 +63,9 @@ The help for `populations` is [here](https://catchenlab.life.illinois.edu/stacks
 
  • Make sure to output a `structure file` and a `.vcf` file as well. We might be coming back to that `.vcf` file later today.
  
- • Specify `output_refmap` as the path to the directory containing the Stacks files 
+ • Specify `refmap_output` as the path to the directory containing the Stacks files 
   
- • Also specify `output_refmap` as the output folder
+ • Also specify `refmap_output` as the output folder
 
 This command is now ready, and assuming you are in the `GBS` folder, run it! It is a quickie, so no need to put it in a batch job.
  
@@ -40,9 +73,11 @@ How many SNPs do you have left? We want to select 1,000 loci randomly from the r
 
 With the help of the instructions below, use the `cat`, `grep`, `cut`, `sort`, `uniq`, `shuf`, and `head` commands to generate a list of 1,000 random loci. Save this list of loci as `whitelist.txt`, so that we can feed it back into `populations`. This operation can be done in a single shell command. That sounds challenging, but the instructions below should help you create one command with several pipes to create that `whitelist.txt` file. The idea of a pipe is to connect commands using `|` e.g. `command 1 | command 2` outputs the content of command 1 into command 2 instead of outputting it to the screen.
 
+
+
 Let's create that command step by step:
 
-• First, use `cat` to concatenante `output_refmap/populations.sumstats.tsv` (stream it to the next command)
+• First, use `cat` to concatenante `refmap_output/populations.sumstats.tsv` (stream it to the next command)
 
 • Then, add a `|` in your command and use the command `grep` with `-v` to exclude all headers (i.e. `-v` stands for exclude, we want to exclude all the lines with "#")
 
@@ -70,13 +105,13 @@ Create a new directory called `structure` within the `GBS` folder and copy the `
 
 • Edit the `structure` output file to remove the comment line (i.e. first line in the file, starts with “#”).
 
-• The parameters to run `structure` (with value of K=3) have already been prepared, you can find them here: `/nesi/project/nesi02659/obss_2020/resources/day3/mainparams` and `/nesi/project/nesi02659/obss_2020/resources/day3/extraparams`. Copy them into your `structure` directory as well.
+• The parameters to run `structure` (with value of K=3) have already been prepared, you can find them here: `/nesi/project/nesi02659/obss_2020/resources/gbs/mainparams` and `/nesi/project/nesi02659/obss_2020/resources/gbs/extraparams`. Copy them into your `structure` directory as well.
 
 • So far, when we've gone to run programs, we've been able to use `module spider` to figure out the program name, and then module load program_name to get access to the program and run it. Do it one more time for `structure`
 
 •  run `structure` by simply typing `structure` 
 
-Do you see `WARNING! Probable error in the input file.?` In our mainparams file it says that we have 1000 loci, but due to filters, it is possible that the populations module of Stacks actually output less than the 1000 loci we requested in whitelist.txt. In the output of populations.log in your `output_refmap` directory, how many variant sites remained after filtering? This is the number of loci actually contained in your `structure` file. You will need to adjust the number of loci in the mainparams file to match this exact Stacks output.
+Do you see `WARNING! Probable error in the input file.?` In our mainparams file it says that we have 1000 loci, but due to filters, it is possible that the populations module of Stacks actually output less than the 1000 loci we requested in whitelist.txt. In the output of populations.log in your `refmap_o` directory, how many variant sites remained after filtering? This is the number of loci actually contained in your `structure` file. You will need to adjust the number of loci in the mainparams file to match this exact Stacks output.
 
 ### Structure Visualisation
 
