@@ -3,7 +3,7 @@ title: "Population genetics analyses"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Key question "
 objectives:
 - "Learn to navigate SNP filtering using Stacks"
 - "Learn basic visualisation of population genetic data"
