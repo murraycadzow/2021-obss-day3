@@ -3,7 +3,7 @@ title: "De-novo assembly without a reference genome"
 teaching: 0
 exercises: 0
 questions:
-- "How can we identify genetic variants without a reference genome?
+- "How can we identify genetic variants without a reference genome?"
 - "How to optimise parameters in the Stacks parameter space?"
 - "How to access the full extent of the cluster resources?"
 objectives:
