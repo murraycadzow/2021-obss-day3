@@ -30,18 +30,20 @@ We will work with the best combination of parameters identified from our [collec
 
 > ## Obtain the optimised dataset
 >   • Get back to the `gbs/` folder 
+>   
 >   • The optimised dataset can be optained from the link below, use the `-r` parameter of the `cp` command. That stands for recursive and allow you to copy folders and their content.
 >  `/nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/` 
+>> 
 >> ## Solution
 >> ```
 >> $ cp -r /nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/ .
 >> ```
-> {: . solution}
+> {: .solution}
 {: .challenge}
 
 ### Filtering the Data
 
-You might have noticed that so far, we have not really looked at our genotypes. Where are they? Well, the last module of Stacks is called `populations`. `populations` allows us to export quite a few different formats directly depending on which analyses we want to run, some of the format you might be familiar with are called `.vcf` `.phylip` or `.structure (see [File Output Options](https://catchenlab.life.illinois.edu/stacks/comp/populations.php)).  This module also allows filtering of the data in many different ways as can be seen in the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).`populations` is run at the end of `ref_map.pl` or `denovo_map.pl` anyway, but it can be re-run as a separate step to tweak our filtering or add output files.
+You might have noticed that we have not really looked at our genotypes. Where are they? Well, we haven't really picked the format we want them to be written in yet. The last module of Stacks is called `populations`. `populations` allows us to export quite a few different formats directly depending on which analyses we want to run, some of the format you might be familiar with are called `.vcf` `.phylip` or `.structure (see [File Output Options](https://catchenlab.life.illinois.edu/stacks/comp/populations.php)).  This module also allows filtering of the data in many different ways as can be seen in the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).`populations` is run at the end of `ref_map.pl` or `denovo_map.pl` anyway, but it can be re-run as a separate step to tweak our filtering or add output files.
 
 SNP filtering is a bit of a tricky exercise that is approached very differently by different people. Here are my three pieces of advice. Disclaimer: This is just how I approach things, other people might disagree.
 
@@ -69,7 +71,7 @@ Right, now that we went through this, Let's create our populations command using
 >> ```bash
 >> $ populations -P denovo_final/ -O denovo_final/ -M popmap.txt --write-random-snp -r 0.8 --vcf --structure
 >> ``` 
-> {: . solution}
+> {: .solution}
 {: .challenge}
 
 
@@ -109,7 +111,7 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 >>```bash
 >>cat denovo_final/populations.sumstats.tsv | grep -v "#" | cut -f 1 | sort | uniq | shuf | head -n 1000 > whitelist.txt
 >>```
-> {: . solution}
+> {: .solution}
 {: .challenge}
 
 
