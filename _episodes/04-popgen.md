@@ -37,7 +37,7 @@ We will work with the best combination of parameters identified from our [collec
 >> $ cp -r /nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/ .
 >> ```
 > {: . solution}
-{. :challenge}
+{: .challenge}
 
 ### Filtering the Data
 
