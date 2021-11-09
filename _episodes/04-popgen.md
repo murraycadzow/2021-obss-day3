@@ -14,14 +14,15 @@ keypoints:
 - "Populations is the stacks implemented software to deal with filtering of SNPs"
 - "Principal componenet analyses (PCA) are an easy visualisation of samples"
 ---
-**Developed by:** Julian Catchen, Nicolas Rochette
+**Developed by:** Ludovic Dutoit, Alana Alexander
 
-**Adapted by:** Ludovic Dutoit
+**Adapted by:** Julian Catchen, Nicolas Rochette
 
 
 ## Introduction
 
-!!! Wo parts, filtering the data, then run a PCA and structur
+In this exercise, we'll think a tiny bit about filtering the data before applying two straightforward populatio genetics structure analyses. We'll visualise our data using a Principal Component Analysis (PCA), and using the software [Structure](https://web.stanford.edu/group/pritchardlab/structure.html).
+
 ## Part 1 Data filtering
 ### Getting the data
 
