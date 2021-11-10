@@ -20,7 +20,7 @@ keypoints:
 
 ## Introduction
 
-In this exercise, we'll think a tiny bit about filtering the data before applying two straightforward populatio genetics structure analyses. We'll visualise our data using a Principal Component Analysis (PCA), and using the software [Structure](https://web.stanford.edu/group/pritchardlab/structure.html).
+In this exercise, we'll think a about filtering the variants before applying two performing two population genetics structure analyses. We'll visualise our data using a Principal Component Analysis (PCA), and using the software [Structure](https://web.stanford.edu/group/pritchardlab/structure.html).
 
 ## Part 1: Data filtering
 ### Getting the data
@@ -28,10 +28,11 @@ In this exercise, we'll think a tiny bit about filtering the data before applyin
 We will work with the best combination of parameters identified from our [collective optimisation exercise](https://murraycadzow.github.io/2021-obss-day3/02-denovo-assembly/index.html#optimisation-exercise).
 
 > ## Obtain the optimised dataset
+> 
 >   • Get back to the `gbs/` folder 
 >   
 >   • The optimised dataset can be optained from the link below, use the `-r` parameter of the `cp` command. That stands for recursive and allow you to copy folders and their content.
->  `/nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/`  
+>  `/nesi/project/nesi02659/obss_2021/resources/gbs/denovo_final/`  
 >  
 >   • We'll also copy a specific population map that is encoding the 4 different possible populations ( 2 lakes x 2 depths). That population map is at `/nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt`. 
 >   
@@ -39,9 +40,9 @@ We will work with the best combination of parameters identified from our [collec
 >   
 >> ## Solution
 >> ```
->> $ cp -r /nesi/project/nesi02659/obss_2021/resources/day3/denovo_final/ .
->> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt . # q to quit
->> $ less complete_popmap.txt 
+>> $ cp -r /nesi/project/nesi02659/obss_2021/resources/gbs/denovo_final/ .
+>> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt .
+>> $ less complete_popmap.txt  # q to quit
 >> ```
 > {: .solution}
 {: .challenge}
@@ -49,33 +50,34 @@ We will work with the best combination of parameters identified from our [collec
 
 ### Filtering the Data
 
-You might have noticed that we have not really looked at our genotypes yet. Where are they? Well, we haven't really picked the format we want them to be written in yet. The last module of Stacks is called `populations`. `populations` allows us to export quite a few different formats directly depending on which analyses we want to run, some of the format you might be familiar with are called `.vcf` `.phylip` or `.structure (see [File Output Options](https://catchenlab.life.illinois.edu/stacks/comp/populations.php)).  This module also allows filtering of the data in many different ways as can be seen in the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).`populations` is run at the end of `ref_map.pl` or `denovo_map.pl` anyway, but it can be re-run as a separate step to tweak our filtering or add output files.
+You might have noticed that we have not really looked at our genotypes yet. Where are they? Well, we haven't really picked the format we want them to be written in yet. The last module of Stacks is called `populations`. `populations` allows us to export quite a few different formats directly depending on which analyses we want to run .Some of the format you might be familiar with are called `.vcf` `.phylip` or `.structure` (see [File Output Options](https://catchenlab.life.illinois.edu/stacks/comp/populations.php)).  The `populations` module also allows filtering of the data in many different ways as can be seen in the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).`populations` is run at the end of `ref_map.pl` or `denovo_map.pl` anyway, but it can be re-run as a separate step to tweak our filtering or add output files.
 
 SNP filtering is a bit of a tricky exercise that is approached very differently by different people. Here are my three pieces of advice. Disclaimer: This is just how I approach things, other people might disagree.
 
 1. A lot of things in bioinformatics can be seen in terms of **signal to noise ratio**. Filtering your variants can be seen as maximising your signal (true genotypes) while reducing your noise (erroneous SNPs, missing data). 
 
-2. **Think of your questions**. Some applications are sensitive to data filtering, some are not. Some applications are sensitive to missing data, or rare variants. Read the literature and look at their SNP filtering. 
+2. **Think of your questions**. Some applications are sensitive to data filtering, some are less sensitive. Some applications are sensitive to some things but not others. They might be sensitive to missing data but not the absence rare variants. In general, read the literature and look at their SNP filtering. 
 
 3. *Don't lose too much time hunting the perfect dataset, try creating one that can answer your question.* I often see people that try optimising every single step of the pipeline before seeing any of the biological outputs. I find it is often easier to go through the whole pipeline with reasonable guesses on the parameters to see if it can answer your questions before going back if needed and adapting it. If you then need to go back, you'll be a lot more fluent with the program anyway, saving yourself a lot of time.
 
 Right, now that we went through this, Let's create our populations command using the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).
 
 > ## Building the populations command
+> 
 > • Specify `denovo_final/` as the path to the directory containing the Stacks files.
 > 
 > • Also specify `denovo_final/` as the output folder.
 > 
 > • Specify the population map that you just copied
 > 
-> • Specify a minimum number of individuals covered to 80%
+> • Specify the minimum proportion number of individuals covered to 80%
 > 
 > • In an effort to keep statistically independent SNPs, Specify that only one random SNP per locus should be outputted.
 > 
 > • Make sure to output a `structure file` and a `.vcf` file as well. We might be coming back to that `.vcf` file later today.
 >> ## Solution
 >> ```bash
->> $ populations -P denovo_final/ -O denovo_final/ -M complete_popmap.txt --write-random-snp -r 0.8 --vcf --structure
+>> $ populations -P denovo_final/ -O denovo_final/ -M complete_popmap.txt  -r 0.8 --write-random-snp  --structure --vcf
 >> ``` 
 > {: .solution}
 {: .challenge}
@@ -85,7 +87,7 @@ How many SNPs do you have left?
 
 **Creating a white list**
 
-In order to run a  relatively quick population genetics analysis, we will save a random list of 1000 loci into a file and then ask `populations` to only output data from these `loci`. Such a list is named a `white list`, intuitively the opposite of a `black list`. We can create a random white list by using the shell given a list of catalog IDs from the output of`populations`. We will use the file `denovo_final/populations.sumstats.tsv`. Quickly check it out using:
+In order to run a relatively quick set of population genetics analysis (i.e. for today), we will save a random list of 1000 loci into a file and then ask `populations` to only output data from these `loci`. Such a list is named a `white list`, intuitively the opposite of a `black list`. We can create a random white list by using the shell given a list of catalog IDs from the output of`populations`. We will use the file `denovo_final/populations.sumstats.tsv`. Quickly check it out using:
 
 ```bash
 $ less -S denovo_final/populations.sumstats.tsv # use q to quit
@@ -111,6 +113,7 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 > • Select the first one thousand lines with `head -n 1000` 
 > 
 > • Well done, redirect the output of `head` into the file `whitelist.txt`. (*hint*: use ">" to redirect into a file). Do not worry about the shuf: `write error: Broken pipe`, it is simply because head stops the command before the end.
+> 
 > • You did it! If you are new to bash, I am sure writing this command seemed impossible on Monday, so take a minute to congratulate yourself on the progress made even if you required a little help.
 > 
 >> ## Solution
@@ -129,7 +132,7 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 >The simple way to do this is to start with the same command than last time:
 >
 >```bash
-> $ populations -P denovo_final/ -O denovo_final/ -M popmap.txt --write-random-snp -r 0.8 -- vcf --structure
+> $ populations -P denovo_final/ -O denovo_final/ -M complete_popmap.txt  -r 0.8 --write-random-snp  --structure --vcf
 >```
 > with one modification:
 >
@@ -141,7 +144,7 @@ cp  /nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt .
 >
 >> ## Solution
 >> ```bash
->> populations -P denovo_final/ -O denovo_final/ -M complete_popmap.txt --write-single-snp -r 0.8 --structure --vcf -W whitelist.txt
+>> populations -P denovo_final/ -O denovo_final/ -M complete_popmap.txt  -r 0.8 --write-random-snp  --structure --vcf -W whitelist.txt
 >> ```
 > {: .solution}
 {: .challenge}
@@ -162,13 +165,16 @@ If you wanted to save several different `vcf` and `structure` files generated us
 ## Principal Component analysis (PCA)
 
 > ## Let's get organised
-> • Create a `pca` folder inside your gbs/ folder
-> • Copy the vcf file inside it (if you're not sure what it is called, remember it ends with `.vcf`
+> 
+> • Create a `pca/` folder inside your `gbs/` folder
+> 
+> • Copy the `.vcf/` file inside denovo_final inside `pca/` (if you're not sure how it is called, remember it ends with `.vcf`)
+> 
 > • Get inside the pca folder to run the rest of the analyses
 >> ## Solution
 >> ``` bash
 >> $ mkdir pca
->> $ cp denovo_final/populations.snps.vcf pca
+>> $ cp denovo_final/*.vcf pca/
 >> $ cd pca
 ```
 
@@ -209,20 +215,24 @@ We really did the simplest PCA, but you can see how it is a quick and powerful t
 
 ## Structure
 
-Our goal now is to use the subset of loci for analysis in Structure, which analyzes the distribution of multi-locus genotypes within and among populations in a Bayesian framework to make predictions about the most probable population of origin for each individual. The assignment of each individual to a population is quantified in terms of Bayesian posterior probabilities, and visualized via a plot of posterior probabilities for each individual and population.
+Our goal now is to use our dataset in [Structure](https://web.stanford.edu/group/pritchardlab/structure.html), which analyzes the distribution of multi-locus genotypes within and among populations in a Bayesian framework to make predictions about the most probable population of origin for each individual. The assignment of each individual to a population is quantified in terms of Bayesian posterior probabilities, and visualized via a plot of posterior probabilities for each individual and population.
 
 A key user defined parameter is the hypothesized number of populations of origin which is represented by K. Sometimes the value of K is clear from from the biology, but more often a range of potential K-values must be explored and evaluated using a variety of likelihood based approaches to decide upon the ultimate K. In the interests of time we won’t be exploring different values of K here, but this will be a key step for your own datasets. We'll just see what we get with K = 4 as we have up to 4 different populations. In addition, Structure takes a long time to run on the number of loci generated in a typical RAD data set because of the MCMC algorithms involved in the Bayesian computation. We therefore want to choose a random subset of loci that are well represented across our three populations. Despite downsampling, this random subset contains more than enough information to investigate population structure.
 
 > ## Run structure
-> • Get back in the `gbs/` directory> 
+> • Leave R using `ctrl+z` Get back in the `gbs/` directory 
 >
-> • Create a structure directory> 
+> • Create a structure directory
+>  
+> • Copy the `denovo_final/populations.structure` file inside the `structure/` directory
+> 
+> • Get inside the `structure directory`
 >
-> • Get inside the structure directory > 
+> • Edit the `structure` output file to remove the comment line (i.e. first line in the file, starts with “#”). 
 >
-> • Edit the `structure` output file to remove the comment line (i.e. first line in the file, starts with “#”).> 
->
-> • The parameters to run `structure` (with value of K=3) have already been prepared, you can find them here: `/nesi/project/nesi02659/obss_2021/resources/gbs/mainparams` and `/nesi/project/nesi02659/obss_2021/resources/gbs/extraparams`. Copy them into your `structure` directory as well.> 
+> • Find and load the structure module using the usual module commands.
+> 
+> • The parameters to run `structure` (with value of K=4) have already been prepared, you can find them here: `/nesi/project/nesi02659/obss_2021/resources/gbs/mainparams` and `/nesi/project/nesi02659/obss_2021/resources/gbs/extraparams`. Copy them into your `structure` directory as well.> 
 >
 > • So far, when we've gone to run programs, we've been able to use `module spider` to figure out the program name, and then module load program_name to get access to the program and run it. Do it one more time for `structure`> 
 >
@@ -234,14 +244,16 @@ A key user defined parameter is the hypothesized number of populations of origin
 > 
 >> ## Solution
 >>```bash
->> mkdir structure
->> cp denovo_final/populations.structure structure
->> cd structure
+>> $ mkdir structure
+>> $ cp denovo_final/populations.structure structure
+>> $ cd structure
 >>```
->> Use nano or a text editor of your choise to remove the first line of the populations.structure file
+>> Use nano or a text editor of your choise to remove the first line of the `populations.structure` file.
 >>>```bash
->> cp /nesi/project/nesi02659/obss_2021/resources/gbs/mainparams .
->> cp /nesi/project/nesi02659/obss_2021/resources/gbs/extraparams .
+>> $ module spider structure
+>> $ module load Structure
+>> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/mainparams .
+>> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/extraparams .
 >> structure
 >>```
 > {: .solution}
@@ -249,18 +261,17 @@ A key user defined parameter is the hypothesized number of populations of origin
 
 ### Structure Visualisation
 
-•  Once you ran `structure` successfully. It is time to visualise the results. We will do that in R.
-•  Open R using either a launcher careful to open R 4.1.0 or by typing `R`. Then use the code below to generate a structure plot.
+Now that we  you ran `structure` successfully. It is time to visualise the results. We will do that in R. Open R using either a launcher careful to open R 4.1.0 or by typing `R`. Then use the code below to generate a structure plot.
 
 ```r
 > library("pophelper")# load plotting module for structure 
-> data<-readQ("populations.structure.out_f",filetype = "structure",indlabfromfile=TRUE)
+> data<-readQ("populations.structure.out_f",filetype = "structure",indlabfromfile=TRUE) # Don't worry about 
 > metadata<-read.table("../complete_popmap.txt",h=F)
 > rownames(data[[1]])<-metadata[,1]
 > plotQ(data,showindlab = TRUE,useindlab=TRUE,exportpath=getwd())  
 ```
 
-•  That should create a structure image `populations.structure.out_f.png` in your structure folder. Use the path navigator on the left to reach your folder to be able to visualise the picture by double-clicking on it. Eah column is a sample. Individuals are assigned to up to 4 different clusters to maximise the explained genetic variance. They are represented in 4 different colours. 
+That should create a structure image `populations.structure.out_f.png` in your structure folder. Use the path navigator on the left to reach your folder to be able to visualise the picture by double-clicking on it. Eah column is a sample. Individuals are assigned to up to 4 different clusters to maximise the explained genetic variance. They are represented in 4 different colours. 
 
 • Do you see a similar structuring than in the PCA analysis?
 
@@ -271,7 +282,7 @@ Here are a few things you could do to solidify your learning from today.
 
 ### Extra activities
 
-• You could play a bit with the parameters of `plotQ()` at [http://www.royfrancis.com/pophelper/reference/readQ.html](http://www.royfrancis.com/pophelper/reference/readQ.html) to make a prettier figure.
+• You could play a bit with the parameters of `plotQ()` at [http://www.royfrancis.com/pophelper/reference/readQ.html](http://www.royfrancis.com/pophelper/reference/readQ.html) to make a prettier structure plot.
 
 • You could spend a bit of time going through and making sure you understand the set of steps we did in those few exercises.
 
