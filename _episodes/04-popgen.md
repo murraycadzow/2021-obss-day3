@@ -11,7 +11,7 @@ objectives:
 keypoints:
 - "SNP filtering is about balancing signal vs noise"
 - "Populations is the stacks implemented software to deal with filtering of SNPs"
-- "Principal componenet analyses (PCA) are an easy visualisation of samples"
+- "Principal componenet analyses (PCA) and Structure are an easy visualisation tools for your samples"
 ---
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
@@ -22,7 +22,7 @@ keypoints:
 
 In this exercise, we'll think a tiny bit about filtering the data before applying two straightforward populatio genetics structure analyses. We'll visualise our data using a Principal Component Analysis (PCA), and using the software [Structure](https://web.stanford.edu/group/pritchardlab/structure.html).
 
-## Part 1 Data filtering
+## Part 1: Data filtering
 ### Getting the data
 
 We will work with the best combination of parameters identified from our [collective optimisation exercise](https://murraycadzow.github.io/2021-obss-day3/02-denovo-assembly/index.html#optimisation-exercise).
@@ -111,7 +111,7 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 > • Select the first one thousand lines with `head -n 1000` 
 > 
 > • Well done, redirect the output of `head` into the file `whitelist.txt`. (*hint*: use ">" to redirect into a file). Do not worry about the shuf: `write error: Broken pipe`, it is simply because head stops the command before the end.
-> • You did it! If you are new to bash, I am sure writing this command seemed impossible on Monday, so take a minute to congratulate yourself on the progress made even if you required a little help!
+> • You did it! If you are new to bash, I am sure writing this command seemed impossible on Monday, so take a minute to congratulate yourself on the progress made even if you required a little help.
 > 
 >> ## Solution
 >>```bash
@@ -134,8 +134,8 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 > with one modification:
 >
 > • Specify the `whitelist.txt` file that you just generated as a white list.
->>
-> • Ready Hit run!
+>
+> • Ready? Hit run!
 >
 cp  /nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt .
 >
@@ -165,12 +165,11 @@ If you wanted to save several different `vcf` and `structure` files generated us
 > • Create a `pca` folder inside your gbs/ folder
 > • Copy the vcf file inside it (if you're not sure what it is called, remember it ends with `.vcf`
 > • Get inside the pca folder to run the rest of the analyses
-
-## Solution
-``` bash
-$ mkdir pca
-$ cp denovo_final/populations.snps.vcf pca
-$ cd pca
+>> ## Solution
+>> ``` bash
+>> $ mkdir pca
+>> $ cp denovo_final/populations.snps.vcf pca
+>> $ cd pca
 ```
 
 For the rest of the exercise, we will use R. You can run R a few different ways, you can use it from within the unix terminal directly or by selecting a R console or an R notebook from the `jupyter launcher` options. As our R code is relatively short, we'll save ourselves the pain of clicking around and we'll launch R from within the terminal. If you want to go to the R console or notebook, feel free to do so but make sure you select `R 4.1.0`.
@@ -212,7 +211,7 @@ We really did the simplest PCA, but you can see how it is a quick and powerful t
 
 Our goal now is to use the subset of loci for analysis in Structure, which analyzes the distribution of multi-locus genotypes within and among populations in a Bayesian framework to make predictions about the most probable population of origin for each individual. The assignment of each individual to a population is quantified in terms of Bayesian posterior probabilities, and visualized via a plot of posterior probabilities for each individual and population.
 
-A key user defined parameter is the hypothesized number of populations of origin which is represented by K. Sometimes the value of K is clear from from the biology, but more often a range of potential K-values must be explored and evaluated using a variety of likelihood based approaches to decide upon the ultimate K. In the interests of time we won’t be exploring different values of K here, but this will be a key step for your own datasets. In addition, Structure takes a long time to run on the number of loci generated in a typical RAD data set because of the MCMC algorithms involved in the Bayesian computation. We therefore want to choose a random subset of loci that are well represented across our three populations. Despite 'downsampling', this random subset contains more than enough information to define population structure.
+A key user defined parameter is the hypothesized number of populations of origin which is represented by K. Sometimes the value of K is clear from from the biology, but more often a range of potential K-values must be explored and evaluated using a variety of likelihood based approaches to decide upon the ultimate K. In the interests of time we won’t be exploring different values of K here, but this will be a key step for your own datasets. We'll just see what we get with K = 4 as we have up to 4 different populations. In addition, Structure takes a long time to run on the number of loci generated in a typical RAD data set because of the MCMC algorithms involved in the Bayesian computation. We therefore want to choose a random subset of loci that are well represented across our three populations. Despite downsampling, this random subset contains more than enough information to investigate population structure.
 
 > ## Run structure
 > • Get back in the `gbs/` directory> 
@@ -231,9 +230,9 @@ A key user defined parameter is the hypothesized number of populations of origin
 >
 > •  Do you see `WARNING! Probable error in the input file.?` In our mainparams file it says that we have 1000 loci, but due to filters, it is possible that the populations module of Stacks actually output less than the 1000 loci we requested in `whitelist.tx`t. In the output of `populations.log` in your `denovo_final/` directory, how many variant sites remained after filtering? This is the number of loci actually contained in your `structure` file. You will need to adjust the number of loci in the mainparams file to match this exact Stacks output.> 
 >
-> I could have saved you that bug, but it is a very common one and it is rather obscure, so I wanted to make sure you get to fix it here for the first time rather than spending a few hours alone on it.> 
+> I could have saved you that bug, but it is a very common one and it is rather obscure, so I wanted to make sure you get to fix it here for the first time rather than spending a few hours alone on it.
 > 
->> ##Solution
+>> ## Solution
 >>```bash
 >> mkdir structure
 >> cp denovo_final/populations.structure structure
@@ -263,7 +262,7 @@ A key user defined parameter is the hypothesized number of populations of origin
 
 •  That should create a structure image `populations.structure.out_f.png` in your structure folder. Use the path navigator on the left to reach your folder to be able to visualise the picture by double-clicking on it. Eah column is a sample. Individuals are assigned to up to 4 different clusters to maximise the explained genetic variance. They are represented in 4 different colours. 
 
-• Do you see similar structuring than in the PCA analysis?
+• Do you see a similar structuring than in the PCA analysis?
 
 
 Congrats, you just finished our tutorial for the assembly of RAD-Seq data.
