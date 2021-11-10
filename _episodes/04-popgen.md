@@ -183,7 +183,7 @@ In this exercise we are with common bullies (Gobiomorphus cotidianus; AKA: Lake 
 For the rest of the exercise, we will use R. You can run R a few different ways, you can use it from within the unix terminal directly or by selecting a R console or an R notebook from the `jupyter launcher` options. As our R code is relatively short, we'll save ourselves the pain of clicking around and we'll launch R from within the terminal. If you want to go to the R console or notebook, feel free to do so but make sure you select `R 4.1.0`.
 
 ```bash
-$ module load R/4.1.0-gimkl-2020a
+$ module load R-bundle-Bioconductor/3.13-gimkl-2020a-R-4.1.0
 $ R
 ```
 
@@ -238,9 +238,9 @@ A key user defined parameter is the hypothesized number of populations of origin
 >
 > • So far, when we've gone to run programs, we've been able to use `module spider` to figure out the program name, and then module load program_name to get access to the program and run it. Do it one more time for `structure`> 
 >
-> •  Run `structure` by simply typing `structure` > 
+> •  Run `structure` by simply typing `structure` 
 >
-> •  Do you see `WARNING! Probable error in the input file.?` In our mainparams file it says that we have 1000 loci, but due to filters, it is possible that the populations module of Stacks actually output less than the 1000 loci we requested in `whitelist.tx`t. In the output of `populations.log` in your `denovo_final/` directory, how many variant sites remained after filtering? This is the number of loci actually contained in your `structure` file. You will need to adjust the number of loci in the mainparams file to match this exact Stacks output.
+> •  Do you see `WARNING! Probable error in the input file?` In our mainparams file it says that we have 1000 loci, but due to filters, it is possible that the populations module of Stacks actually output less than the 1000 loci we requested in `whitelist.tx`t. In the output of `populations.log` in your `denovo_final/` directory, how many variant sites remained after filtering? This is the number of loci actually contained in your `structure` file. You will need to adjust the number of loci in the mainparams file to match this exact Stacks output.
 >
 > I could have saved you that bug, but it is a very common one and it is rather obscure, so I wanted to make sure you get to fix it here for the first time rather than spending a few hours alone on it.
 > 
