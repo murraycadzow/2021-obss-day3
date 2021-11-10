@@ -250,7 +250,7 @@ A key user defined parameter is the hypothesized number of populations of origin
 >> $ cd structure
 >>```
 >> Use nano or a text editor of your choise to remove the first line of the `populations.structure` file.
->>>```bash
+>>```bash
 >> $ module spider structure
 >> $ module load Structure
 >> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/mainparams .
