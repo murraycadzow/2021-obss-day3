@@ -176,8 +176,9 @@ If you wanted to save several different `vcf` and `structure` files generated us
 >> $ mkdir pca
 >> $ cp denovo_final/*.vcf pca/
 >> $ cd pca
-```
-
+>> ```
+> {: .solution}
+{: .challenge}
 For the rest of the exercise, we will use R. You can run R a few different ways, you can use it from within the unix terminal directly or by selecting a R console or an R notebook from the `jupyter launcher` options. As our R code is relatively short, we'll save ourselves the pain of clicking around and we'll launch R from within the terminal. If you want to go to the R console or notebook, feel free to do so but make sure you select `R 4.1.0`.
 
 ```bash
