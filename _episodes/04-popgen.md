@@ -11,7 +11,7 @@ objectives:
 keypoints:
 - "SNP filtering is about balancing signal vs noise"
 - "Populations is the stacks implemented software to deal with filtering of SNPs"
-- "Principal componant analysis (PCA) and Structure are an easy visualisation tools for your samples"
+- "Principal component analysis (PCA) and Structure are an easy visualisation tools for your samples"
 ---
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
