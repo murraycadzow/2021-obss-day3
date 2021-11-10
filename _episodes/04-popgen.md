@@ -1,5 +1,5 @@
 ---
-title: "SNP filtering and Population genetics analyses"
+title: "Population genetics analyses"
 teaching: 0
 exercises: 0
 questions:
