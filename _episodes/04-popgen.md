@@ -4,7 +4,7 @@ teaching: 0
 exercises: 0
 questions:
 - "How do I navigate filtering my SNPs?"
-- "How can I quickly visualise my data"
+- "How can I quickly visualise my data?"
 objectives:
 - "Learn to navigate SNP filtering using Stacks"
 - "Learn basic visualisation of population genetic data"
