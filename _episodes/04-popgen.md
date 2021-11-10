@@ -1,5 +1,5 @@
 ---
-title: "Population genetics analyses"
+title: "SNP filtering and Population genetics analyses"
 teaching: 0
 exercises: 0
 questions:
@@ -11,7 +11,7 @@ objectives:
 keypoints:
 - "SNP filtering is about balancing signal vs noise"
 - "Populations is the stacks implemented software to deal with filtering of SNPs"
-- "Principal componenet analyses (PCA) and Structure are an easy visualisation tools for your samples"
+- "Principal componant analysis (PCA) and Structure are an easy visualisation tools for your samples"
 ---
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
