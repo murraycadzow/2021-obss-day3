@@ -29,7 +29,7 @@ The following R packages are alse required:
 
 ## Data
 
-The files mentioned can be downloaded [here](https://drive.google.com/file/d/1x10Htq1Ddooh0AznHUtxlgPhZEDEFrys/view?usp=sharing).
+The files associated with this lesson can be downloaded separately [here](https://drive.google.com/file/d/1x10Htq1Ddooh0AznHUtxlgPhZEDEFrys/view?usp=sharing).
 
 The data used in this workshop comes from:
 
