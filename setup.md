@@ -15,8 +15,7 @@ The software needed to run this lesson are listed below. Versions reported are t
 | Software      | Version | Manual      | Description 	|
 | ----------- | ----------- | ----------- | ----------- |
 |Stacks | 2.58| [link](https://catchenlab.life.illinois.edu/stacks) | GBS/RAD-Seq SNP calling pipeline.|
-|BWA	0.7.17 |	[link](http://bio-bwa.sourceforge.net/bwa.shtml) |		Mapping DNA sequences.|
-| SAMtools      | Title       | Header      | Title       |
+|BWA	 |0.7.17|	[link](http://bio-bwa.sourceforge.net/bwa.shtml) |		Mapping DNA sequences.|
 |SAMtools |	1.9	| [link](http://www.htslib.org/doc/samtools.html)		|Utilities for manipulating alignments in the SAM format.|
 |R | 4.1.0 | [link](https://www.r-project.org/) | Statistical computing language.|
 
