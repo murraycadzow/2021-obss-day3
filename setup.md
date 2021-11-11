@@ -18,7 +18,7 @@ R
 
 ## Data
 
-The data used in this workshop was published as part of [Ingram _et al._ 2020](https://cdnsciencepub.com/doi/10.1139/cjfas-2020-0015) and can be downloaded from the [data repositoty](https://datadryad.org/stash/dataset/doi:10.5061/dryad.00000001v)
+The data used in this workshop was published as part of [Ingram _et al._ 2020](https://cdnsciencepub.com/doi/10.1139/cjfas-2020-0015) and can be downloaded from the [data repository](https://datadryad.org/stash/dataset/doi:10.5061/dryad.00000001v)
 
 The following files correspond to the files used in the workshop:
 
