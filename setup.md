@@ -20,6 +20,12 @@ The software needed to run this lesson are listed below. Versions reported are t
 | R | 4.1.0 | [link](https://www.r-project.org/) | Statistical computing language. |
 | Software	Version	Manual	Available for	Description |
 
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+
+
 The following R packages are alse required
 R packages:
 pcadapt 4.3.3
