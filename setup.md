@@ -18,7 +18,20 @@ R
 
 ## Data
 
-The data used in this workshop can be found at...
+The data used in this workshop was published as part of [Ingram _et al._ 2020](https://cdnsciencepub.com/doi/10.1139/cjfas-2020-0015) and can be downloaded from the [data repositoty](https://datadryad.org/stash/dataset/doi:10.5061/dryad.00000001v)
+
+The following files correspond to the files used in the workshop:
+
+Original name | Workshop name
+ ---|---
+ SQ0353_CA62JANXX_s_1_fastq.txt.gz | lane1.fastq.gz
+ barcodes_lane1.txt | lane1_barcodes.txt
+
+Reference data needed
+
+reference_catalog.fa
+
+
 
 <!-- describe the process for obtaining the data and making it look like the data used on nesi -->
 
