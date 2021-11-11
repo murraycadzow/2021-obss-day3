@@ -2,6 +2,7 @@
 title: Setup
 ---
 
+## Introduction
 
 This workshop is designed to be conducted on the [NeSI](https://www.nesi.org.nz) compute infrastructure. All software and data is already set up for you to use during the workshop.
 
