@@ -20,10 +20,14 @@ The software needed to run this lesson are listed below. Versions reported are t
 | R | 4.1.0 | [link](https://www.r-project.org/) | Statistical computing language. |
 | Software	Version	Manual	Available for	Description |
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
+| Software      | Version | Manual      | Description 	|
+| ----------- | ----------- | ----------- | ----------- |
+| Header      | Title       | Header      | Title       |
+| Paragraph   | Text        | Paragraph   | Text        |
+| Header      | Title       | Header      | Title       |
+| Paragraph   | Text        | Paragraph   | Text        |
+| Paragraph   | Text        | Paragraph   | Text        |
+
 
 
 The following R packages are alse required
