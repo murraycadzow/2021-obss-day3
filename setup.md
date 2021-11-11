@@ -10,17 +10,27 @@ Running the workshop locally on your own computer will involve installing the re
 
 ## Software
 
-<!-- note down the software and packages needed to be installed at a minimum - we can't guarantee that we can work on all OSes-->
+The packages 
 
 Unix shell
-
+Stacks
 R
+samtools
+bwa
+
+R packages:
+pcadapt
+vcfR
+pophelper
+
 
 ## Data
 
-The data used in this workshop can be found at...
+The data used in this workshop comes from:
 
-<!-- describe the process for obtaining the data and making it look like the data used on nesi -->
+Ingram, T., Dutoit, L., Mikheev, P., Khan, S., & Schallenberg, M. (2020). Phenotypic, ecological, and genomic variation in common bully (Gobiomorphus cotidianus) populations along depth gradients in New Zealand’s southern Great Lakes. Canadian Journal of Fisheries and Aquatic Sciences, 77(10), 1678-1687. [doi:0.1139/cjfas-2020-0015]( https://doi.org/10.1139/cjfas-2020-0015)
+
+The files mentioned can be downloaded [here](https://drive.google.com/file/d/1x10Htq1Ddooh0AznHUtxlgPhZEDEFrys/view?usp=sharing).
 
 
 {% include links.md %}
