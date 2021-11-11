@@ -21,11 +21,10 @@ The software needed to run this lesson are listed below. Versions reported are t
 
 
 
-The following R packages are alse required
-R packages:
-pcadapt 4.3.3
-vcfR 1.12.0
-pophelper 2.3.1
+The following R packages are alse required:
+- [pcadapt 4.3.3](https://bcm-uga.github.io/pcadapt/index.html)
+- [vcfR 1.12.0](https://knausb.github.io/vcfR_documentation/)
+- [pophelper 2.3.1](http://www.royfrancis.com/pophelper/)
 
 
 ## Data
