@@ -10,14 +10,17 @@ Running the workshop locally on your own computer will involve installing the re
 
 ## Software
 
-The packages 
+The software needed to run this lesson are listed below. Versions reported are the ones we use on NeSI but the lesson is likely to work with a range of versions of these softwares.
 
-Unix shell
-Stacks
-R
-samtools
-bwa
+| Software	| Version | 	Manual	| Description |
+----------------------------------------------
+| Stacks | 2.58| [link](https://catchenlab.life.illinois.edu/stacks) | GBS/RAD-Seq SNP calling pipeline. |
+| BWA	0.7.17 |	[link](http://bio-bwa.sourceforge.net/bwa.shtml) |		Mapping DNA sequences. |
+| SAMtools |	1.9	| [link](http://www.htslib.org/doc/samtools.html)		|Utilities for manipulating alignments in the SAM format. |
+| R | 4.1.0 | [link](https://www.r-project.org/) | Statistical computing language. |
+| Software	Version	Manual	Available for	Description |
 
+The following R packages are alse required
 R packages:
 pcadapt
 vcfR
@@ -25,6 +28,8 @@ pophelper
 
 
 ## Data
+
+The files mentioned can be downloaded [here](https://drive.google.com/file/d/1x10Htq1Ddooh0AznHUtxlgPhZEDEFrys/view?usp=sharing).
 
 The data used in this workshop comes from:
 
