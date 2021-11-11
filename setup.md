@@ -10,30 +10,28 @@ Running the workshop locally on your own computer will involve installing the re
 
 ## Software
 
-<!-- note down the software and packages needed to be installed at a minimum - we can't guarantee that we can work on all OSes-->
+The packages 
 
 Unix shell
-
+Stacks
 R
+samtools
+bwa
+
+R packages:
+pcadapt
+vcfR
+pophelper
+
 
 ## Data
 
-The data used in this workshop was published as part of [Ingram _et al._ 2020](https://cdnsciencepub.com/doi/10.1139/cjfas-2020-0015) and can be downloaded from the [data repository](https://datadryad.org/stash/dataset/doi:10.5061/dryad.00000001v)
+The data used in this workshop comes from:
 
-The following files correspond to the files used in the workshop:
-
-Original name | Workshop name
- ---|---
- SQ0353_CA62JANXX_s_1_fastq.txt.gz | lane1.fastq.gz
- barcodes_lane1.txt | lane1_barcodes.txt
-
-Reference data needed
-
-reference_catalog.fa
+Ingram, T., Dutoit, L., Mikheev, P., Khan, S., & Schallenberg, M. (2020). Phenotypic, ecological, and genomic variation in common bully (Gobiomorphus cotidianus) populations along depth gradients in New Zealand’s southern Great Lakes. Canadian Journal of Fisheries and Aquatic Sciences, 77(10), 1678-1687. [doi:0.1139/cjfas-2020-0015]( https://doi.org/10.1139/cjfas-2020-0015)
 
 
-
-<!-- describe the process for obtaining the data and making it look like the data used on nesi -->
+The files mentioned can be downloaded [here](https://drive.google.com/file/d/1x10Htq1Ddooh0AznHUtxlgPhZEDEFrys/view?usp=sharing).
 
 
 {% include links.md %}
