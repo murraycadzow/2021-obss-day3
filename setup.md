@@ -26,7 +26,14 @@ The software needed to run this lesson are listed below. Versions reported are t
 | Paragraph   | Text        | Paragraph   | Text        |
 | Header      | Title       | Header      | Title       |
 | Paragraph   | Text        | Paragraph   | Text        |
-| Paragraph   | Text        | Paragraph   | Text        |
+| Software      | Version | Manual      | Description 	|
+| ----------- | ----------- | ----------- | ----------- |
+| Stacks      | Title       | Header      | Title       |
+| BWA   | Text        | Paragraph   | Text        |
+| SAMtools      | Title       | Header      | Title       |
+| R   | Text        | Paragraph   | Text        |
+|R | 4.1.0 | [link](https://www.r-project.org/) | Statistical computing language.|
+
 
 
 
