@@ -39,7 +39,7 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >  `/nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa`
 >  
 >  Have a quick look inside the first few lines of reference_catalog.fa using `head -n 10 reference_catalog.fa`. It contains each loci identified in the denovo approach as a complete sequence.
->>  ## Solution
+>> ## Solution
 >>  
 >> ```bash
 >> $ mkdir samples_mapped
