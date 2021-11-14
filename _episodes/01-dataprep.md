@@ -15,8 +15,6 @@ keypoints:
 
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
-**Adapted from:** Nicolas Rochette, Julian Catchen
-
 ## Background
 
 In this tutorial, we will be working with data from [Ingram et al. (2020)](https://doi.org/10.1139/cjfas-2020-0015). They sampled common bullies (*Gobiomorphus cotidianus*; AKA: Lake Fish)  from Lake Wanaka and Lake Wakatipu in Aotearoa New Zealand. These fishes look different at different depths, and we found ourselves asking whether those morphological differences were supported by genetic structure. We've got a min-dataset of 12 fishes, a reasonable size to be able to run all our commands quickly. 6 fishes sampled each from each lake, 3 from each lake at shallow depth, and three coming from deeper depths.
