@@ -39,19 +39,6 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >  `/nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa`
 >  
 >  Have a quick look inside the first few lines of reference_catalog.fa using `head -n 10 reference_catalog.fa`. It contains each loci identified in the denovo approach as a complete sequence.
->> ## Solution
->> 
->> ```bash
->> $ module spider BWA
->> $ module load BWA
->> $ module spider samtools
->> $ module load SAMtools
->> $ bwa index reference_catalog.fa  
->> ```
-> {: .solution}
-{: .challenge}
-
-
 >>  ## Solution
 >>  
 >> ```bash
@@ -62,6 +49,9 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >> ```
 > {: .solution}
 {: .challenge}
+
+
+
 
 
 It is about time to remind ourselves about a couple of mapping softwares. [BWA](https://github.com/lh3/bwa) is a piece of software that is commonly used for mapping. `bwa mem` is the ideal algorithm to align our short reads to the pretend reference genome. We will also use [Samtools](http://www.htslib.org/), a suite of tools designed to interact with the sam/bam alignment format (i,e, sorting, merging, splitting, subsetting, it is all there). 
