@@ -147,10 +147,14 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 {: .challenge}
 
 The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
-    - How many reads were retained?
-    - Of those discarded, what were the reasons?
-    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
+    * How many reads were retained?
+    * Of those discarded, what were the reasons?
+    * Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
 Well done! Take a break, sit back or help your neighbour, we will be back shortly!
+
+
+
+
 
 
 {% include links.md %}
