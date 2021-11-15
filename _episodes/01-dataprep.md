@@ -17,7 +17,7 @@ keypoints:
 
 ## Background
 
-In this tutorial, we will be working with data from [Ingram et al. (2020)](https://doi.org/10.1139/cjfas-2020-0015). They sampled common bullies (*Gobiomorphus cotidianus*; AKA: Lake Fish)  from Lake Wanaka and Lake Wakatipu in Aotearoa New Zealand. These fishes look different at different depths, and we found ourselves asking whether those morphological differences were supported by genetic structure. We've got a min-dataset of 12 fishes, a reasonable size to be able to run all our commands quickly. 6 fishes sampled each from each lake, 3 from each lake at shallow depth, and three coming from deeper depths.
+In this tutorial, we will be working with data from [Ingram et al. (2020)](https://doi.org/10.1139/cjfas-2020-0015). They sampled common bullies (*Gobiomorphus cotidianus*; AKA: Lake Fish)  from Lake Wanaka and Lake Wakatipu in Aotearoa New Zealand. These fishes look different at different depths, and we found ourselves asking whether those morphological differences were supported by genetic structure. Today we are using a reduced dataset from this paper of 12 fishes, a reasonable size to be able to run all our commands quickly: 6 fishes sampled each from each lake, 3 from each lake at shallow depth, and three coming from deeper depths..
 
 ![Common blly *Gobiomorphus cotidianus*. Copyright: Zureks](../files/Common_bully,_Gobiomorphus_cotidianus.jpeg)
 
@@ -25,7 +25,7 @@ In this tutorial, we will be working with data from [Ingram et al. (2020)](https
 
 The first step in the analysis of all short-read sequencing data, including RAD-seq
 data, is separating out reads from different
-samples that were individually barcoded. This **‘de-multiplexing’** associate
+samples that were individually barcoded. This **‘de-multiplexing’** associates
 reads with the different individuals or population samples from which they were
 derived.
 
@@ -33,7 +33,7 @@ derived.
 
 1. Let's organise our space, get comfortable moving around, and copy our data :
 
-    - Log into Jupyter at [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login). Remember, the second factor is on your phone,
+    - Log into Jupyter at [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login). Remember, the second factor is on your phone.
     - You will set up a directory structure on the remote server that will hold your data and the different steps of your analysis. We will start by moving to the `gbs/` directory in your working space (`~/obss_2021/`), so let's `cd` (change directory) to your working location:
 
 ```bash
@@ -88,7 +88,7 @@ The exercise from now on is hands-on: the instructions are here to guide you thr
 
 ### Examining the data
 
-Let's have a closer look at this data. Over the last couple of days, you learnt to run FastQC to evaluate the quality of the data. Run it on these files. Load the module first and then run FastQC over all the gzipped file. We will help you out with these commands, but bonus question as you work through these: What do the commands `module spider`, `module load`, `module purge` do? 
+Let's have a closer look at this data. Over the last couple of days, you learnt to run FastQC to evaluate the quality of the data. Run it on these files. Load the module first and then run FastQC over the gzipped file. We will help you out with these commands, but bonus question as you work through these: What do the commands `module spider`, `module load`, `module purge` do? 
 
 ```bash
 $ module purge
@@ -101,7 +101,7 @@ $ fastqc lane1.fastq.gz
 > Explanations of this code: `module purge` get rids of any pre-existing potentially conflicting modules. `module spider` searches for modules e.g. `module spider fastqc`  looks for a module called fastqc (or something similar!). Once we know what this module is actually called (*note*: almost everything we do on terminal is case-sensitive) we can use `module load` to load the module. Finally, we ran `fastqc`.
 {: .callout}
 
-  You just generated a  FastQC report. Use the Jupyter hub navigator tool (click on the folder shown in the red rectangle at the top left in the image below) to follow the path to your current folder (*hint*: If you're not quite sure where you are, use `pwd` in your terminal window. Also, if `obss_2020` doesn't show up in the menu on the left, you might need to also click the littler folder icon just above `Name`). Once you've navigated to the correct folder, you can then double click on a fastqc html report. 
+  You just generated a  FastQC report. Use the Jupyter hub navigator tool to follow the path to your current folder (*hint*: If you're not quite sure where you are, use `pwd` in your terminal window. Also, if `obss_2021` doesn't show up in the menu on the left, you might need to also click the littler folder icon just above `Name`). Once you've navigated to the correct folder, you can then double click on a fastqc `.html` report. 
 
 > ## Exercise
 > What is this odd thing in the *per base sequence content* from base 7 to 12-13?
@@ -128,15 +128,9 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 >   - the directory of input files (the ```lane1``` directory)
 >   - the list of barcodes (```lane1_barcodes.txt```)
 >   - the output directory (```samples```)
->   - the fact that the input files are gzipped
 >   - finally,  specify that process_radtags needs  ```clean, discard, and rescue reads``` as options of `process_radtags`
 >        
 > 6. You should now be able to run the ```process_radtags``` command from the ```gbs/``` directory using these options. It will take a couple of minutes to run. Take a breath or think about what commands we've run through so far.
-> 
-> 7. The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
->    - How many reads were retained?
->    - Of those discarded, what were the reasons?
->    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
 >    
 >> ## Solution
 >> ```bash
@@ -152,6 +146,10 @@ We will use the Stacks’s program **process_radtags** to remove low quality seq
 > {: .solution}
 {: .challenge}
 
+The process_radtags program will write a log file into the output directory. Have a look in there. Examine the log and answer the following questions:
+    - How many reads were retained?
+    - Of those discarded, what were the reasons?
+    - Use `ls -lh samples` to have a quick look at the size of the samples files, and make sure all files have data.
 Well done! Take a break, sit back or help your neighbour, we will be back shortly!
 
 
