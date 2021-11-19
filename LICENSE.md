@@ -5,7 +5,7 @@ root: .
 ---
 ## Instructional Material
 
-Lesson material is created and licensed by Ludovic Duitoit (University of Otago) and Alana Alexander (University of Otago) and made available under the [Creative Commons Attribution Non Commercial license](https://creativecommons.org/licenses/by-nc/4.0/). See the [full legal text of the CC BY NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
+Lesson material is created and licensed by Ludovic Dutoit (University of Otago) and Alana Alexander (University of Otago) and made available under the [Creative Commons Attribution Non Commercial license](https://creativecommons.org/licenses/by-nc/4.0/). See the [full legal text of the CC BY NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
 
 
 The [style template](https://github.com/carpentries/lesson-example) is created and licenced by The Carpentries and made available under the [Creative Commons Attribution
