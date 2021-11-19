@@ -18,8 +18,6 @@ keypoints:
 
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
-**Adapted from:** Julian Catchen, Nicolas Rochette
-
 ## Introduction
 
 Obtaining an assembly without a reference genome is easy and possible. However, having a reference genome allows us to avoid several issues. We do not have to make assumptions about the "best" value for the `-M` parameter, and we reduce the risk of collapsing different loci together ("lumping") or separating one "real" locus into several "erroneous loci" ("splitting"). Studies have demonstrated that having some kind of reference genome is the single best way you can improve GBS SNP calling (see for example [Shafer et al. 2016](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12700)). Using a related species genome might be good enough in several cases too (but it sometimes depend on your application).
@@ -31,7 +29,7 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 ## Map your samples to the reference
 
 > ## Organise yourself
-> 
+>
 > 1. Get back to `gbs/`
 > 
 > 2. In the folder `gbs/` create an output folder for this analysis, `refmap_output/` as well as the folder `samples_mapped`
@@ -41,8 +39,8 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >  `/nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa`
 >  
 >  Have a quick look inside the first few lines of reference_catalog.fa using `head -n 10 reference_catalog.fa`. It contains each loci identified in the denovo approach as a complete sequence.
->  
->>  ## Solution
+>> ## Solution
+>>  
 >> ```bash
 >> $ mkdir samples_mapped
 >> $ mkdir refmap_output
@@ -51,6 +49,9 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 >> ```
 > {: .solution}
 {: .challenge}
+
+
+
 
 
 It is about time to remind ourselves about a couple of mapping softwares. [BWA](https://github.com/lh3/bwa) is a piece of software that is commonly used for mapping. `bwa mem` is the ideal algorithm to align our short reads to the pretend reference genome. We will also use [Samtools](http://www.htslib.org/), a suite of tools designed to interact with the sam/bam alignment format (i,e, sorting, merging, splitting, subsetting, it is all there). 

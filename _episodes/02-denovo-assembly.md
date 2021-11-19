@@ -17,8 +17,6 @@ keypoints:
 
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
-**Adapted from:** Julian Catchen, Nicolas Rochette
-
 ## Introduction 
 
 In this exercise we will identify genetic variants for our 12 common bullies (AKA: Lake fish).
