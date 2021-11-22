@@ -44,7 +44,7 @@ Here, we will optimize the parameter `-M` (description in bold above) using the 
 As a giant research team, we will run the *denovo* pipeline with different parameters. The results from the different parameters will be shared using [this Google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0).  After optimising these parameters, we'll be able to use the best dataset downstream for population genetics analyses and to compare it with a pipeline that utilises a reference genome. 
 
 
-In reality, you'd probably do that optimisation with just a few of your samples as running the entire pipeline for several parameters combinations would be something that would consume much resources. But for today, I made sure our little dataset of 12 fishes run fast enough. 
+In reality, you'd probably do that optimisation with just a few of your samples as running the entire pipeline for several parameters combinations would be something that would consume much resources. But for today, I made sure our little dataset of 12 fishes runs fast enough. 
 
 ## Optimisation exercise
 
