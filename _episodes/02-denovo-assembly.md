@@ -48,7 +48,7 @@ In reality, you'd probably do that optimisation with just a few of your samples 
 
 ## Optimisation exercise
 
-In groups of 2, it is time to run an optimisation. So have a sip until your neighbour catch up or help them along. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). 
+In groups of 2, it is time to run an optimisation. There are three important parameters that must be specified to denovo_map.pl, the minimum stack/locus depth (`m`), the distance allowed between stacks/loci (`M`), and the distance allowed between catalog loci (`n`). Choose which values of `M`  you want to run (M<10), not overlapping with parameters other people have already chosen, and insert them into [this google sheet](https://docs.google.com/spreadsheets/d/13qm_fFZ4yoegZ6Gyc_-wobHFb7HZxp27mrAHGPmnjRU/edit#gid=0). 
 
 If you find most M values already entered in the spreadsheet, we will take the chance to optimise `-r`,   the number of samples that have to be sequenced for a particular locus to be kept it in the dataset (i.e. percentage of non-missing genotypes). Jump onto the second page of that Google sheet and vary `-r` away from 0.8 (80% of individuals covered).
 
