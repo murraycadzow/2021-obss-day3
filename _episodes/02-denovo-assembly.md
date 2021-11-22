@@ -29,9 +29,9 @@ In summary, Stack (i.e. locus) formation is controlled by three main parameters:
 
 -m :  the minimum amount of reads to create a locus (default: 3)
 
-**-M : the number of mismatches allowed between alleles of the same locus (i.e. The one we want to optimise)**
+**-M : the number of mismatches allowed between alleles of the same locus (i.e. the one we want to optimise)**
 
--n : The number of mismatches between loci between individuals. (should be set equal to `-M`)
+-n : The number of mismatches between loci between individuals (should be set equal to `-M`)
 
 -r: minimum percentage of individuals in a population sequences to consider that locus for that population 
 
