@@ -59,7 +59,7 @@ If you find most M values already entered in the spreadsheet, we will take the c
 > 
 > 2. Make sure you load the `Stacks` module (you can check if you have already loaded it using `module list`)
 > 
-> 3. We want Stacks to understand which individuals in our study belong to which population. Stacks uses a so-called population map. The file contains sample names as well as populations. The file should be formatted in 2 columns like [this](http://catchenlab.life.illinois.edu/stacks/manual/#popmap). All 12 samples are at the file path below. Copy it into the `gbs/` folder you should currently be in. Note that all the samples have been assigned to a single "dummy" population, 'SINGLE_POP', just while we are establishing the optimal value of M in this current exercise.
+> 3. We want Stacks to understand which individuals in our study belong to which population. Stacks uses a so-called population map. The file contains sample names as well as populations. The file should be formatted in 2 columns like [this](http://catchenlab.life.illinois.edu/stacks/manual/#popmap). All 12 samples are recorded in the file at the file path below. Copy it into the `gbs/` folder you should currently be in. Note that all the samples have been assigned to a single "dummy" population, 'SINGLE_POP', just while we are establishing the optimal value of M in this current exercise.
 >
 >    `/nesi/project/nesi02659/obss_2021/resources/gbs/popmap.txt`
 >
