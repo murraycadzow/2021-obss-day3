@@ -143,7 +143,7 @@ That should take about 5 minutes. Remember you can use `squeue -u <yourusername>
 
 ### Analyse your results
 
->  ## Looking into the output
+>  ## Looking into the output  
 >  • Examine the output of the populations program in the file `ref_map.log` inside your `refmap_output` folder. (*hint*: use the `less` command).
 >    
 >  • How many SNPs were identified?
