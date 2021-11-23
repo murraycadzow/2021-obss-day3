@@ -75,7 +75,7 @@ Well done, we are now ready to do the mapping!
 
 ### Mapping command
 
-For each sample, we will now take the raw reads and map them to the reference genome, outputting a sorted `.bam` file inside the folder `samples_mapped`,
+For each sample, we will now take the raw reads and map them to the reference genome, outputting a sorted `.bam` file inside the folder `samples_mapped`.
 
 For a single sample, the command looks like this:
 
