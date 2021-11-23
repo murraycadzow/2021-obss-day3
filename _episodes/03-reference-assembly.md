@@ -9,7 +9,7 @@ objectives:
 - "Practice running SLURM scripts"
 - "Practice mapping reads to a reference genome"
 keypoints:
-- "Reference genomes, even of poor quality or from a related species are great for SNPs identification"
+- "Reference genomes, even of poor quality or from a related species are great for SNP identification"
 - "Reference-based SNP calling takes the guess work of distance between and within loci away by mapping reads to individual location within the genome"
 
 
