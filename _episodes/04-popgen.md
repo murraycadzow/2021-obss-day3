@@ -195,8 +195,8 @@ Let's read in our vcf and our popmap as a metadata file to have population infor
 
 ```r
 > vcf <- read.pcadapt("populations.snps.vcf", type = "vcf")
-> metadata<-read.table("../complete_popmap.txt",h=F)
-> colnames(metadata)<-c("sample","pop")
+> metadata <- read.table("../complete_popmap.txt",h=F)
+> colnames(metadata) <- c("sample","pop")
 ```
 
 Finally, let's run the PCA.
