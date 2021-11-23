@@ -60,7 +60,7 @@ SNP filtering is a bit of a tricky exercise that is approached very differently 
 
 3. *Don't lose too much time hunting the perfect dataset, try creating one that can answer your question.* I often see people that try optimising every single step of the pipeline before seeing any of the biological outputs. I find it is often easier to go through the whole pipeline with reasonable guesses on the parameters to see if it can answer my questions before going back if needed and adapting it. If you then need to go back, you'll be a lot more fluent with the program anyway, saving yourself a lot of time.
 
-Right, now that we went through this, Let's create our populations command using the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).
+Right, now that we went through this, let's create our populations command using the [manual](https://catchenlab.life.illinois.edu/stacks/comp/populations.php).
 
 > ## Building the populations command
 > 
