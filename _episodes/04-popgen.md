@@ -191,7 +191,7 @@ You are now running R, first off, let's load the `pcadapt` package.
 ```r
 > library("pcadapt") 
 ```
-let's read in our vcf and our popmap as a metadata file to have population information
+Let's read in our vcf and our popmap as a metadata file to have population information
 
 ```r
 > vcf <- read.pcadapt("populations.snps.vcf", type = "vcf")
