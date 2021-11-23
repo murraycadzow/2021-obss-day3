@@ -66,13 +66,13 @@ Right, now that we went through this, let's create our populations command using
 > 
 > • Specify `denovo_final/` as the path to the directory containing the Stacks files.
 > 
-> • Also specify `denovo_final/` as the output folder.
+> • Also specify `denovo_final/` as the output folder
 > 
 > • Specify the population map that you just copied
 > 
 > • Specify the minimum proportion number of individuals covered to 80%
 > 
-> • In an effort to keep statistically independent SNPs, Specify that only one random SNP per locus should be outputted.
+> • In an effort to keep statistically independent SNPs, specify that only one random SNP per locus should be outputted.
 > 
 > • Make sure to output a `structure file` and a `.vcf` file as well. We might be coming back to that `.vcf` file later today.
 >> ## Solution
