@@ -264,7 +264,7 @@ Now that we  you ran `structure` successfully. It is time to visualise the resul
 
 ```r
 > library("pophelper")# load plotting module for structure 
-> data <- readQ("populations.structure.out_f",filetype = "structure",indlabfromfile=TRUE) # Don't worry about 
+> data <- readQ("populations.structure.out_f",filetype = "structure",indlabfromfile=TRUE) # Don't worry about the warning messages
 > metadata <- read.table("../complete_popmap.txt",h=F)
 > rownames(data[[1]]) <- metadata[,1]
 > plotQ(data,showindlab = TRUE,useindlab=TRUE,exportpath=getwd())  
