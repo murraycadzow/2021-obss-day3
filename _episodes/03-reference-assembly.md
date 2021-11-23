@@ -34,7 +34,7 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 > 
 > 2. In the folder `gbs/` create an output folder for this analysis, `refmap_output/` as well as the folder `samples_mapped`
 > 
-> 3. Copy the reference catalog below that we will use as a pretend reference genome from inside the `gbs/` folder you should currently be in.
+> 3. Copy the reference catalog below that we will use as a pretend reference genome to inside the `gbs/` folder you should currently be in.
 >  
 >  `/nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa`
 >  
