@@ -140,7 +140,6 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 >
 > • Ready? Hit run!
 >
-cp  /nesi/project/nesi02659/obss_2021/resources/gbs/complete_popmap.txt .
 >
 >> ## Solution
 >> ```bash
