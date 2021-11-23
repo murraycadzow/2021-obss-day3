@@ -112,7 +112,7 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 > 
 > • Select the first one thousand lines with `head -n 1000` 
 > 
-> • Well done, redirect the output of `head` into the file `whitelist.txt`. (*hint*: use ">" to redirect into a file). Do not worry about the shuf: `write error: Broken pipe`, it is simply because head stops the command before the end.
+> • Well done, redirect the output of `head` into the file `whitelist.txt`. (*hint*: use ">" to redirect into a file). Do not worry if you get an error similar to the following about the shuf command: `write error: Broken pipe`, it is simply because head stops the command before the end.
 > 
 > • You did it! If you are new to bash, I am sure writing this command seemed impossible on Monday, so take a minute to congratulate yourself on the progress made even if you required a little help.
 > 
