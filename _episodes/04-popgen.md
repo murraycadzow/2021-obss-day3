@@ -15,7 +15,7 @@ keypoints:
 ---
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
-**Adapted by:** Julian Catchen, Nicolas Rochette
+**Adapted from:** Julian Catchen, Nicolas Rochette
 
 
 ## Introduction
