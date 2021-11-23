@@ -117,8 +117,7 @@ Running the commands directly on the screen is not common practice. You now are 
 
 >  ## Your first SLURM script
 >  
-> • copy the example script ![image](https://user-images.githubusercontent.com/4376065/140674571-52a7795c-632f-4214-94e1-6df5de731f64.png)
-file into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh`  
+> • copy the example script file into the directory `gbs/`. The example script is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh`  
 >
 > • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long. In other words, your are telling mahuika how big of a computer you want to run that SLURM script.  
 >
