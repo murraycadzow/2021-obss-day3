@@ -168,7 +168,7 @@ To recap: in this exercise we are using common bullies (*Gobiomorphus cotidianus
 > 
 > • Create a `pca/` folder inside your `gbs/` folder
 > 
-> • Copy the `.vcf/` file inside denovo_final inside `pca/` (if you're not sure how it is called, remember it ends with `.vcf`)
+> • Copy the `.vcf/` file inside denovo_final inside `pca/` (if you're not sure what it is called, remember it ends with `.vcf`)
 > 
 > • Get inside the pca folder to run the rest of the analyses
 >> ## Solution
