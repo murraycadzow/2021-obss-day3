@@ -134,7 +134,7 @@ Well done, we only have `ref_map.pl` to run now.
 > cp denovojob.sh refmapjob.sh
 >```
 >
-> • Open `refmapjob.sh` using a text editor. Adjust the number of threads/cpus to 2, adjust the running time to `10mn`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
+> • Open `refmapjob.sh` using a text editor. Adjust the job name, adjust the number of threads/cpus to 2, adjust the running time to `10mn`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
 >
 > • Save it, and run the job: `sbatch refmapjob.sh`
 {: .challenge}
