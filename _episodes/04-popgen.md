@@ -96,9 +96,9 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 > ## Create the white list.
 > With the help of the instructions below, use the `cat`, `grep`, `cut`, `sort`, `uniq`, `shuf`, and `head` commands to generate a list of 1,000 random loci. Save this list of loci as `whitelist.txt`, so that we can feed it back into `populations`. This operation can be done in a single shell command. That sounds challenging, but the instructions below should help you create one command with several pipes to create that `whitelist.txt` file. The idea of a pipe is to connect commands using `|` e.g. `command 1 | command 2` outputs the content of command 1 into command 2 instead of outputting it to the screen.
 > 
-> At each step, you can run the command to see that it is outputting what you want, before piping it into the next step. Remember, you can access your last command in the termianl by using the up arrow key.
+> At each step, you can run the command to see that it is outputting what you want, before piping it into the next step. Remember, you can access your last command in the terminal by using the up arrow key.
 > 
-> • First, use `cat` to concatenante `denovo_final/populations.sumstats.tsv`. 
+> • First, use `cat` to concatenate `denovo_final/populations.sumstats.tsv`. 
 > 
 > • Then, stream it into the next command using a `|`.
 > 
