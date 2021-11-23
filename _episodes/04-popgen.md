@@ -283,9 +283,9 @@ Here are a few things you could do to solidify your learning from today.
 
 • You could play a bit with the parameters of `plotQ()` at [http://www.royfrancis.com/pophelper/reference/readQ.html](http://www.royfrancis.com/pophelper/reference/readQ.html) to make a prettier structure plot.
 
-• You could spend a bit of time going through and making sure you understand the set of steps we did in those few exercises.
+• You could spend a bit of time going through and making sure you understand the set of steps we did in our exercises.
 
-• You could try running this set of analyses on the less optimised dataset to see if it makes any difference or the one with reference based mapping.
+• You could try running this set of analyses on a *de novo* dataset with a different value of `-M` to see if it makes any difference, or on the reference-based mapping dataset.
 
 • You could have a look at this [tutorial](populationstructure_tuto/populationstructure_tuto.md). It is a small tutorial I wrote previously that goes over a different set of population genetics analyses in R. You could even try reproducing it using the `vcf` you generated above. The `vcf` for the set of analyses presented in that code can be downloaded [here](https://github.com/ldutoit/bully_gbs/blob/master/output_files/populations.snps.vcf) should you want to download it.
 
