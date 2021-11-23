@@ -161,7 +161,7 @@ file into this directory `gbs/`. The example is at: `/nesi/project/nesi02659/obs
 >      
 >   • Familiarize yourself with the population genetics statistics produced by the populations component of stacks `populations.sumstats_summary.tsv` inside the `output_denovo_optimisation` folder
 >    
->   • What is the mean value of nucleotide diversity (π) and FIS across all the individuals? [*hint*: The less -S command may help you view these files easily by avoiding the wrapping]
+>   • What is the mean value of nucleotide diversity (π) and FIS across all the individuals? [*hint*: The less -S command may help you view these files easily by avoiding the text wrapping]
 {: .challenge}
   
 Congratulations, you went all the way from raw reads to genotyped variants. We'll have a bit of a think as a class compiling all this information.
