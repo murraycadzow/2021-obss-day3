@@ -231,11 +231,9 @@ A key user defined parameter is the hypothesized number of populations of origin
 >
 > • Edit the `structure` output file to remove the comment line (i.e. first line in the file, starts with “#”). 
 >
-> • Find and load the structure module using the usual module commands.
+> • So far, when we’ve gone to run programs, we’ve been able to use `module spider` to figure out the program name, and then `module load program_name` to get access to the program and run it. Do this again to load `structure`.
 > 
 > • The parameters to run `structure` (with value of K=4) have already been prepared, you can find them here: `/nesi/project/nesi02659/obss_2021/resources/gbs/mainparams` and `/nesi/project/nesi02659/obss_2021/resources/gbs/extraparams`. Copy them into your `structure` directory as well. 
->
-> • So far, when we've gone to run programs, we've been able to use `module spider` to figure out the program name, and then module load program_name to get access to the program and run it. Do it one more time for `structure`> 
 >
 > •  Run `structure` by simply typing `structure` 
 >
