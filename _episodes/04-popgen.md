@@ -270,7 +270,7 @@ Now that we  you ran `structure` successfully. It is time to visualise the resul
 > plotQ(data,showindlab = TRUE,useindlab=TRUE,exportpath=paste(getwd(),"/",sep=""))  
 ```
 
-That should create a structure image `populations.structure.out_f.png` in your structure folder. Use the path navigator on the left to reach your folder to be able to visualise the picture by double-clicking on it. Eah column is a sample. Individuals are assigned to up to 4 different clusters to maximise the explained genetic variance. They are represented in 4 different colours. 
+That should create a structure image `populations.structure.out_f.png` in your structure folder. Use the path navigator on the left to reach your folder to be able to visualise the picture by double-clicking on it. Each column is a sample. Individuals are assigned to up to 4 different clusters to maximise the explained genetic variance. They are represented in 4 different colours. 
 
 • Do you see a similar structuring than in the PCA analysis?
 
