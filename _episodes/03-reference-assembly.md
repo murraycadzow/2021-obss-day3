@@ -83,7 +83,7 @@ For a single sample, the command looks like this:
 $ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -b | samtools sort --threads 4 > samples_mapped/MYSAMPLE.bam 
 ```
 
-> Explanations: `bwa mem` use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into  the next command instead of being printed to the screen. `samtools view` create a bam file using `-b`. That bam output is piped into the `samtools sort` command before finally being outputted as a file  using `>` into sample mapping.
+> Explanations: `bwa mem` uses 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into the next command instead of being printed to the screen. `samtools view` creates a bam file using `-b`. That bam output is piped into the `samtools sort` command before finally being outputted as a file  using `>` into samples_mapped.
 {: .callout}
 
 Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
