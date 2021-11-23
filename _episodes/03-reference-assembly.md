@@ -108,7 +108,7 @@ Well done, we only have `ref_map.pl` to run now.
 `ref_map.pl` has fewer parameters since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. `ref_map.pl`  uses the mapped files to identify the variable positions.
 
 > ## build your ref_map.pl command
-> Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your `refmap.pl` command. you can also check `ref_map.pl --help`.
+> Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your `refmap.pl` command. you can also check `ref_map.pl --help`.  
 > • Unlike in the previous exercise, ask for 2 threads 
 >
 > • Specify the path to the input folder `samples_mapped/`
