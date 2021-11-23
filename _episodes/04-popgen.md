@@ -151,7 +151,7 @@ $ less -S denovo_final/populations.sumstats.tsv # use q to quit
 
 • Did you really need to specify `-r`?
 
-• What about --write-random-snp, did we need it?
+• What about `--write-random-snp`, did we need it?
 
 We've run commands to generate the `structure` file two times now, but how many `structure` files are there in the stacks directory? Why?
 
