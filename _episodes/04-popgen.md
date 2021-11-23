@@ -87,7 +87,7 @@ How many SNPs do you have left?
 
 **Creating a white list**
 
-In order to run a relatively quick set of population genetics analysis (i.e. for today), we will save a random list of 1000 loci into a file and then ask `populations` to only output data from these `loci`. Such a list is named a `white list`, intuitively the opposite of a `black list`. We can create a random white list by using the shell given a list of catalog IDs from the output of`populations`. We will use the file `denovo_final/populations.sumstats.tsv`. Quickly check it out using:
+In order to run a relatively quick set of population genetics analyses (i.e. for today), we will save a random list of 1000 loci into a file and then ask `populations` to only output data from these `loci`. Such a list is named a `white list`, intuitively the opposite of a `black list`. We can create a random white list by using the shell given a list of catalog IDs from the output of`populations`. We will use the file `denovo_final/populations.sumstats.tsv`. Quickly check it out using:
 
 ```bash
 $ less -S denovo_final/populations.sumstats.tsv # use q to quit
