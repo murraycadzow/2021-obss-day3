@@ -82,7 +82,7 @@ The exercise from now on is hands-on: the instructions are here to guide you thr
 >
 >> ## Solution
 >> ```bash
->> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz /lane1
+>> $ cp /nesi/project/nesi02659/obss_2021/resources/gbs/lane1.fastq.gz lane1/
 >> 
 >> ```
 > {: .solution}
