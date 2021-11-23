@@ -237,7 +237,7 @@ A key user defined parameter is the hypothesized number of populations of origin
 >
 > •  Run `structure` by simply typing `structure` 
 >
-> •  Do you see `WARNING! Probable error in the input file?` In our mainparams file it says that we have 1000 loci, but due to filters, it is possible that the populations module of Stacks actually output less than the 1000 loci we requested in `whitelist.txt. In the output of `populations.log` in your `denovo_final/` directory, how many variant sites remained after filtering? This is the number of loci actually contained in your `structure` file. You will need to adjust the number of loci in the mainparams file to match this exact Stacks output.
+> •  Do you see `WARNING! Probable error in the input file?` In our mainparams file it says that we have 1000 loci, but due to filters, it is possible that the populations module of Stacks actually output less than the 1000 loci we requested in `whitelist.txt`. In the output of `populations.log` in your `denovo_final/` directory, how many variant sites remained after filtering? This is the number of loci actually contained in your `structure` file. You will need to adjust the number of loci in the mainparams file to match this exact Stacks output.
 >
 > I could have saved you that bug, but it is a very common one and it is rather obscure, so I wanted to make sure you get to fix it here for the first time rather than spending a few hours alone on it.
 > 
