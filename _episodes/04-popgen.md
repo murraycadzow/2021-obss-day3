@@ -20,7 +20,7 @@ keypoints:
 
 ## Introduction
 
-In this exercise, we'll think a about filtering the variants before applying two performing two population genetics structure analyses. We'll visualise our data using a Principal Component Analysis (PCA), and using the software [Structure](https://web.stanford.edu/group/pritchardlab/structure.html).
+In this exercise, we'll think about filtering the variants before applying two performing two population genetics structure analyses. We'll visualise our data using a Principal Component Analysis (PCA), and using the software [Structure](https://web.stanford.edu/group/pritchardlab/structure.html).
 
 ## Part 1: Data filtering
 ### Getting the data
