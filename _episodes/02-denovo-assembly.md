@@ -115,9 +115,13 @@ If you find most M values already entered in the spreadsheet, we will take the c
 
 Running the commands directly on the screen is not common practice. You now are on a small Jupyter server which has a reserved amount of resources for this workshop and this allows us to run our commands directly. In your day to day activity, you might want to run more than one thing at once or run things for longer or with way more resources than you have on your jupyter account. The way to do this is running your task, also called a *job* using a *SLURM script*. The SLURM script (or submission scriptbatch script) accesses all the computing resources that are tucked away from the user. This allows your commands to be run as jobs that are sent out to computing resources elsewhere on Mahuika, rather than having to run jobs your little jupyter server itself. That way you can run many things at once and also use loads more [resources](https://support.nesi.org.nz/hc/en-gb/articles/360000204076-Mahuika-Slurm-Partitions). We will use this denovo_map.pl command as a perfect example to run our first job using a batch script.  
 
->  ## Your first SLURM script
+> ## Your first SLURM script
 >  
-> • copy the example script file into the directory `gbs/`. The example script is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh`  
+> • copy the example script file into the directory `gbs/`. The example script is at: `/nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh` 
+>  
+> ```bash
+> cp /nesi/project/nesi02659/obss_2021/resources/gbs/denovojob.sh .
+> ```
 >
 > • Open it with a text editor, have a look at what is there. The first line is `#!/bin/bash -e`: this is a [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix)) that tells the computing environment that language our script is written in. Following this, there are a bunch of lines that start with `#SBATCH`, which inform the system about who you are, which type of resources you need, and for how long. In other words, your are telling mahuika how big of a computer you want to run that SLURM script.  
 >
