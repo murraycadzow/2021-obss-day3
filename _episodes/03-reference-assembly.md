@@ -98,7 +98,7 @@ $ for filename in samples/*fq.gz
  done
 ```
 
-> Explanations:  `for` each filename in the folder samples that ends with `.fq.gz`, extract only the prefix of that filename: `samples/PREFIX.fq.gz` with the `basename` function. Print the filename we are currently working with using echo. Use the `bwa` + `samtools` mapping explained above, using the base name to output a file `PREFIX.bam`.
+> Explanations:  `for` each filename in the folder 'samples' that ends with `.fq.gz`, extract only the prefix of that filename: `samples/PREFIX.fq.gz` with the `basename` function. Print the filename we are currently working with using echo. Use the `bwa` + `samtools` mapping explained above, using the base name to output a file `PREFIX.bam`.
 {: .callout}
 
 Well done, we only have `ref_map.pl` to run now.
