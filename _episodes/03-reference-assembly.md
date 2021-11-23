@@ -86,7 +86,7 @@ $ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -
 > Explanations: `bwa mem` uses 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into the next command instead of being printed to the screen. `samtools view` creates a bam file using `-b`. That bam output is piped into the `samtools sort` command before finally being outputted as a file  using `>` into samples_mapped.
 {: .callout}
 
-Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
+Now this is all well and good, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
 
 This is the chunkiest piece of code today. So no problem if you don't soak it all in. If you are in a classroom right now, we'll probably look at loops together. Otherwise, you could have a look at how they work [here](https://swcarpentry.github.io/shell-novice/05-loop/index.html).
 
