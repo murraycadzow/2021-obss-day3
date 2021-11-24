@@ -150,7 +150,7 @@ Running the commands directly on the screen is not common practice. You now are 
 ## Analysing the result of our collective optimisation
 
 > ## Analysing the main output files
->Now that your execution is complete, we will examine some of the output files. You should find all of this info in `output_denovo_optimisation/`
+>Now that your execution is complete, we will examine some of the output files. You should find all of this info in `denovo_output_optimisation/`
 >   
 >   • After processing all the individual samples through ustacks and before creating the catalog with cstacks, denovo_map.pl will print a [table containing the depth of coverage](http://catchenlab.life.illinois.edu/stacks/manual/#cov) of each sample. Find this table in `output_denovo_optimisation/denovo_map.log`: what were the depths of coverage? 
 >    
