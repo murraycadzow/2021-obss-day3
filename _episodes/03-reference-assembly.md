@@ -9,7 +9,7 @@ objectives:
 - "Practice running SLURM scripts"
 - "Practice mapping reads to a reference genome"
 keypoints:
-- "Reference genomes, even of poor quality or from a related species are great for SNPs identification"
+- "Reference genomes, even of poor quality or from a related species are great for SNP identification"
 - "Reference-based SNP calling takes the guess work of distance between and within loci away by mapping reads to individual location within the genome"
 
 
@@ -18,13 +18,16 @@ keypoints:
 
 **Developed by:** Ludovic Dutoit, Alana Alexander
 
+**Adapted from:** Julian Catchen, Nicolas Rochette
+
+
 ## Introduction
 
-Obtaining an assembly without a reference genome is easy and possible. However, having a reference genome allows us to avoid several issues. We do not have to make assumptions about the "best" value for the `-M` parameter, and we reduce the risk of collapsing different loci together ("lumping") or separating one "real" locus into several "erroneous loci" ("splitting"). Studies have demonstrated that having some kind of reference genome is the single best way you can improve GBS SNP calling (see for example [Shafer et al. 2016](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12700)). Using a related species genome might be good enough in several cases too (but it sometimes depend on your application).
+Obtaining an assembly without a reference genome is easy and possible. However, having a reference genome allows us to avoid several issues. We do not have to make assumptions about the "best" value for the `-M` parameter, and we reduce the risk of collapsing different loci together ("lumping") or separating one "real" locus into several "erroneous loci" ("splitting"). Studies have demonstrated that having some kind of reference genome is the single best way you can improve GBS SNP calling (see for example [Shafer et al. 2016](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12700)). Using a related species genome might be good enough in several cases too (but it sometimes depends on your application).
 
 The stacks pipeline for samples with a reference genome is [ref_map.pl](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php). It skips the creation of loci and the catalog steps as reads belong to the same stack/locus if they map to the same location of the reference genome. This means we don't have to rely on assumptions derived from genetic distances (`-M` and `-n` of `denovo_map.pl`) about whether reads belong to the same locus or not. 
 
-We don't have a genome for our common bullies yet. Instead, we will map the reads to the catalog of loci that stacks as created for one of our denovo run. You would never do that in the real world, but that gives us a chance to run the ref_map.pl pipeline and 
+We don't have a genome for our common bullies yet. Instead, we will map the reads to the catalog of loci that stacks as created for one of our denovo runs. You would never do that in the real world, but that gives us a chance to run the ref_map.pl pipeline.
 
 ## Map your samples to the reference
 
@@ -34,7 +37,7 @@ We don't have a genome for our common bullies yet. Instead, we will map the read
 > 
 > 2. In the folder `gbs/` create an output folder for this analysis, `refmap_output/` as well as the folder `samples_mapped`
 > 
-> 3. Copy the reference catalog below that we will use as a pretend reference genome from inside the `gbs/` folder you should currently be in.
+> 3. Copy the reference catalog below that we will use as a pretend reference genome to inside the `gbs/` folder you should currently be in.
 >  
 >  `/nesi/project/nesi02659/obss_2021/resources/gbs/reference_catalog.fa`
 >  
@@ -75,7 +78,7 @@ Well done, we are now ready to do the mapping!
 
 ### Mapping command
 
-For each sample, we will now take the raw reads and map them to the reference genome, outputting a sorted `.bam` file inside the folder `samples_mapped`,
+For each sample, we will now take the raw reads and map them to the reference genome, outputting a sorted `.bam` file inside the folder `samples_mapped`.
 
 For a single sample, the command looks like this:
 
@@ -83,10 +86,10 @@ For a single sample, the command looks like this:
 $ bwa mem -t 4 reference_catalog.fa  samples/MYSAMPLE.fq.gz   |  samtools view -b | samtools sort --threads 4 > samples_mapped/MYSAMPLE.bam 
 ```
 
-> Explanations: `bwa mem` use 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into  the next command instead of being printed to the screen. `samtools view` create a bam file using `-b`. That bam output is piped into the `samtools sort` command before finally being outputted as a file  using `>` into sample mapping.
+> Explanations: `bwa mem` uses 4 threads to align samples/MYSAMPLE.fq.gz to the reference catalog. The  output is piped using the \| symbol into the next command instead of being printed to the screen. `samtools view` creates a bam file using `-b`. That bam output is piped into the `samtools sort` command before finally being outputted as a file  using `>` into samples_mapped.
 {: .callout}
 
-Now this is all good and well, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
+Now this is all well and good, but we don't want to do it manually for each sample. The `for` loop below is doing it for all samples by going through all the `samples/*.fq.gz` files.
 
 This is the chunkiest piece of code today. So no problem if you don't soak it all in. If you are in a classroom right now, we'll probably look at loops together. Otherwise, you could have a look at how they work [here](https://swcarpentry.github.io/shell-novice/05-loop/index.html).
 
@@ -98,7 +101,7 @@ $ for filename in samples/*fq.gz
  done
 ```
 
-> Explanations:  `for` each filename in the folder samples that ends with `.fq.gz`, extract only the prefix of that filenamme: `samples/PREFIX.fq.gz` with the `basename` function. int the filename we are currently working with using echo. Use the `bwa` + `samtools` mapping explained above, using the base name to output a file `PREFIX.bam`.
+> Explanations:  `for` each filename in the folder 'samples' that ends with `.fq.gz`, extract only the prefix of that filename: `samples/PREFIX.fq.gz` with the `basename` function. Print the filename we are currently working with using echo. Use the `bwa` + `samtools` mapping explained above, using the base name to output a file `PREFIX.bam`.
 {: .callout}
 
 Well done, we only have `ref_map.pl` to run now.
@@ -108,7 +111,7 @@ Well done, we only have `ref_map.pl` to run now.
 `ref_map.pl` has fewer parameters since the mapping takes care of many of the steps from `denovo_map.pl`, such as the creation of loci for each individual before a comparison of all loci across all individuals. `ref_map.pl`  uses the mapped files to identify the variable positions.
 
 > ## build your ref_map.pl command
-> Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your `refmap.pl` command. you can also check `ref_map.pl --help`.
+> Use the [online help](https://catchenlab.life.illinois.edu/stacks/comp/ref_map.php) to build your `refmap.pl` command. you can also check `ref_map.pl --help`.  
 > • Unlike in the previous exercise, ask for 2 threads 
 >
 > • Specify the path to the input folder `samples_mapped/`
@@ -134,7 +137,7 @@ Well done, we only have `ref_map.pl` to run now.
 > cp denovojob.sh refmapjob.sh
 >```
 >
-> • Open `refmapjob.sh` using a text editor. Adjust the number of threads/cpus to 2, adjust the running time to `10mn`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
+> • Open `refmapjob.sh` using a text editor. Adjust the job name, adjust the number of threads/cpus to 2, adjust the running time to `10min`, and the job output to `refmap.log` instad of `denovo.log`. Most importantly, replace the `denovo_map.pl` command with your `ref_map.pl` command.
 >
 > • Save it, and run the job: `sbatch refmapjob.sh`
 {: .challenge}
@@ -143,7 +146,7 @@ That should take about 5 minutes. Remember you can use `squeue -u <yourusername>
 
 ### Analyse your results
 
->  ## Looking into the output
+>  ## Looking into the output  
 >  • Examine the output of the populations program in the file `ref_map.log` inside your `refmap_output` folder. (*hint*: use the `less` command).
 >    
 >  • How many SNPs were identified?
