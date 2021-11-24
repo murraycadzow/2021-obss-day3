@@ -290,6 +290,6 @@ Here are a few things you could do to solidify your learning from today.
 
 • You could try running this set of analyses on the less optimised dataset to see if it makes any difference or the one with reference based mapping.
 
-• You could have a look at this [tutorial](populationstructure_tuto/populationstructure_tuto.md). It is a small tutorial I wrote previously that goes over a different set of population genetics analyses in R. You could even try reproducing it using the `vcf` you generated above. The `vcf` for the set of analyses presented in that code can be downloaded [here](https://github.com/ldutoit/bully_gbs/blob/master/output_files/populations.snps.vcf) should you want to download it.
+• You could have a look at this [tutorial](https://github.com/ldutoit/bully_gbs/blob/master/populationstructure_tuto/populationstructure_tuto.md). It is a small tutorial I wrote previously that goes over a different set of population genetics analyses in R. You could even try reproducing it using the `vcf` you generated above. The `vcf` for the set of analyses presented in that code can be downloaded [here](https://github.com/ldutoit/bully_gbs/blob/master/output_files/populations.snps.vcf) should you want to download it.
 
 {% include links.md %}
