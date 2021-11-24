@@ -74,7 +74,7 @@ If you find most M values already entered in the spreadsheet, we will take the c
 >> $ module list
 >> $ module load Stacks
 >> ### copy the population map
->> cp  /nesi/project/nesi02659/obss_2021/resources/gbs/popmap.txt
+>> cp  /nesi/project/nesi02659/obss_2021/resources/gbs/popmap.txt .
 >> ```
 > {: .solution}
 {: .challenge}
