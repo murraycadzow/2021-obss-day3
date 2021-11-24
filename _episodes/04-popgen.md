@@ -229,7 +229,7 @@ A key user defined parameter is the hypothesized number of populations of origin
 > 
 > • Get inside the `structure directory`
 >
-> • Edit the `structure` output file to remove the comment line (i.e. first line in the file, starts with “#”). 
+> • Edit the `structure` output file to remove the entire comment line (i.e. first line in the file, starts with “#”). 
 >
 > • So far, when we’ve gone to run programs, we’ve been able to use `module spider` to figure out the program name, and then `module load program_name` to get access to the program and run it. Do this again to load `structure`.
 > 
